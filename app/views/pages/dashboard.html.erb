@@ -6,6 +6,13 @@
   }
 </style>
 
+<script>
+  $(document).ready(function(){
+    $(".modal-content").load("_form.html.erb");
+  });
+</script>
+
+
 <ul class="nav nav-tabs">
   <li class="nav-item">
       <a class="nav-link active" data-bs-toggle="tab" href="#mygroupsSection">MY GROUPS</a>
@@ -32,9 +39,19 @@
               <br>
               <!-- Button to trigger the popover -->
               <h5>
-                <a href="#addGroupModal" id="add-group-btn" class="btn btn-outline-dark">Add a Group</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                  Launch modal
+                </button>
               </h5>
             </div>
+            <div class="modal" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <%= render 'groups/form', group: Group.new %>
+                </div>
+              </div>
+            </div>
+
 
 
             <div class="card-body cards mb-4" style="border-radius: 5px">
