@@ -1,0 +1,5 @@
+<%= simple_form_for(@group) do |f| %>
+  <%= f.input :name %>
+  <%= f.collection_select :group_users, User.all, :id, :first_name, { prompt: "Select user" }, { multiple: true } %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

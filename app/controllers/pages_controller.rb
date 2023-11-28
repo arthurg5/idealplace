@@ -6,5 +6,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @groups = current_user.groups
+    @group = Group.new
   end
 end

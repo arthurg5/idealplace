@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     resources :votes, only: [:new, :create]
   end
 
+  resources :groups, only: [:index, :new, :create]
+
 end

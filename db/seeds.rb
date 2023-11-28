@@ -33,6 +33,7 @@
 
 
 # puts "#{User.all.count} users created"
+
 # lucile.avatar.attach(
 #   io: File.open('public/images/lucille.jpg'),
 #   filename: 'lucille.jpg', # use the extension of the attached file here
@@ -90,6 +91,7 @@
 # edward.save!
 
 
+
 # party = Event.new(name: "Kim's bday!", date: Date.today, start_time: Date.today)
 # tapas = Event.new(name: "Tapas juntos!", date: Date.today, start_time: Date.today)
 # beer = Event.new(name: "Beer time!", date: Date.today, start_time: Date.today)
@@ -124,11 +126,29 @@
 #   user: laura
 # )
 
+
 require 'faker'
 
 EventPlace.destroy_all
 Place.destroy_all
 Event.destroy_all
+User.destroy_all
+
+puts 'Creating fake users'
+
+lucile = User.create(first_name: "Lucile", last_name: "Smith", nickname: "Lucile", email: "lucile@idealplace.com", password: "123456", address: "15, rue Oberkampf 75010 Paris")
+arthur = User.create(first_name: "Arthur", last_name: "Johnson", nickname:"Arthur", email: "arthur@idealplace.com", password: "123456", address:"16, rue Oberkampf 75010 Paris")
+abdelsam = User.create(first_name: "Abdelsam", last_name: "Palmas", nickname:"Abdelsam", email: "abdelsam@idealplace.com", password: "123456", address: "18, avenue de Paris 93123 Montreuil")
+laure = User.create(first_name: "Laure", last_name: "Vega", nickname:"Laure", email: "laure@idealplace.com", password: "123456", address: "17, rue Cart 94160 Saint-Mandé")
+timothee = User.create(first_name: "Timothée", last_name:"Dupont", nickname:"Timothée", email: "timothee@idealplace.com", password: "123456", address: "15, Cours de Vincennes 94300 Vincennes")
+lucas = User.create(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", email: "lucas@idealplace.com", password: "123456", address: "18, avenue Parmentier 75003 Paris")
+kim = User.create(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "20, avenue des pastéques 94300 Vincennes")
+edward = User.create(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "21, rue des melons 94300 Vincennes")
+
+group1 = Group.create(name: "groupe1", user_id: arthur.id)
+GroupUser.create(user_id: arthur.id, group_id: group1.id)
+GroupUser.create(user_id: laure.id, group_id: group1.id)
+
 
 # Seed data for Places
 3.times do
@@ -150,7 +170,7 @@ end
 # Seed data for Events
 3.times do
   Event.create!(
-    user_id: 3,
+    user_id: 5,
     name: Faker::Lorem.word,
     barycenter_lng: Faker::Address.longitude,
     barycenter_lat: Faker::Address.latitude,
@@ -176,6 +196,7 @@ events.each do |event|
 end
 
 
+puts 'Seed creation is over!'
 # puts 'Creating fake users'
 
 # lucile = User.create(first_name: "Lucile", last_name: "Smith", nickname: "Lucile", email: "lucile@idealplace.com", password: "123456", address: "15, rue Oberkampf 75010 Paris")
