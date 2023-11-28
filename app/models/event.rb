@@ -5,6 +5,8 @@ class Event < ApplicationRecord
 
   STATUS = %w(Created Voted Passed)
 
-  validates :name, :barycenter_lng, :barycenter_lat, :date, :start_time, presence: true
-  validates :status, inclusion: { in: STATUS, message: "%{value} is not a valid status type" }
+  validates :name, :date, :start_time, presence: true
+ #  validates :status, inclusion: { in: STATUS, message: "%{value} is not a valid status type" }
 end
+
+# :barycenter_lng, :barycenter_lat
