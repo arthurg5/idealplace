@@ -6,7 +6,6 @@ class EventsController < ApplicationController
     # if params[:query]
     #   @events = Event.search_events(params[:query])
     # end
-
   end
 
   def show
