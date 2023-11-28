@@ -6,8 +6,9 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
-    # @group_user.group = @group.id
   end
+
+
 
   def create
     @group = Group.new(group_params)

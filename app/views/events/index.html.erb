@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Ideal Place </h1>
-  <h2 style> Where your event begins </h2>
+  <h2 style> Where your event begins !</h2>
     <%# <div class="navbar" id="myNavbar"> %>
         <%# <a href="#home">Home</a> %>
         <%# <a href="#profile">Profile</a> %>
@@ -25,13 +25,12 @@
 
   <div class="row">
     <div class="col-sm-12">
+      <%= link_to 'Create event', new_event_path, class:"btn btn-success" %>
       <% @events.each do |event| %>
           <div class= "col-sm-12">
             <div class="h-100">
              <p class="mt-2"> <%= event.name %> </p>
-            <!-- <p class="mt-2"> <%= event.date %> </p>
-             <p class="mt-2"> <%= event.start_time %> </p> -->
-             
+              <%= link_to 'See event', event_path(event), class:"btn btn-primary" %>
             </div>
           </div>
         <% end %>

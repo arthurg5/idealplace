@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   belongs_to :user
   has_many :event_users, dependent: :destroy
   has_many :event_places, dependent: :destroy
+  
 
   STATUS = %w(Created Voted Passed)
 
