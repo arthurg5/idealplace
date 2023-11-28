@@ -1,25 +1,14 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
 
-  <h1>Ideal Place </h1>
-  <h2 style> Where your event begins </h2>
-  <p>Find me in app/views/pages/home.html.erb</p>
-    <div class="navbar" id="myNavbar">
-        <a href="#home">Home</a>
-        <a href="#profile">Profile</a>
-        <a href="#dashboard">Dashboard</a>
-        <a href="#contact">Contact</a>
-        <a href="javascript:void(0);" class="icon" onclick="typeOfMenu()">
-            &#9776;
-        </a>
+<%= render "shared/banner" %>
+
+<div class="cars-container-home mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="row mt-5 cards-grid">
+        
+      </div>
     </div>
-
-<!-- Créer cela en stimulus dès que temps dispo -->
-  <script>
-    function typeOfMenu() {
-      let x = document.getElementById("myNavbar");
-        if (x.className === "navbar") {
-          x.className += " responsive";
-        } else {
-          x.className = "navbar";
-        }
-      }
-  </script>
+  </div>
+</div>

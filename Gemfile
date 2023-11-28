@@ -4,6 +4,10 @@ ruby "3.1.2"
 
 gem "devise"
 
+gem "faker"
+
+gem "geocoder"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
 
@@ -51,6 +55,8 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
+
+gem 'acts_as_favoritor', github: 'jonhue/acts_as_favoritor'
 
 group :development, :test do
   gem "dotenv-rails"
