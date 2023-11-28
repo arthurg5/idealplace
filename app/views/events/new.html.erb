@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Ideal Place </h1>
+  <h2 style> Where your event begins </h2>
+  <div class="row">
+    <div class="col-sm-12">
+            <div class="h-100">
+              <%= simple_form_for @event do |f| %>
+                <%= f.input :name %>
+                <%= f.input :date %>
+                <%= f.input :start_time %>
+                <%= image_tag "user-1.jpg", alt: "Avatar user-1", class: "avatar custom-margin", width: "40px", height:"40px", style:"object-fit:'contain'" %>
+                <%= image_tag "user-2.jpg", alt: "Avatar user-2", class: "avatar custom-margin", width: "40px", height:"40px", style:"object-fit:'contain'" %>
+                <%= image_tag "user-3.jpg", alt: "Avatar user-3", class: "avatar custom-margin", width: "40px", height:"40px", style:"object-fit:'contain'" %>
+                <br>
+                <%= f.submit class: "btn btn-success mt-4" %>
+              <% end %>
+
+              <p> Let's continue the organization of your event </p>
+
+            </div>
+    </div>
+  </div>
+</div>
