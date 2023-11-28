@@ -27,7 +27,6 @@ class EventPlacesController < ApplicationController
     @votes = @event_place.votes
   end
 
-
   private
 
   def set_event
