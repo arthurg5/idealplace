@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Ideal Place </h1>
+  <h2 style> Where your event begins </h2>
+
+
+  <div class="row">
+    <div class="col-sm-12">
+     <!-- <div class="flash flash-success alert alert-dismissible fade show" role="alert">
+        <span><strong>Yay!</strong> 🎉 You have successfully created your event! Let's continue.</span>
+          <a data-bs-dismiss="alert" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </a>
+      </div>
+      -->
+      <br>
+    </div>
+  </div>
+
+  <h3> Event current recapitulative </h3>
+  <p> The event called "<%= @event.name %>" will take place on <%= @event.date %> at <%= @event.start_time %> </p>
+  <p> You invited your friends from group " "</p>
+  <div class="d-flex">
+    <!-- the persue choice/button should remove the buttons : delete and update  -->
+    <button class="btn btn-success custom-margin"> Pursue event organization </button>
+
+    <!-- update should direct to the edit event page -->
+    <button class="btn btn-warning custom-margin"> Edit event </button>
+
+    <!-- delete should destroy the event and bring back to the index page ? -->
+    <button class="btn btn-danger custom-margin"> Cancel event </button>
+  </div>
+
+  <div>
+     <%= image_tag "paris-simul-carte.jpg", alt: "Carte de Paris", class: "map-display" %>
+  </div>
+
+</div>

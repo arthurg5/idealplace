@@ -25,13 +25,12 @@
 
   <div class="row">
     <div class="col-sm-12">
+      <%= link_to 'Create event', new_event_path, class:"btn btn-success" %>
       <% @events.each do |event| %>
           <div class= "col-sm-12">
             <div class="h-100">
              <p class="mt-2"> <%= event.name %> </p>
-            <!-- <p class="mt-2"> <%= event.date %> </p>
-             <p class="mt-2"> <%= event.start_time %> </p> -->
-             
+              <%= link_to 'See event', event_path(event), class:"btn btn-primary" %>
             </div>
           </div>
         <% end %>
