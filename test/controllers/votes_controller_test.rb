@@ -1,6 +1,6 @@
 require "test_helper"
 
-class VoteTest < ActiveSupport::TestCase
+class VotesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

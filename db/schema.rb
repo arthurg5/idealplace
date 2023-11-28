@@ -100,15 +100,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_155322) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "votes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "event_place_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_place_id"], name: "index_votes_on_event_place_id"
-    t.index ["user_id"], name: "index_votes_on_user_id"
-  end
-
   add_foreign_key "event_places", "events"
   add_foreign_key "event_places", "places"
   add_foreign_key "event_users", "events"
@@ -117,6 +108,4 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_155322) do
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "users"
-  add_foreign_key "votes", "event_places"
-  add_foreign_key "votes", "users"
 end
