@@ -1,0 +1,21 @@
+<style>
+  .nav-link {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    /* You can adjust other text properties here */
+  }
+</style>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#mycarsSection">MY CARS</a>
+      <%= @groups.name %>
+      <%= current_user.groups %>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#rentedcarsSection">RENTED CARS</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#bookingsSection">MY BOOKINGS</a>
+    </li>
+</ul>

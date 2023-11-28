@@ -10,3 +10,20 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+/* Define your custom button style */
+.custom-btn {
+  background-color: #d4613e; /* Choose your preferred color */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1.5rem; /* Adjust font size */
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect */
+.custom-btn:hover {
+  background-color: #df795a; /* Change color on hover */
+}
