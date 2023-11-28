@@ -19,7 +19,6 @@ class EventsController < ApplicationController
         # marker_html: render_to_string(partial: "marker")
       }
     end
-    raise
   end
 
   def new
