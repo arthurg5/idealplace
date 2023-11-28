@@ -19,7 +19,7 @@
   <h3> Event current recapitulative </h3>
   <p> The event called "<%= @event.name %>" will take place on <%= @event.date %> at <%= @event.start_time %> </p>
   <p> You invited your friends from group " "</p>
-  <div class="d-flex">
+  <div class="d-flex bottom-top-margin">
     <!-- the persue choice/button should remove the buttons : delete and update  -->
     <button class="btn btn-success custom-margin"> Pursue event organization </button>
 
@@ -32,11 +32,18 @@
 
   <div>
      <%= image_tag "paris-simul-carte.jpg", alt: "Carte de Paris", class: "map-display" %>
-     <div style="width: 100%; height: 600px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
+  </div>
+
+  <p class="custom-margin"> Please select a category of event </p>
+
+  <button class="btn btn-primary custom-margin">Catering </button>
+  <button class="btn btn-light custom-margin"> Entertainment </button>
+  <button class="btn btn-success custom-margin"> Cultural events </button>
+
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
 </div>
