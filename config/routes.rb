@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :event_places, only: [:index, :new, :create]
   end
 
-  resources :event_places, only: [:show] do
+  resources :event_places, only: [:index, :show] do
     member do
       post "vote", to: "event_places#vote"
     end
