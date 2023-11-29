@@ -37,25 +37,6 @@
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
-<!-- si on clique sur catering :
-      choices are : restaurants, bars, cafes
-        -> puis sous niveau restaurants : italien, mexicain, français, chinois...
-        -> puis sous niveau bars : bars à tapas, bars à bierre, bars à vin, bars à saké
-        -> puis sous niveau cafés : troquet, estaminet, bistrot
-
-    si on clique sur cultural events :
-      choices are : musée ciné expositions
-        -> choices de musée : art moderne, sculpture, arts anciens
-        -> choices de ciné : manga, thriller, policier
-        -> expos: artistique, scultpture, éducative
-
-    si on clique sur entertainment:
-      choices are : théâtre, concerts, spectacles
-      -> choices théâtre : comédie, tragédie, opéra-bouffe
-      -> choices concerts : rock, électro, classique
-      -> choices spectacles : comédie musicale, marionnettes, magie
-   -->
-
   <p class="custom-margin"> Please select a type of event </p>
 
   <button class="btn btn-primary custom-margin">Catering </button>
@@ -68,10 +49,6 @@
    <%= f.input :category, collection: ["Catering", "Entertainment", "Cultural event"], prompt: "Sélectionnez une catégorie d'évènement" %>
    <%= f.button :submit, "Filter" %>
 <% end %>
-
-
-
-
 
   </div>
 </div>
