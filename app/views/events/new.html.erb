@@ -4,11 +4,10 @@
   <div class="row">
     <div class="col-sm-12">
             <div class="h-100">
+            <p>Your event name is: <span id="display-event-name"></span></p>
               <%= simple_form_for @event do |f| %>
-                <%= f.input :name %>
 
-                <%= f.input :date, as: :string, input_html: { id: "event_date", data: { controller: "datepicker" }, class: "form-control white-input form-control-input", placeholder: "DD-MM-YYYY" } %>
-
+                <%= f.input :date %>
                 <%= f.input :start_time %>
                 <%= image_tag "user-1.jpg", alt: "Avatar user-1", class: "avatar custom-margin", width: "40px", height:"40px", style:"object-fit:'contain'" %>
                 <%= image_tag "user-2.jpg", alt: "Avatar user-2", class: "avatar custom-margin", width: "40px", height:"40px", style:"object-fit:'contain'" %>
@@ -17,9 +16,15 @@
                 <%= f.submit class: "btn btn-success mt-4" %>
               <% end %>
 
-              <p> Let's continue the organization of your event </p>
-
             </div>
     </div>
   </div>
 </div>
+
+
+<script>
+  // Retrieve the event name from localStorage and display it
+  const eventName = localStorage.getItem('eventName');
+  const displayEventName = document.getElementById('display-event-name');
+  displayEventName.textContent = eventName || 'No event name captured yet.';
+</script>

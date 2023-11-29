@@ -1,9 +1,24 @@
-<div class="cars-container-home mt-5">
-  <div class="row">
-    <div class="col-12">
-      <div class="row mt-5 cards-grid">
-
+<div class="container-home">
+  <div id="video-container">
+    <%= video_tag "diner-between-friends.mp4", :size => "640x360", :controls => false, :loop => true, :autoplay => true %>
+      <div id="text-overlay">
+        <h2 class="h2-video">Create your event with us!</h2>
+        <p class="p-video"> Enter its name below</p>
+        <div class="row">
+          <div class="col-sm-12">
+            <form class="form-home-page">
+                <input class="input-home-page" type="text" id="event-name">
+                <%= link_to 'Launch my event!', new_event_path, class:"pressable-button" %>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
   </div>
 </div>
+
+<script>
+  const inputField = document.getElementById('event-name');
+  inputField.addEventListener('input', function() {
+    localStorage.setItem('eventName', inputField.value);
+  });
+</script>
