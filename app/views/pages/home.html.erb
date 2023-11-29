@@ -5,12 +5,12 @@
     <%= video_tag "diner-between-friends.mp4", :size => "640x360", :controls => true, :autoplay => true %>
       <div id="text-overlay">
         <h2 class="h2-video">Create your event with us!</h2>
-        <p> Enter its name below</p>
+        <p class="p-video"> Enter its name below</p>
         <div class="row">
           <div class="col-sm-12">
             <form class="form-home-page">
                 <input class="input-home-page" type="text" name="event-name">
-                <button class="pressable-button" type="button" class=""> Launch my event!</button>
+                <%= link_to 'Launch my event!', new_event_path, class:"pressable-button" %>
             </form>
           </div>
         </div>
