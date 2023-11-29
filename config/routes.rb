@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   resources :event_places, only: [:index, :show] do
     resources :votes, only: [:new, :create]
+    member do
+      patch :vote
+    end
   end
 
   resources :groups, only: [:index, :new, :create]

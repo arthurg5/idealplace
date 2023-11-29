@@ -2,7 +2,7 @@ class EventPlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   before_action :set_event, only: [:new, :create]
-  before_action :set_event_place, only: [:show]
+  before_action :set_event_place, only: [:show, :vote]
 
   def new
     @event_place = EventPlace.new
@@ -24,7 +24,11 @@ class EventPlacesController < ApplicationController
   end
 
   def show
-    @votes = @event_place.votes
+  end
+
+  def vote
+    current_user.favorite(@event_place)
+    redirect_to event_place_path(@event_place)
   end
 
   private

@@ -13,21 +13,15 @@
               <li class="list-group-item">Distance: <%= event_place.distance %> km</li>
               <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
               <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
-              <% if event_place.selected %>
-                <%= current_user.favorite(event_place) %>
-              <% end %>
             </ul>
-            <div class="form-check form-switch" style="position: absolute; bottom: 10px; right: 10px;">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-              <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+            <div class="form-check" style="position: absolute; bottom: 10px; right: 10px;">
+              <%= link_to "Vote", vote_event_place_path(event_place), class:"form-check", type:"checkbox" %>
+              <input class="form-check-input" type="radio" name="flexRadioDefault" data-action="change->checkbox-votes#check">
             </div>
           </div>
         </div>
       </div>
     <% end %>
-
-
-
   </div>
 </div>
 
