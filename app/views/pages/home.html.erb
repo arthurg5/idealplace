@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-sm-12">
             <form class="form-home-page">
-                <input class="input-home-page" type="text" name="event-name">
+                <input class="input-home-page" type="text" id="event-name">
                 <%= link_to 'Launch my event!', new_event_path, class:"pressable-button" %>
             </form>
           </div>
@@ -17,3 +17,10 @@
       </div>
   </div>
 </div>
+
+<script>
+  const inputField = document.getElementById('event-name');
+  inputField.addEventListener('input', function() {
+    localStorage.setItem('eventName', inputField.value);
+  });
+</script>
