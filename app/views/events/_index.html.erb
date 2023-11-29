@@ -24,8 +24,8 @@
 <div class="container">
   <div class="row">
     <% events.each do |event| %>
-      <div class="col-md-4 p-0">
-        <div class="card mb-4">
+      <div class="col-md-4 mb-3 p-1"> <!-- Added 'mb-3' class for margin bottom -->
+        <div class="card">
           <div class="card-body">
             <h5 class="card-title"><%= event.name %></h5>
             <p class="card-text">Date: <%= event.date %></p>
