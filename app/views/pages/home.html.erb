@@ -2,16 +2,18 @@
   <h1>Ideal Place </h1>
   <h2 style> Where your event begins </h2>
   <div id="video-container">
-    <%# <video width="640" height="360" controls autoplay> %>
-
     <%= video_tag "diner-between-friends.mp4", :size => "640x360", :controls => true, :autoplay => true %>
       <div id="text-overlay">
-        <h2>Create your event with us!</h2>
+        <h2 class="h2-video">Create your event with us!</h2>
         <p> Enter its name below</p>
-          <form class="form-home-page">
-              <input class="input-home-page" type="text" name="event-name">
-              <button class="pressable-button" type="button" class=""> Launch my event!</button>
-          </form>
+        <div class="row">
+          <div class="col-sm-12">
+            <form class="form-home-page">
+                <input class="input-home-page" type="text" name="event-name">
+                <button class="pressable-button" type="button" class=""> Launch my event!</button>
+            </form>
+          </div>
+        </div>
       </div>
   </div>
 </div>

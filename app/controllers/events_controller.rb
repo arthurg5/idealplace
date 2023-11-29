@@ -10,8 +10,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @places = @event.places
 
-    @markers = @event.places.geocoded.map do |place|
+    @markers = @places.geocoded.map do |place|
       {
         lat: place.latitude,
         lng: place.longitude,

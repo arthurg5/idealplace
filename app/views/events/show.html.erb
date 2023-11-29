@@ -40,32 +40,66 @@
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
+<!-- si on clique sur catering :
+      choices are : restaurants, bars, cafes
+        -> puis sous niveau restaurants : italien, mexicain, français, chinois...
+        -> puis sous niveau bars : bars à tapas, bars à bierre, bars à vin, bars à saké
+        -> puis sous niveau cafés : troquet, estaminet, bistrot
+
+    si on clique sur cultural events :
+      choices are : musée ciné expositions
+        -> choices de musée : art moderne, sculpture, arts anciens
+        -> choices de ciné : manga, thriller, policier
+        -> expos: artistique, scultpture, éducative
+
+    si on clique sur entertainment:
+      choices are : théâtre, concerts, spectacles
+      -> choices théâtre : comédie, tragédie, opéra-bouffe
+      -> choices concerts : rock, électro, classique
+      -> choices spectacles : comédie musicale, marionnettes, magie
+   -->
+
   <p class="custom-margin"> Please select a type of event </p>
 
   <button class="btn btn-primary custom-margin">Catering </button>
   <button class="btn btn-light custom-margin"> Entertainment </button>
   <button class="btn btn-success custom-margin"> Cultural events </button>
 
-  <!-- si on clique sur catering :
-      choices are : restaurants, bars, cafes
-        puis sous niveau restaurants : italien, mexicain, français, chinois...
-        puis sous niveau bars : à tapas, 
 
-    si on clique sur entertainment :
-      choices are ????
 
-    si on clique sur cultural events :
-      choices are : musée ciné
+  <div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+   <%= simple_form_for :filter, url: event_path, method: :get do |f| %>
+   <%= f.input :category, collection: ["Catering", "Entertainment", "Cultural event"], prompt: "Sélectionnez une catégorie d'évènement" %>
+   <%= f.button :submit, "Filter" %>
+<% end %>
 
-    si on clique sur entertainment:
-      choices are :
 
-   -->
 
-  <p class="custom-margin"> Please select a category of event </p>
+  </div>
+</div>
 
-  <button class="btn btn-primary custom-margin">Catering </button>
-  <button class="btn btn-light custom-margin"> Entertainment </button>
-  <button class="btn btn-success custom-margin"> Cultural events </button>
+
+
+<div class="catering-sub-event">
+  <p class="custom-margin"> Select a catering event </p>
+  <button class="btn btn-primary custom-margin">Restaurant </button>
+  <button class="btn btn-light custom-margin"> Bar </button>
+  <button class="btn btn-success custom-margin"> Café </button>
+</div>
+
+<div class="entertainment-sub-event">
+  <p class="custom-margin"> Select an entertainment </p>
+  <button class="btn btn-primary custom-margin">Theater </button>
+  <button class="btn btn-light custom-margin"> Concert </button>
+  <button class="btn btn-success custom-margin"> Show </button>
+</div>
+
+<div class="culture-sub-event">
+  <p class="custom-margin"> Select a cultural event </p>
+  <button class="btn btn-primary custom-margin"> Museum </button>
+  <button class="btn btn-light custom-margin"> Cinema </button>
+  <button class="btn btn-success custom-margin"> Exposition </button>
+</div>
 
 </div>
