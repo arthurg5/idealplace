@@ -127,14 +127,14 @@
 # )
 
 
-require 'faker'
+# require 'faker'
 
 EventPlace.destroy_all
-Place.destroy_all
+# Place.destroy_all
 Event.destroy_all
 User.destroy_all
 
-puts 'Creating fake users'
+# puts 'Creating fake users'
 
 lucile = User.create(first_name: "Lucile", last_name: "Smith", nickname: "Lucile", email: "lucile@idealplace.com", password: "123456", address: "15, rue Oberkampf 75010 Paris")
 arthur = User.create(first_name: "Arthur", last_name: "Johnson", nickname:"Arthur", email: "arthur@idealplace.com", password: "123456", address:"16, rue Oberkampf 75010 Paris")
@@ -145,55 +145,79 @@ lucas = User.create(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", e
 kim = User.create(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "20, avenue des pastéques 94300 Vincennes")
 edward = User.create(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "21, rue des melons 94300 Vincennes")
 
-group1 = Group.create(name: "groupe1", user_id: arthur.id)
-GroupUser.create(user_id: arthur.id, group_id: group1.id)
-GroupUser.create(user_id: laure.id, group_id: group1.id)
+# group1 = Group.create(name: "groupe1", user_id: arthur.id)
+# GroupUser.create(user_id: arthur.id, group_id: group1.id)
+# GroupUser.create(user_id: laure.id, group_id: group1.id)
 
 
-# Seed data for Places
-3.times do
-  Place.create!(
-    name: Faker::Company.name,
-    address: Faker::Address.full_address,
-    phone: Faker::PhoneNumber.phone_number,
-    category: Faker::Lorem.word,
-    second_category: Faker::Lorem.word,
-    third_category: Faker::Lorem.word,
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude,
-    distance: Faker::Number.decimal(l_digits: 2),
-    opening_hours: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-    rating: Faker::Number.between(from: 1, to: 5)
-  )
-end
+# # Seed data for Places
+# 3.times do
+#   Place.create!(
+#     name: Faker::Company.name,
+#     address: Faker::Address.full_address,
+#     phone: Faker::PhoneNumber.phone_number,
+#     category: Faker::Lorem.word,
+#     second_category: Faker::Lorem.word,
+#     third_category: Faker::Lorem.word,
+#     latitude: Faker::Address.latitude,
+#     longitude: Faker::Address.longitude,
+#     distance: Faker::Number.decimal(l_digits: 2),
+#     opening_hours: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+#     rating: Faker::Number.between(from: 1, to: 5)
+#   )
+# end
 
-# Seed data for Events
-3.times do
-  Event.create!(
-    user_id: 5,
-    name: Faker::Lorem.word,
-    barycenter_lng: Faker::Address.longitude,
-    barycenter_lat: Faker::Address.latitude,
-    date: Faker::Date.forward(days: 23),
-    start_time: Faker::Time.forward(days: 23),
-    status: Event::STATUS.sample
-  )
-end
+# # Seed data for Events
+# 3.times do
+#   Event.create!(
+#     user_id: 5,
+#     name: Faker::Lorem.word,
+#     barycenter_lng: Faker::Address.longitude,
+#     barycenter_lat: Faker::Address.latitude,
+#     date: Faker::Date.forward(days: 23),
+#     start_time: Faker::Time.forward(days: 23),
+#     status: Event::STATUS.sample
+#   )
+# end
 
-# Seed data for EventPlaces (linking Events and Places)
-events = Event.all
+# # Seed data for EventPlaces (linking Events and Places)
+# events = Event.all
 places = Place.all
 
-events.each do |event|
-  event_place = EventPlace.create!(
-    duration: Faker::Number.number(digits: 2),
-    distance: Faker::Number.decimal(l_digits: 2),
-    transport_mode: Faker::Lorem.word,
-    selected: [false].sample,
-    place: places.sample,
-    event: event
-  )
-end
+# events.each do |event|
+#   event_place = EventPlace.create!(
+#     duration: Faker::Number.number(digits: 2),
+#     distance: Faker::Number.decimal(l_digits: 2),
+#     transport_mode: Faker::Lorem.word,
+#     selected: [false].sample,
+#     place: places.sample,
+#     event: event
+#   )
+# end
+
+event_test = Event.create(user: User.last, name: "TestTA", date: Faker::Date.forward(days: 23), start_time: Faker::Time.forward(days: 23), status: "Created")
+
+event_place1 = EventPlace.create(
+  duration: Faker::Number.number(digits: 2),
+  distance: Faker::Number.decimal(l_digits: 2),
+  transport_mode: Faker::Lorem.word,
+  selected: [false].sample,
+  place: places.sample, event: event_test)
+
+
+event_place2 = EventPlace.create(
+  duration: Faker::Number.number(digits: 2),
+  distance: Faker::Number.decimal(l_digits: 2),
+  transport_mode: Faker::Lorem.word,
+  selected: [false].sample,
+  place: places.sample, event: event_test)
+
+event_place3 = EventPlace.create(
+  duration: Faker::Number.number(digits: 2),
+  distance: Faker::Number.decimal(l_digits: 2),
+  transport_mode: Faker::Lorem.word,
+  selected: [false].sample,
+  place: places.sample, event: event_test)
 
 
 puts 'Seed creation is over!'
