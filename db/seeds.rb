@@ -152,7 +152,7 @@ GroupUser.create(user_id: laure.id, group_id: group1.id)
 
 # Seed data for Placess
 
-3.times do
+10.times do
   Place.create!(
     name: Faker::Company.name,
     address: Faker::Address.full_address,
@@ -193,6 +193,17 @@ events.each do |event|
     selected: [false].sample,
     place: places.sample,
     event: event
+  )
+end
+
+5.times do
+  event_place = EventPlace.create!(
+    duration: Faker::Number.number(digits: 2),
+    distance: Faker::Number.decimal(l_digits: 2),
+    transport_mode: Faker::Lorem.word,
+    selected: [false].sample,
+    place: places.sample,
+    event: events.first
   )
 end
 
