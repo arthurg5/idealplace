@@ -150,7 +150,7 @@ GroupUser.create(user_id: arthur.id, group_id: group1.id)
 GroupUser.create(user_id: laure.id, group_id: group1.id)
 
 
-# Seed data for Placess
+# Seed data for Places
 
 3.times do
   Place.create!(
