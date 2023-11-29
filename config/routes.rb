@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :events do
-    resources :event_places, only: [:new, :create]
+    resources :event_places, only: [:index, :new, :create]
   end
 
-  resources :event_places, only: [:index, :show] do
+  resources :event_places, only: [:show] do
     member do
       post "vote", to: "event_places#vote"
     end

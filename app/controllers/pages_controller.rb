@@ -5,7 +5,13 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @groups = current_user.groups
+    @groups = Group.all
     @group = Group.new
+
+    @events = Event.all
+
+    @created_events = Event.where(status: 'Created')
+    @voted_events = Event.where(status: 'Voted')
+    @passed_events = Event.where(status: 'Passed')
   end
 end
