@@ -1,6 +1,6 @@
 .container-home{
   max-width: 100%;
-  padding: 0 15px;
+  padding: 0 0px;
   margin: 0 auto;
 }
 
@@ -27,6 +27,7 @@ video{
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-top: 0px;
 }
 
 
@@ -76,10 +77,12 @@ video{
 }
 
 .h2-video{
-  margin-top: 20px;
+  margin-top: 0px;
   text-align: center;
-  font-size: 40px;
+  font-size: 38px;
   margin-bottom: 100px;
+  position: absolute;
+  top: 50px;
 }
 
 .p-video{
