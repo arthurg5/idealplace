@@ -6,6 +6,7 @@
             <div class="h-100">
             <p>Your event name is: <span id="display-event-name"></span></p>
               <%= simple_form_for @event do |f| %>
+
                 <%= f.input :date %>
                 <%= f.input :start_time %>
                 <%= image_tag "user-1.jpg", alt: "Avatar user-1", class: "avatar custom-margin", width: "40px", height:"40px", style:"object-fit:'contain'" %>
