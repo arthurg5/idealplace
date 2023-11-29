@@ -1,6 +1,4 @@
-<div class="container">
-  <h1>Ideal Place </h1>
-  <h2 style> Where your event begins !</h2>
+
     <%# <div class="navbar" id="myNavbar"> %>
         <%# <a href="#home">Home</a> %>
         <%# <a href="#profile">Profile</a> %>
@@ -11,7 +9,7 @@
         <%# </a> %>
     <%# </div> %>
 
-<!-- Créer cela en stimulus dès que temps dispo -->
+    <!-- Créer cela en stimulus dès que temps dispo -->
   <%# <script>
     function typeOfMenu() {
       let x = document.getElementById("myNavbar");
@@ -23,18 +21,20 @@
       }
   </script> %>
 
+<div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      <%= link_to 'Create event', new_event_path, class:"btn btn-success" %>
-      <% @events.each do |event| %>
-          <div class= "col-sm-12">
-            <div class="h-100">
-             <p class="mt-2"> <%= event.name %> </p>
-              <%= link_to 'See event', event_path(event), class:"btn btn-primary" %>
-            </div>
+    <% events.each do |event| %>
+      <div class="col-md-4 mb-3 p-1"> <!-- Added 'mb-3' class for margin bottom -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= event.name %></h5>
+            <p class="card-text">Date: <%= event.date %></p>
+            <p class="card-text">Start Time: <%= event.start_time.strftime("%H:%M %p") %></p>
+            <p class="card-text">Status: <%= event.status %></p>
+            <%= link_to 'See event', event_path(event), class: "btn btn-primary" %>
           </div>
-        <% end %>
+        </div>
       </div>
-    </div>
-
+    <% end %>
+  </div>
 </div>
