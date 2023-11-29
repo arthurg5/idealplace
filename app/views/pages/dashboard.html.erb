@@ -4,25 +4,44 @@
     font-weight: bold;
     /* You can adjust other text properties here */
   }
+  .text-black {
+    color: black !important; /* Ensure the text color is black */
+  }
+
+  .nav-tabs .nav-link {
+  background-color: #f0f0f0;
+  border: 1px solid #cccccc;
+  font-size: 18px;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+}
+.nav-tabs .nav-link.active {
+  background-color: #ffffff;
+  border-bottom: none;
+}
+.nav-tabs .nav-link:hover {
+  background-color: #9FB1D3;
+  color: #ffffff;
+}
 </style>
 
 <script>
+
   $(document).ready(function(){
     $(".modal-content").load("_form.html.erb");
   });
 </script>
 
-
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs mb-4">
   <li class="nav-item">
-      <a class="nav-link active" data-bs-toggle="tab" href="#mygroupsSection">MY GROUPS</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" href="#rentedcarsSection">RENTED CARS</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" href="#bookingsSection">MY BOOKINGS</a>
-    </li>
+    <a class="nav-link active text-black" data-bs-toggle="tab" href="#mygroupsSection">MY GROUPS</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-black" data-bs-toggle="tab" href="#myeventsSection">MY EVENTS</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-black" data-bs-toggle="tab" href="#bookingsSection">MY BOOKINGS</a>
+  </li>
 </ul>
 
 
@@ -32,80 +51,58 @@
       <div class="tab-content">
 
         <div class="tab-pane fade show active" id="mygroupsSection">
+          <!-- ... Your existing content for mygroupsSection ... -->
           <div class="groups">
-
-            <div class="d-flex justify-content-between mb-2 p-3 align-items-center">
-              <h3 class="card-title">MY GROUPS</h3>
-              <br>
-              <!-- Button to trigger the popover -->
-              <h5>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                  Launch modal
-                </button>
-              </h5>
-            </div>
-            <div class="modal" id="myModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <%= render 'groups/form', group: Group.new %>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="card-body cards mb-4" style="border-radius: 5px">
+            <div class="row">
               <% @groups.each do |group| %>
-                <div class="cars-card card-category d-flex flex-column cards mb-4" style="border-radius: 5px">
-
-                    <div class="row">
-                      <% @groups.each do |group| %>
-                        <!-- Column for the list -->
-                        <div class="col-md-6">
-                          <ul class="list-unstyled">
-                            <li><i class="fas fa-group"></i> <%= group.name %> </li>
-                            <li><i class="fas fa-group"></i>
-                              <% group.users.each do |user| %>
-                                <%= user.first_name %> <!-- Display users associated with the group -->
-                              <% end %>
-                            </li>
-                          </ul>
-                        </div>
-                        <!-- Column for the picture -->
-                      <% end %>
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= group.name %></h5>
+                      <p class="card-text">Created by: <%= group.user.first_name %> <%= group.user.last_name %></p>
+                      <ul class="list-unstyled">
+                        <li><strong>Group Members:</strong></li>
+                        <% group.group_users.each do |group_user| %>
+                          <li><%= group_user.user.first_name %> <%= group_user.user.last_name %></li>
+                        <% end %>
+                      </ul>
                     </div>
-
-                    <div class="d-flex justify-content-between mt-auto">
-                      <%= link_to "Update", root_path, class: "btn btn-primary" %>
-                    </div>
-
+                  </div>
                 </div>
               <% end %>
             </div>
           </div>
+           <%= link_to "Add Group", new_group_path, class: "btn btn-primary" %>
         </div>
 
-
+        <div class="tab-pane fade" id="myeventsSection">
+          <!-- Add the sub-tabs here -->
+          <ul class="nav nav-tabs" id="myEventsTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active text-black" id="created-tab" data-bs-toggle="tab" data-bs-target="#createdSection" type="button" role="tab" aria-controls="createdSection" aria-selected="true">Created</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link text-black" id="voted-tab" data-bs-toggle="tab" data-bs-target="#votedSection" type="button" role="tab" aria-controls="votedSection" aria-selected="false">Voted</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link text-black" id="passed-tab" data-bs-toggle="tab" data-bs-target="#passedSection" type="button" role="tab" aria-controls="passedSection" aria-selected="false">Passed</button>
+            </li>
+          </ul>
+          <div class="tab-content mt-3" id="myEventsTabsContent">
+            <div class="tab-pane fade show active" id="createdSection" role="tabpanel" aria-labelledby="created-tab">
+              <%= render 'events/index', events: @created_events %>
+            </div>
+            <div class="tab-pane fade" id="votedSection" role="tabpanel" aria-labelledby="voted-tab">
+              <%= render 'events/index', events: @voted_events %>
+            </div>
+            <div class="tab-pane fade" id="passedSection" role="tabpanel" aria-labelledby="passed-tab">
+              <%= render 'events/index', events: @passed_events %>
+            </div>
+          </div>
+          <!-- End of sub-tabs -->
+        </div>
 
       </div>
     </div>
   </div>
 </div>
-
-    <a class="nav-link active" data-bs-toggle="tab" href="#mycarsSection">MY CARS</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="tab" href="#rentedcarsSection">RENTED CARS</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="tab" href="#bookingsSection">MY BOOKINGS</a>
-  </li>
-</ul>
-
-      <% @groups.each do |group| %>
-        <li><%= group.name %> - Créé par: <%= group.user.first_name %></li>
-        <% group.group_users.each do |group_user| %>
-          <li><%= group_user.user.first_name %> <%= group_user.user.last_name %></li>
-        <% end %>
-      <% end %>
-

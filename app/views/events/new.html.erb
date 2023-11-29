@@ -6,7 +6,9 @@
             <div class="h-100">
               <%= simple_form_for @event do |f| %>
                 <%= f.input :name %>
-                <%= f.input :date %>
+
+                <%= f.input :date, as: :string, input_html: { id: "event_date", data: { controller: "datepicker" }, class: "form-control white-input form-control-input", placeholder: "DD-MM-YYYY" } %>
+
                 <%= f.input :start_time %>
                 <%= image_tag "user-1.jpg", alt: "Avatar user-1", class: "avatar custom-margin", width: "40px", height:"40px", style:"object-fit:'contain'" %>
                 <%= image_tag "user-2.jpg", alt: "Avatar user-2", class: "avatar custom-margin", width: "40px", height:"40px", style:"object-fit:'contain'" %>

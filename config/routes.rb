@@ -13,10 +13,10 @@ Rails.application.routes.draw do
 
 
   resources :events do
-    resources :event_places, only: [:new, :create]
+    resources :event_places, only: [:index, :new, :create]
   end
 
-  resources :event_places, only: [:index, :show] do
+  resources :event_places, only: [:show] do
     resources :votes, only: [:new, :create]
   end
 
