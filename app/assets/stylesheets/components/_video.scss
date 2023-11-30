@@ -110,3 +110,7 @@ video{
     padding: 20px;
   }
 }
+
+.form-control:hover{
+  outline: $dark-orange 1px solid;
+}
