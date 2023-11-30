@@ -1,0 +1,14 @@
+<div class="places-container">
+  <% places.each do |place| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title"><%= place.name %> - <%= place.category %></h5>
+        <p class="card-text"><%= place.address %></p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Opening Hours: <%= place.opening_hours %> </li>
+          <li class="list-group-item">Distance: <%= place.rating %> km</li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

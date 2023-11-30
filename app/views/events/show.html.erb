@@ -26,21 +26,31 @@
 
     <!-- delete should destroy the event and bring back to the index page ? -->
     <button class="btn btn-danger custom-margin"> Cancel event </button>
+    <%= link_to "EP", event_event_places_path(@event), class: "btn btn-warning custom-margin" %>
+  </div>
+
   </div>
   <p class="custom-margin"> Please select a category of event </p>
 
-  <button class="btn btn-primary custom-margin">Catering </button>
-  <button class="btn btn-light custom-margin"> Entertainment </button>
-  <button class="btn btn-success custom-margin"> Cultural events </button>
-
-  <div style="width: 100%; height: 600px;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-
+  <!-- events/show.html.erb -->
+  <button class="btn btn-light custom-margin category" data-category="Catering">Catering</button>
+  <button class="btn btn-light custom-margin category" data-category="Entertainment">Entertainment</button>
+  <button class="btn btn-light custom-margin category" data-category="Culture">Culture</button>
 
   <div class="row">
+
+    <div class="col-md-6">
+      <%= render partial: 'shared/filtered_places', locals: { places: @places } %>
+    </div>
+    <div class="col-md-6">
+      <div style="width: 100%; height: 600px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+
+
     <% @event_places.each do |event_place| %>
       <div class="col-md-4">
         <div class="card mb-4">
@@ -53,6 +63,7 @@
               <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
               <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
             </ul>
+            
             <div style="position: absolute; bottom: 10px; right: 10px;">
             <%= link_to "choose", event_event_places_path(event_place.event), data: { turbo_method: :post } %>
             </div>
@@ -65,5 +76,40 @@
         </div>
       </div>
       <% end %>
+
   </div>
 </div>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const categoryButtons = document.querySelectorAll('.category');
+  const placesContainer = document.querySelector('.places-container');
+
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const category = this.getAttribute('data-category');
+
+      fetch(`/events/<%= @event.id %>?category=${category}`, {
+        headers: {
+          'X-CSRF-Token': '<%= form_authenticity_token %>'
+        }
+      })
+      .then(response => response.text())
+
+      .then(data => {
+        // Extract the necessary content from the fetched HTML
+        const parser = new DOMParser();
+        const parsedHTML = parser.parseFromString(data, 'text/html');
+        const filteredPlaces = parsedHTML.querySelector('.places-container').innerHTML;
+
+        // Update the places container with the filtered places
+        placesContainer.innerHTML = filteredPlaces;
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  });
+});
+
+</script>
