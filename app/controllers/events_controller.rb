@@ -31,6 +31,7 @@ class EventsController < ApplicationController
       format.html
       format.js
     end
+
   end
 
 
@@ -53,9 +54,6 @@ class EventsController < ApplicationController
     end
   end
 
-
-
-
   def edit
     @event = Event.find(params[:id])
   end
@@ -71,6 +69,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :date, :start_time, :selected_group_name)
   end
-
-
 end

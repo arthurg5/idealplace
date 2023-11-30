@@ -4,21 +4,19 @@
       <div id="text-overlay">
         <h2 class="h2-video" style="color: black">Let's create your event!</h2>
         <p class="p-video"> Enter its name below</p>
+
         <div class="row">
           <div class="col-sm-12">
-            <form class="form-home-page">
-                <input class="input-home-page" type="text" id="event-name">
-                <%= link_to 'Launch my event!', new_event_path, class:"pressable-button" %>
-            </form>
+             <%= form_with url: new_event_path, method: :get, html: {class: "mb-4", data: {search_movies_target: "form"}} do |f| %>
+              <%= f.label :name, "Enter its name below", class:"p-video" %>
+              <%= f.text_field :name,
+                              class: "form-control",
+                              value: params[:name]
+              %>
+              <%= f.submit "Launch my event", class:"pressable-button mt-4" %>
+            <% end %>
           </div>
         </div>
       </div>
   </div>
 </div>
-
-<script>
-  const inputField = document.getElementById('event-name');
-  inputField.addEventListener('input', function() {
-    localStorage.setItem('eventName', inputField.value);
-  });
-</script>

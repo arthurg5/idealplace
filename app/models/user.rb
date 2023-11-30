@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many_attached :photos
   has_many :groups, dependent: :destroy
   has_many :group_users, through: :groups, dependent: :destroy
   has_many :events, dependent: :destroy

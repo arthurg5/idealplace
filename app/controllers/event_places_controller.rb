@@ -9,7 +9,6 @@ class EventPlacesController < ApplicationController
   def create
     @event_place = @event.event_places.new(event_place_params)
     @event_place.place = Place.find(params[:place_id])
-
     if @event_place.save
       redirect_to event_place_path(@event, @event_place)
     else
@@ -25,18 +24,12 @@ class EventPlacesController < ApplicationController
   end
 
   def vote
-    if current_user.all_favorites
-      current_user.all_favorites.each do |favorite|
-        if favorite == @event_place
-          current_user.favorite(@event_place)
-        else
-          puts "Error"
-        end
-      end
+    if current_user.favorited?(@event_place)
+      @vote_user = true
     else
       current_user.favorite(@event_place)
     end
-    redirect_to event_path(@event_place.event)
+    redirect_to event_event_places_path(@event_place.event)
   end
 
   private

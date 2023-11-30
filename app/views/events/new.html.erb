@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="h-100">
-        <p>Your event name is: <span id="display-event-name"></span></p>
+        <p>Your event name is: <%= params[:name] %></p>
 
         <%= simple_form_for @event, url: events_path do |f| %>
           <%= f.hidden_field :name, id: 'event_name' %>
