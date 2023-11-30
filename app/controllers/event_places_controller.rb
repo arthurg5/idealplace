@@ -1,5 +1,5 @@
 class EventPlacesController < ApplicationController
-  before_action :set_event, only: [:new, :create]
+  before_action :set_event, only: [:new, :create, :index, :vote]
   before_action :set_event_place, only: [:show, :vote]
 
   def new
@@ -18,23 +18,22 @@ class EventPlacesController < ApplicationController
   end
 
   def index
-    @event = Event.find(params[:event_id])
     @event_places = @event.event_places
   end
-
 
   def show
   end
 
   def vote
+    raise
     current_user.favorite(@event_place)
+    # event_place_1_count = 0
+    # @event_place.event.event_places.each do |current_event_place|
+    #   if current_event_place == current_user.all_favorites
+    #     event_place_1_count += 1
+    #   end
+    # end
     redirect_to event_place_path(@event_place)
-    event_place_1_count = 0
-    @event_place.event.event_places.each do |current_event_place|
-      if current_event_place == current_user.all_favorites
-        event_place_1_count += 1
-      end
-    end
   end
 
   private
