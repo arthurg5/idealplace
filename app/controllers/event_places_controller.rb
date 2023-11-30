@@ -1,5 +1,5 @@
 class EventPlacesController < ApplicationController
-  before_action :set_event, only: [:new, :create]
+  before_action :set_event, only: [:new, :create, :vote]
   before_action :set_event_place, only: [:show, :vote]
 
   def new
