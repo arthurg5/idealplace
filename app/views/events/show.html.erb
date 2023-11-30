@@ -46,34 +46,4 @@
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
-
-  <div class="row">
-    <% @event_places.each do |event_place| %>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title"><%= event_place.place.name %></h5>
-            <p class="card-text"><%= event_place.place.address %></p>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Duration: <%= event_place.duration %> minutes</li>
-              <li class="list-group-item">Distance: <%= event_place.distance %> km</li>
-              <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
-              <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
-            </ul>
-            <div class="form-check" style="position: absolute; bottom: 10px; right: 10px;">
-              <%= link_to "Vote", vote_event_place_path(event_place), data: { turbo_method: :post }, class:"form-check", type:"checkbox" %>
-              <input class="form-check-input" type="radio" name="flexRadioDefault" data-action="change->checkbox-votes#check">
-            </div>
-          </div>
-        </div>
-      </div>
-      <% if event_place.favoritors %>
-        <h1>New :
-          <% event_place.favoritors.each do |favorite| %>
-          <%= favorite.first_name %>
-        <%end%>
-        <%end%>
-      </h1>
-    <% end %>
-  </div>
 </div>

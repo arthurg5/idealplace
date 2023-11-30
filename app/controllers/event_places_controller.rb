@@ -25,14 +25,15 @@ class EventPlacesController < ApplicationController
   end
 
   def vote
+    raise
     current_user.favorite(@event_place)
-    event_place_1_count = 0
-    @event_place.event.event_places.each do |current_event_place|
-      if current_event_place == current_user.all_favorites
-        event_place_1_count += 1
-      end
-    end
-    redirect_to event_event_places_path(@event_place)
+    # event_place_1_count = 0
+    # @event_place.event.event_places.each do |current_event_place|
+    #   if current_event_place == current_user.all_favorites
+    #     event_place_1_count += 1
+    #   end
+    # end
+    redirect_to event_place_path(@event_place)
   end
 
   private
