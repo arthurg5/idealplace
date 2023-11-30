@@ -26,53 +26,23 @@
 
     <!-- delete should destroy the event and bring back to the index page ? -->
     <button class="btn btn-danger custom-margin"> Cancel event </button>
-    <%= link_to "Event Places", event_event_places_path(@event), class: "btn btn-info custom-margin" %>
   </div>
+
+  <div>
+     <%= image_tag "paris-simul-carte.jpg", alt: "Carte de Paris", class: "map-display" %>
+  </div>
+
+  <p class="custom-margin"> Please select a category of event </p>
+
+  <button class="btn btn-primary custom-margin">Catering </button>
+  <button class="btn btn-light custom-margin"> Entertainment </button>
+  <button class="btn btn-success custom-margin"> Cultural events </button>
 
   <div style="width: 100%; height: 600px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-
-  <p class="custom-margin"> Please select a type of event </p>
-
-  <button class="btn btn-primary custom-margin">Catering </button>
-  <button class="btn btn-light custom-margin"> Entertainment </button>
-  <button class="btn btn-success custom-margin"> Cultural events </button>
-
-  <div class="row justify-content-center">
-  <div class="col-sm-8 my-3">
-   <%= simple_form_for :filter, url: event_path, method: :get do |f| %>
-   <%= f.input :category, collection: ["Catering", "Entertainment", "Cultural event"], prompt: "Sélectionnez une catégorie d'évènement" %>
-   <%= f.button :submit, "Filter" %>
-<% end %>
-
-  </div>
-</div>
-
-
-
-<div class="catering-sub-event">
-  <p class="custom-margin"> Select a catering event </p>
-  <button class="btn btn-primary custom-margin">Restaurant </button>
-  <button class="btn btn-light custom-margin"> Bar </button>
-  <button class="btn btn-success custom-margin"> Café </button>
-</div>
-
-<div class="entertainment-sub-event">
-  <p class="custom-margin"> Select an entertainment </p>
-  <button class="btn btn-primary custom-margin">Theater </button>
-  <button class="btn btn-light custom-margin"> Concert </button>
-  <button class="btn btn-success custom-margin"> Show </button>
-</div>
-
-<div class="culture-sub-event">
-  <p class="custom-margin"> Select a cultural event </p>
-  <button class="btn btn-primary custom-margin"> Museum </button>
-  <button class="btn btn-light custom-margin"> Cinema </button>
-  <button class="btn btn-success custom-margin"> Exposition </button>
-</div>
 
 
   <div class="row">
@@ -87,15 +57,31 @@
               <li class="list-group-item">Distance: <%= event_place.distance %> km</li>
               <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
               <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
+              <% if event_place.favoritors %>
+              <li class="list-group-item">Members who voted:
+                <% event_place.favoritors.each do |favorite| %>
+                <%= favorite.first_name %></li>
+              <%end%>
+            </ul>
+            <%end%>
             </ul>
             <div class="form-check" style="position: absolute; bottom: 10px; right: 10px;">
-              <%= link_to "Vote", vote_event_place_path(event_place), data: { turbo_method: :post }, class:"form-check", type:"checkbox" %>
-              <input class="form-check-input" type="radio" name="flexRadioDefault" data-action="change->checkbox-votes#check">
+              <% if current_user.all_favorites %>
+                <% current_user.all_favorites.each do |favorite| %>
+                  <% if favorite == @event_place %>
+                    <p>Voted!</p>
+                  <% else %>
+                    <p>You've already voted</p>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= link_to "Vote", vote_event_place_path(event_place), class:"form-check", type:"radio" %>
+              <% end %>
             </div>
+
           </div>
         </div>
       </div>
     <% end %>
   </div>
-
 </div>
