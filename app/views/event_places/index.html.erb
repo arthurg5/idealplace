@@ -22,11 +22,11 @@
             </ul>
             <div class="form-check" style="position: absolute; bottom: 10px; right: 10px;">
               <% if current_user.favorited?(event_place) %>
-                  <p>Voted!</p>
+                  Voted!
               <% elsif current_user.all_favorites %>
-                  <p>Already voted</p>
+                  Already voted
               <% else %>
-                <%= link_to "Vote", vote_event_place_path(event_place), class:"form-check", type:"radio" %>
+                <%= link_to "Vote", vote_event_place_path(event_place), class:"custom-btn" %>
               <% end %>
             </div>
           </div>
@@ -34,8 +34,4 @@
       </div>
     <% end %>
   </div>
-</div>
-
-<div class="vote-btn">
-  <button class="custom-btn btn-lg position-absolute bottom-0 end-0 mb-3 me-3">Vote!</button>
 </div>

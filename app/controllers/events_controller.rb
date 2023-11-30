@@ -17,9 +17,10 @@ class EventsController < ApplicationController
         lat: place.latitude,
         lng: place.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { place: place }),
-        marker_html: render_to_string(partial: "marker", locals: {place: place})
+        marker_html: render_to_string(partial: "marker", locals: { place: place })
       }
     end
+    
   end
 
   def new
@@ -40,9 +41,6 @@ class EventsController < ApplicationController
     end
   end
 
-
-
-
   def edit
     @event = Event.find(params[:id])
   end
@@ -58,6 +56,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :date, :start_time, :selected_group_name)
   end
-
-
 end

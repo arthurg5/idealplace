@@ -27,8 +27,6 @@
     <!-- delete should destroy the event and bring back to the index page ? -->
     <button class="btn btn-danger custom-margin"> Cancel event </button>
   </div>
-
-
   <p class="custom-margin"> Please select a category of event </p>
 
   <button class="btn btn-primary custom-margin">Catering </button>
@@ -55,6 +53,14 @@
               <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
               <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
             </ul>
+            <div style="position: absolute; bottom: 10px; right: 10px;">
+            <%= link_to "choose", event_event_places_path(event_place.event), data: { turbo_method: :post } %>
+            </div>
+            <% if event_place.event = @event %>
+              <p>Event_place added !</p>
+            <% else %>
+              <p>Event_place NOT added !</p>
+            <% end %>
           </div>
         </div>
       </div>
