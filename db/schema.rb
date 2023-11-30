@@ -166,6 +166,4 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_110753) do
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "users"
-  add_foreign_key "votes", "event_places"
-  add_foreign_key "votes", "users"
 end
