@@ -2,25 +2,38 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
     @events = Event.all
-
     # if params[:query]
     #   @events = Event.search_events(params[:query])
     # end
   end
 
+
+
   def show
     @event = Event.find(params[:id])
     @selected_group_name = @event.selected_group_name || "No group"
     @event_places = @event.event_places
-    @markers = @event.places.geocoded.map do |place|
+    @places = Place.all
+
+    # Check for category filtering
+    @places = Place.where(category: params[:category]) if params[:category].present?
+
+    @markers = @places.geocoded.map do |place|
       {
         lat: place.latitude,
         lng: place.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { place: place }),
-        marker_html: render_to_string(partial: "marker", locals: {place: place})
+        marker_html: render_to_string(partial: "marker", locals: { place: place })
       }
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
+
+
 
   def new
     @event = Event.new
