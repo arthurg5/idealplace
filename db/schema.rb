@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_29_142559) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_110753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,10 +70,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_142559) do
     t.float "barycenter_lat"
     t.date "date"
     t.time "start_time"
-    t.string "status"
+    t.string "status", default: "Created"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "selected_group_name"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -156,4 +157,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_142559) do
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "users"
+  add_foreign_key "votes", "event_places"
+  add_foreign_key "votes", "users"
 end
