@@ -46,4 +46,44 @@
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
+
+  <div class="row">
+    <% @event_places.each do |event_place| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= event_place.place.name %></h5>
+            <p class="card-text"><%= event_place.place.address %></p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Duration: <%= event_place.duration %> minutes</li>
+              <li class="list-group-item">Distance: <%= event_place.distance %> km</li>
+              <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
+              <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
+              <% if event_place.favoritors %>
+              <li class="list-group-item">Members who voted:
+                <% event_place.favoritors.each do |favorite| %>
+                <%= favorite.first_name %></li>
+              <%end%>
+            </ul>
+            <%end%>
+            </ul>
+            <div class="form-check" style="position: absolute; bottom: 10px; right: 10px;">
+              <% if current_user.all_favorites %>
+                <% current_user.all_favorites.each do |favorite| %>
+                  <% if favorite == @event_place %>
+                    <p>Voted!</p>
+                  <% else %>
+                    <p>You've already voted</p>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= link_to "Vote", vote_event_place_path(event_place), class:"form-check", type:"radio" %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
