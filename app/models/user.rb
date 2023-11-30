@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many_attached :photos
+  has_one_attached :avatar
   has_many :groups, dependent: :destroy
   has_many :group_users, through: :groups, dependent: :destroy
   has_many :events, dependent: :destroy
@@ -11,8 +11,11 @@ class User < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-
-  validates :first_name, :last_name, :nickname, :email, :password, presence: true
+  validates :email, uniqueness: true
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :first_name, :last_name, :nickname, presence: true
+  # validates :avatar, attached: true, content_type: ['image/png', 'image/jpg', 'image/gif']
+  # validates :avatar, size: { less_than: 5.megabytes, message: 'must be less than 5MB' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
