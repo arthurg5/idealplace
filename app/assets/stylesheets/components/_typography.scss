@@ -1,0 +1,17 @@
+@import "../config/fonts";
+@import "../config/colors";
+
+h1, h2, h3, h4, h5 {
+  font-family: $headers-font;
+}
+
+p, a, li, ul, ol {
+  font-family: $body-font;
+}
+
+
+h1{
+  font-weight: 400;
+  font-size: 3em;
+}
+

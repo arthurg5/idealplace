@@ -1,5 +1,5 @@
 .footer {
-  background-color: rgb(200,200,200); /*#f5f5f5;*/
+  background-color: $gray-blue; /*#f5f5f5;*/
   color: #333;
   padding: 50px 0;
   height: 100%;
@@ -10,6 +10,8 @@
 .footer-links {
   text-decoration: none;
   color: #333;
+  font-family: $body-font;
+  font-size: 1em;
   &:hover{
     color: #4361ee;
   }
@@ -63,6 +65,8 @@
 
 .links li {
   margin-bottom: 10px;
+  font-size: 1em;
+  font-family: $body-font;
 }
 
 .footer-bottom {
