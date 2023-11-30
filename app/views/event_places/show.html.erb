@@ -1,11 +1,9 @@
 <h1>Show </h1>
-<%= @event_place.place.name %>
-<%= @event_place.favoritors %>
 <% if @event_place.favoritors %>
-        <h1>New : Owner <%= current_user.first_name%>
-          <% @event_place.favoritors.each do |favorite| %>
-          <%= favorite.first_name %>
-        <%end%>
-        <%end%>
-      </h1>
-      <% end %>
+  <h2>New : Owner <%= current_user.first_name%></h2>
+  <ul>
+    <% @event_place.favoritors.each do |favorite| %>
+      <li><%= favorite.first_name %></li>
+    <%end%>
+  </ul>
+<%end%>
