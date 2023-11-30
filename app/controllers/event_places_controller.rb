@@ -29,14 +29,14 @@ class EventPlacesController < ApplicationController
       current_user.all_favorites.each do |favorite|
         if favorite == @event_place
           current_user.favorite(@event_place)
-        else
-          puts "Error"
         end
+        @vote = true
       end
     else
+      @vote = false
       current_user.favorite(@event_place)
     end
-    redirect_to event_path(@event_place.event)
+    redirect_to event_event_places_path(@event_place.event)
   end
 
   private
