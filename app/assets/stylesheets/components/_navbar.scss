@@ -17,12 +17,18 @@
 // }
 
 .navbar-app-title {
-  font-size: 22px;
+  font-size: 36px;
   margin: 0;
+  font-family: $headers-font;
+  letter-spacing: 3px;
 }
 
 .navbar-app-subtitle {
-  font-size: 20px;
+  font-size: 26px;
+  font-family: $headers-font;
+  font-weight: 300;
+  /* font-style: italic; */
+  text-shadow: 2px 2px 4px #888888;
   margin: 0;
 }
 
@@ -34,22 +40,22 @@ body {
 
 .navbar {
   background-color: #9fb1d3;
-  overflow: hidden;
 }
 
 .navbar a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  // padding: 14px 16px;
-  text-decoration: none;
   font-size: 1.1em;
 }
 
 .navbar .icon {
   display: none;
 }
+
+.logo{
+  width: 90px;
+  height: auto;
+}
+
+
 
 @media screen and (max-width: 600px) {
   .navbar a:not(:first-child) {
@@ -61,6 +67,7 @@ body {
       display: block;
   }
 }
+
 
 @media screen and (max-width: 600px) {
   .navbar.responsive {

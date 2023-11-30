@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <%= link_to root_path, class: "" do %>
-      <%= image_tag "https://res.cloudinary.com/djwmjh3zt/image/upload/v1701179692/good_cikgil.png", style: "width: 60px; height: auto;" %>
+      <%= image_tag "https://res.cloudinary.com/djwmjh3zt/image/upload/v1701179692/good_cikgil.png", class:"logo" %>
     <% end %>
 
     <div class="d-flex flex-column text-center">
@@ -24,9 +24,8 @@
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://res.cloudinary.com/djwmjh3zt/image/upload/v1700661928/photo_2023-10-09_11.27.26_ib79dd.jpg", class: "avatar", alt: "dropdown menu" %>
-          </a>
+
+            <%= image_tag "https://res.cloudinary.com/djwmjh3zt/image/upload/v1700661928/photo_2023-10-09_11.27.26_ib79dd.jpg", class: "avatar", alt: "dropdown menu", id: "navbarDropdown", data: {bs_toggle: "dropdown"} %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Another action", "#", class: "dropdown-item" %>
