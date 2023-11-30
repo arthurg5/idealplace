@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-   
+
     @event_places = @event.event_places
     @markers = @event.places.geocoded.map do |place|
 
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
         lat: place.latitude,
         lng: place.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { place: place }),
-        # marker_html: render_to_string(partial: "marker")
+        marker_html: render_to_string(partial: "marker", locals: {place: place})
       }
     end
   end

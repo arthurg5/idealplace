@@ -83,4 +83,49 @@ events = []
   events << event
 end
 
+paris_places = []
+
+
+pizzeria = Place.create!(name: "pizza italia", address: "12 rue de Charonne 75011 Paris", phone: "01 75 12 34 56", category: "restauration", second_category: "restaurant", third_category: "italien", opening_hours: "20h00", rating: 3)
+
+movie1 = Place.create!(name: "Batman", address: "2 cours Saint-Emilion 75012 Paris", phone: "01 75 33 74 66", category: "divertissement", second_category: "cinema", third_category: "Action", opening_hours: "14h00", rating: 4)
+
+asiatique = Place.create!(name: "my nem is", address: "35 avenue de Choisy 75011 Paris", phone: "01 75 42 54 77", category: "restauration", second_category: "restaurant", third_category: "chinois", opening_hours: "19h00", rating: 3)
+
+musee = Place.create!(name: "Le Louvre", address: "120 rue de Rivoli 75001 Paris", phone: "01 75 32 38 54", category: "culture", second_category: "monument", third_category: "musée", opening_hours: "10h00", rating: 5)
+
+bar1 = Place.create!(name: "bar parallele", address: "18 boulevard Voltaire 75011 Paris", phone: "01 75 19 44 76", category: "restauration", second_category: "bar", third_category: "irish", opening_hours: "19h00", rating: 3)
+
+movie2 = Place.create!(name: "Thor", address: "45 rue Ginou 75015 Paris", phone: "01 75 39 24 16", category: "divertissement", second_category: "cinema", third_category: "Action", opening_hours: "18h00", rating: 4)
+
+turc = Place.create!(name: "Ca bosse fort", address: "66 boulevard Saint-Germain 75007 Paris", phone: "01 75 72 59 17", category: "restauration", second_category: "restaurant", third_category: "grec", opening_hours: "19h00", rating: 3)
+
+musee = Place.create!(name: "Orsay", address: "Esplanade Valéry Giscard d'Estaing 75007 Paris", phone: "01 75 42 68 34", category: "culture", second_category: "monument", third_category: "musée", opening_hours: "10h00", rating: 5)
+
+cafe = Place.create!(name: "couleur cafe", address: "28 Rue Charlot 75003 Paris", phone: "01 75 72 84 36", category: "restauration", second_category: "restaurant", third_category: "italien", opening_hours: "20h00", rating: 3)
+
+movie3 = Place.create!(name: "Superman", address: "45 rue de belleville 75020 Paris", phone: "01 75 83 79 26", category: "divertissement", second_category: "cinema", third_category: "comedie", opening_hours: "14h00", rating: 3)
+
+paris_places << Place.last(10)
+
+event = Event.create!(
+    user: arthur,
+    name: Faker::Lorem.word,
+    date: Faker::Date.forward(days: 23),
+    start_time: Faker::Time.forward(days: 23),
+    status: Event::STATUS.sample
+  )
+
+
+paris_places.each do |place|
+  EventPlace.create!(
+    duration: Faker::Number.number(digits: 2),
+    distance: Faker::Number.decimal(l_digits: 2),
+    transport_mode: Faker::Lorem.word,
+    selected: false,
+    place: place[0],
+    event: event
+  )
+end
+
 puts 'Seed creation is over!'
