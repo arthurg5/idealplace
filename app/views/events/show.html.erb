@@ -34,26 +34,19 @@
 
   <!-- events/show.html.erb -->
 
-  <div class="row">
 
     <div>
       <%= link_to "Catering", event_path(@event, category: 'Catering'), class: 'btn btn-light custom-margin' %>
       <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: 'btn btn-light custom-margin' %>
       <%= link_to "Culture", event_path(@event, category: 'Culture'), class: 'btn btn-light custom-margin' %>
     </div>
-    <div class="col-md-6">
-      <%= render partial: 'shared/filtered_places', locals: { places: @places } %>
-    </div>
-    <div class="col-md-6">
-      <div style="width: 100%; height: 600px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="event-container">
+      <div>
+        <%= render partial: 'shared/filtered_places', locals: { places: @places } %>
+      </div>
+        <div class="map-display"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-  </div>
-
-
-
-  
-           
