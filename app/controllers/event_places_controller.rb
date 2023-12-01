@@ -7,10 +7,14 @@ class EventPlacesController < ApplicationController
   end
 
   def create
-    @event_place = @event.event_places.new(event_place_params)
-    @event_place.place = Place.find(params[:place_id])
+    @place = Place.find(params[:place_id])
+    @event_place = EventPlace.new(event: @event, place: @place)
     if @event_place.save
-      redirect_to event_place_path(@event, @event_place)
+      if @event.event_places.count == 3
+        redirect_to event_event_places_path(@event)
+      else
+        redirect_to event_place_path(@event)
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -18,6 +22,17 @@ class EventPlacesController < ApplicationController
 
   def index
     @event_places = @event.event_places
+    @places = @event_places.map { |event_place| event_place.place }
+
+    # TODO get places with active record query, and ad geocoded below
+
+    @geomarkers = @places.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longitude
+      }
+    end
+
   end
 
   def show
@@ -39,6 +54,6 @@ class EventPlacesController < ApplicationController
   end
 
   def event_place_params
-    params.require(:event_place).permit(:duration, :distance, :transport_mode)
+    params.require(:event_place).permit(:event_id, :place_id)
   end
 end

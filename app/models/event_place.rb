@@ -3,5 +3,5 @@ class EventPlace < ApplicationRecord
   belongs_to :event
   acts_as_favoritable
 
-  validates :duration, :distance, :transport_mode, presence: true
+  # validates :duration, :distance, :transport_mode, presence: true
 end

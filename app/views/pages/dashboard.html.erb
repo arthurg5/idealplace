@@ -57,11 +57,14 @@
                           <ul class="list-unstyled">
                             <li><strong>Group Members:</strong></li>
                             <% group.group_users.each do |group_user| %>
-                              <li><%= group_user.user.first_name %> <%= group_user.user.last_name %></li>
+                              <li>
+                                <p><%= group_user.user.first_name %> <%= group_user.user.last_name %></p>
+                                <% if group_user.user.photo.attached? %>
+                                  <%= cl_image_tag group_user.user.photo.key, class:"avatar" %>
+                                <% end %>
+                              </li>
                             <% end %>
                           </ul>
-                        </div>
-                      </div>
                     </div>
                   <% end %>
                 <% end %>
