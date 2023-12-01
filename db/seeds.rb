@@ -24,7 +24,6 @@ users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy"
 # ... (create other users)
 
 # Attach images to user's avatars
-# users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
 puts "Creating photos for users"
 
 users.each do |user|
@@ -79,6 +78,12 @@ cafe = Place.create!(name: "couleur cafe", address: "28 Rue Charlot 75003 Paris"
 movie3 = Place.create!(name: "Superman", address: "45 rue de belleville 75020 Paris", phone: "01 75 83 79 26", category: "Entertainment", second_category: "Cinema", third_category: "Comedy", opening_hours: "14h00", rating: 3)
 
 
+paris_places.each do |paris_place|
+  paris_places_pic = URI.open("https://source.unsplash.com/random/250x250/?restaurant, paris")
+  paris_place.photo.attach(io: paris_places_pic, filename: "#{place.name}_image.png", content_type: "image/png")
+  place.save!
+end
+
 puts 'Creating fake events'
 
 # Seed data for Events
@@ -105,7 +110,6 @@ events = []
       event: event
     )
   end
-
   events << event
 end
 
