@@ -2,12 +2,12 @@
   <div id="video-container">
     <%#= video_tag "diner-between-friends.mp4", :size => "640x360", :controls => false, :loop => true, :autoplay => true %>
       <div id="text-overlay">
-        <h2 class="h2-video" style="color: black">Let's create your event!</h2>
+        <h2 class="h2-video" style="color: white">Let's create your event!</h2>
 
         <div class="row">
           <div class="col-sm-12">
              <%= form_with url: new_event_path, method: :get, html: {class: "mb-4", data: {search_movies_target: "form"}} do |f| %>
-              <%= f.label :name, "Enter its name below", class:"p-video" %>
+              <%= f.label :name, "Enter its name below", class:"p-video", style: "color: white" %>
               <%= f.text_field :name,
                               class: "form-control",
                               value: params[:name]
