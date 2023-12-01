@@ -10,10 +10,10 @@ class EventPlacesController < ApplicationController
     @place = Place.find(params[:place_id])
     @event_place = EventPlace.new(event: @event, place: @place)
     if @event_place.save
-      if @event.event_places.count == 3
-        redirect_to event_event_places_path(@event)
+      if @event.event_places.count >= 3
+        redirect_to event_event_places_path
       else
-        redirect_to event_place_path(@event)
+        redirect_to event_path(@event)
       end
     else
       render :new, status: :unprocessable_entity
