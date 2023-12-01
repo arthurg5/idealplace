@@ -11,6 +11,10 @@ class Event < ApplicationRecord
 
   validates :selected_group_name, :date, :start_time, presence: true
 
+  def voted_by_user(user)
+    !Favorite.where(favoritable_id: event_places.pluck(:id), favoritor_id: user.id).empty?
+  end
+
   private
 
   def set_default_status

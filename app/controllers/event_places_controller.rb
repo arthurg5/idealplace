@@ -24,11 +24,7 @@ class EventPlacesController < ApplicationController
   end
 
   def vote
-    if current_user.favorited?(@event_place)
-      @vote_user = true
-    else
-      current_user.favorite(@event_place)
-    end
+    current_user.favorite(@event_place) unless @event_place.event.voted_by_user(current_user)
     redirect_to event_event_places_path(@event_place.event)
   end
 
