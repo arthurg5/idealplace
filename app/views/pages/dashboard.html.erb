@@ -51,14 +51,19 @@
                 <div class="col-md-4 mb-3">
                   <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title"><%= group.name %></h5>
-                      <p class="card-text">Created by: <%= group.user.first_name %> <%= group.user.last_name %></p>
-                      <ul class="list-unstyled">
-                        <li><strong>Group Members:</strong></li>
-                        <% group.group_users.each do |group_user| %>
-                          <li><%= group_user.user.first_name %> <%= group_user.user.last_name %></li>
-                        <% end %>
-                      </ul>
+                          <h5 class="card-title"><%= group.name %></h5>
+                          <p class="card-text">Created by: <%= group.user.first_name %> <%= group.user.last_name %></p>
+                          <ul class="list-unstyled">
+                            <li><strong>Group Members:</strong></li>
+                            <% group.group_users.each do |group_user| %>
+                              <li>
+                                <p><%= group_user.user.first_name %> <%= group_user.user.last_name %></p>
+                                <% if group_user.user.photo.attached? %>
+                                  <%= cl_image_tag group_user.user.photo.key, class:"avatar" %>
+                                <% end %>
+                              </li>
+                            <% end %>
+                          </ul>
                     </div>
                   </div>
                 </div>
