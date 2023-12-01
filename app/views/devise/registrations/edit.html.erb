@@ -26,6 +26,11 @@
                 hint: "leave it blank if you don't want to change it",
                 required: false,
                 input_html: { autocomplete: "new-address" }%>
+    <!--# added code by Laure -->
+    <%= f.input :avatar, as: :file,
+                hint: "add a photo or a picture",
+                required: true %>
+    <!--# end of Laure's added code -->
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
