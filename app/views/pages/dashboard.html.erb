@@ -33,7 +33,7 @@
     <a class="nav-link text-black" data-bs-toggle="tab" href="#myeventsSection">MY EVENTS</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-black" data-bs-toggle="tab" href="#bookingsSection">MY BOOKINGS</a>
+    <a class="nav-link text-black" data-bs-toggle="tab" href="#othereventsSection">OTHER EVENTS</a>
   </li>
 </ul>
 
@@ -47,10 +47,11 @@
           <!-- ... Your existing content for mygroupsSection ... -->
           <div class="groups">
             <div class="row">
-              <% @groups.each do |group| %>
-                <div class="col-md-4 mb-3">
-                  <div class="card">
-                    <div class="card-body">
+                <% current_user.groups.each do |group| %>
+                  <% if group.user = current_user %>
+                    <div class="col-md-4 mb-3">
+                      <div class="card">
+                        <div class="card-body">
                           <h5 class="card-title"><%= group.name %></h5>
                           <p class="card-text">Created by: <%= group.user.first_name %> <%= group.user.last_name %></p>
                           <ul class="list-unstyled">
@@ -65,12 +66,11 @@
                             <% end %>
                           </ul>
                     </div>
-                  </div>
-                </div>
-              <% end %>
+                  <% end %>
+                <% end %>
             </div>
           </div>
-           <%= link_to "Add Group", new_group_path, class: "btn btn-primary" %>
+           <%= link_to "Add Group", new_group_path, class: "btn custom-btn" %>
         </div>
 
         <div class="tab-pane fade" id="myeventsSection">
@@ -88,12 +88,39 @@
           </ul>
           <div class="tab-content mt-3" id="myEventsTabsContent">
             <div class="tab-pane fade show active" id="createdSection" role="tabpanel" aria-labelledby="created-tab">
-              <%= render 'events/index', events: @created_events %>
+              <%= render 'events/index', events: @my_created_events %>
             </div>
             <div class="tab-pane fade" id="votedSection" role="tabpanel" aria-labelledby="voted-tab">
-              <%= render 'events/index', events: @voted_events %>
+              <%= render 'events/index', events: @my_voted_events %>
             </div>
             <div class="tab-pane fade" id="passedSection" role="tabpanel" aria-labelledby="passed-tab">
+              <%= render 'events/index', events: @my_passed_events %>
+            </div>
+          </div>
+          <!-- End of sub-tabs -->
+        </div>
+
+        <div class="tab-pane fade" id="othereventsSection">
+          <!-- Add the sub-tabs here -->
+          <ul class="nav nav-tabs" id="otherEventsTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active text-black" id="otherCreated-tab" data-bs-toggle="tab" data-bs-target="#otherCreatedSection" type="button" role="tab" aria-controls="otherCreatedSection" aria-selected="true">Created</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link text-black" id="otherVoted-tab" data-bs-toggle="tab" data-bs-target="#otherVotedSection" type="button" role="tab" aria-controls="otherVotedSection" aria-selected="false">Voted</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link text-black" id="otherPassed-tab" data-bs-toggle="tab" data-bs-target="#otherPassedSection" type="button" role="tab" aria-controls="otherPassedSection" aria-selected="false">Passed</button>
+            </li>
+          </ul>
+          <div class="tab-content mt-3" id="otherEventsTabsContent">
+            <div class="tab-pane fade show active" id="otherCreatedSection" role="tabpanel" aria-labelledby="otherCreated-tab">
+              <%= render 'events/index', events: @created_events %>
+            </div>
+            <div class="tab-pane fade" id="otherVotedSection" role="tabpanel" aria-labelledby="otherVoted-tab">
+              <%= render 'events/index', events: @voted_events %>
+            </div>
+            <div class="tab-pane fade" id="otherPassedSection" role="tabpanel" aria-labelledby="otherPassed-tab">
               <%= render 'events/index', events: @passed_events %>
             </div>
           </div>

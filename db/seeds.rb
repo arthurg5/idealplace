@@ -22,6 +22,8 @@ users << User.new(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", ema
 users << User.new(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "20, avenue des pastéques 94300 Vincennes")
 users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "21, rue des melons 94300 Vincennes")
 # ... (create other users)
+users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
+
 
 # Attach images to user's avatars
 # users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
@@ -50,15 +52,15 @@ group1 = Group.create(name: "groupe1", user: arthur)
 GroupUser.create(user: arthur, group: group1)
 GroupUser.create(user: laure, group: group1)
 # ... (create other groups)
-group2 = Group.create(name: "groupe2", user: lucile)
+group2 = Group.create(name: "groupe2", user: arthur)
 GroupUser.create(user: lucile, group: group2)
 GroupUser.create(user: abdelsam, group: group2)
 
-group3 = Group.create(name: "groupe3", user: timothee)
+group3 = Group.create(name: "groupe3", user: arthur)
 GroupUser.create(user: timothee, group: group3)
 GroupUser.create(user: kim, group: group3)
 
-group4 = Group.create(name: "groupe4", user: lucas)
+group4 = Group.create(name: "groupe4", user: arthur)
 GroupUser.create(user: lucas, group: group4)
 GroupUser.create(user: edward, group: group4)
 
@@ -83,9 +85,9 @@ puts 'Creating fake events'
 
 # Seed data for Events
 events = []
-5.times do
+7.times do
   event = Event.create!(
-    user: arthur,
+    user: users.sample,
     name: Faker::Lorem.word,
     date: Faker::Date.forward(days: 23),
     start_time: Faker::Time.forward(days: 23),

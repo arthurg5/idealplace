@@ -39,3 +39,10 @@
   background-size: cover;
   background-position: center;
 }
+
+.card {
+  border: 1px solid black; /* Change the border width and color as you like */
+  border-radius: 5px; /* Change the border radius as you like */
+  background-color: #f5d1c6;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
