@@ -22,7 +22,7 @@ users << User.new(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", ema
 users << User.new(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "20, avenue des pastéques 94300 Vincennes")
 users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "21, rue des melons 94300 Vincennes")
 # ... (create other users)
-users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
+# users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
 
 
 # Attach images to user's avatars
