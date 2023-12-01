@@ -20,6 +20,8 @@ export default class extends Controller {
     this.#fitMapToMarkers()
     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl, language: "en", placeholder: "Search" }))
+
+    this.map.addControl(new mapboxgl.NavigationControl())
   }
 
 
