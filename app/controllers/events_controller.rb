@@ -19,6 +19,8 @@ class EventsController < ApplicationController
     # Check for category filtering
     @places = Place.where(category: params[:category]) if params[:category].present?
 
+    @event_place = EventPlace.new(place: Place.find(14))
+
     @markers = @places.geocoded.map do |place|
       {
         lat: place.latitude,
