@@ -16,7 +16,7 @@
 
           <div class="groups">
             <div class="row">
-              <% @groups.each do |group| %>
+              <% current_user.groups.each do |group| %>
                 <div class="col-md-4 mb-3">
                   <div class="card" onclick="selectCard(this)">
                     <!-- Your existing card content -->
