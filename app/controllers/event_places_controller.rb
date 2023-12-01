@@ -18,6 +18,17 @@ class EventPlacesController < ApplicationController
 
   def index
     @event_places = @event.event_places
+    @places = @event_places.map { |event_place| event_place.place }
+
+    # TODO get places with active record query, and ad geocoded below
+
+    @geomarkers = @places.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longitude
+      }
+    end
+
   end
 
   def show
