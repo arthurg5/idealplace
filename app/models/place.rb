@@ -1,4 +1,6 @@
 class Place < ApplicationRecord
+  
+
   has_many :event_places, dependent: :destroy
 
   geocoded_by :address

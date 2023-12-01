@@ -10,6 +10,8 @@ gem "geocoder"
 
 gem "cloudinary"
 
+gem 'pg_search'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
 
