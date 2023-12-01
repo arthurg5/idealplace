@@ -4,8 +4,8 @@
       <div class="row">
       <!-- image place -->
         <div class="col-sm-2">
-          <% if places.photo.attached? %>
-            <%= cl_image_tag places.photo.key, class:"avatar" %>
+          <% if place.photo.attached? %>
+            <%= cl_image_tag place.photo.key, class:"place-picture" %>
           <% end %>
         </div>
         <!-- descriptif texte-->
