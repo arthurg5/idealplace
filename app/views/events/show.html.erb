@@ -13,7 +13,7 @@
   </div>
 
   <h3>Event recapitulative</h3>
-  <p>The event called "<%= @event.name %>" will take place on <%= @event.date %> at <%= @event.start_time %></p>
+  <p>The event called "<%= @event_name %>" will take place on <%= @event.date %> at <%= @event.start_time %></p>
   <p>You invited your friends from group "<%= @selected_group_name %> "</p>
 
 
@@ -33,12 +33,14 @@
   <p class="custom-margin"> Please select a category of event </p>
 
   <!-- events/show.html.erb -->
-  <button class="btn btn-light custom-margin category" data-category="Catering">Catering</button>
-  <button class="btn btn-light custom-margin category" data-category="Entertainment">Entertainment</button>
-  <button class="btn btn-light custom-margin category" data-category="Culture">Culture</button>
 
   <div class="row">
 
+    <div>
+      <%= link_to "Catering", event_path(@event, category: 'Catering'), class: 'btn btn-light custom-margin' %>
+      <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: 'btn btn-light custom-margin' %>
+      <%= link_to "Culture", event_path(@event, category: 'Culture'), class: 'btn btn-light custom-margin' %>
+    </div>
     <div class="col-md-6">
       <%= render partial: 'shared/filtered_places', locals: { places: @places } %>
     </div>
@@ -63,7 +65,7 @@
               <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
               <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
             </ul>
-            
+
             <div style="position: absolute; bottom: 10px; right: 10px;">
             <%= link_to "choose", event_event_places_path(event_place.event), data: { turbo_method: :post } %>
             </div>
@@ -79,37 +81,3 @@
 
   </div>
 </div>
-
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const categoryButtons = document.querySelectorAll('.category');
-  const placesContainer = document.querySelector('.places-container');
-
-  categoryButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const category = this.getAttribute('data-category');
-
-      fetch(`/events/<%= @event.id %>?category=${category}`, {
-        headers: {
-          'X-CSRF-Token': '<%= form_authenticity_token %>'
-        }
-      })
-      .then(response => response.text())
-
-      .then(data => {
-        // Extract the necessary content from the fetched HTML
-        const parser = new DOMParser();
-        const parsedHTML = parser.parseFromString(data, 'text/html');
-        const filteredPlaces = parsedHTML.querySelector('.places-container').innerHTML;
-
-        // Update the places container with the filtered places
-        placesContainer.innerHTML = filteredPlaces;
-      })
-      .catch(error => console.error('Error:', error));
-    });
-  });
-});
-
-</script>

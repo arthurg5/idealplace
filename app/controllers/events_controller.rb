@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @selected_group_name = @event.selected_group_name || "No group"
+    @event_name = @event.name
     @event_places = @event.event_places
     @places = Place.all
 
@@ -31,13 +32,12 @@ class EventsController < ApplicationController
       format.html
       format.js
     end
-
   end
-
 
 
   def new
     @event = Event.new
+    @event.name = params[:name] # Set the name attribute from the form parameters
     @groups = Group.all
   end
 

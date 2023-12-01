@@ -7,7 +7,7 @@
         <p>Your event name is: <%= params[:name] %></p>
 
         <%= simple_form_for @event, url: events_path do |f| %>
-          <%= f.hidden_field :name, id: 'event_name' %>
+          <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
           <%= f.input :selected_group_name, as: :hidden, input_html: { id: 'selected_group_name' } %>
           <%= f.input :date %>
           <%= f.input :start_time %>
@@ -47,12 +47,6 @@
   </div>
 </div>
 
-<script>
-  // Retrieve the event name from localStorage and display it
-  const eventName = localStorage.getItem('eventName');
-  const displayEventName = document.getElementById('display-event-name');
-  displayEventName.textContent = eventName || 'No event name captured yet.';
-</script>
 
 <script>
   function selectCard(element) {
@@ -64,7 +58,5 @@
 
     var groupName = element.querySelector('.card-title').innerText;
     document.getElementById('selected_group_name').value = groupName;
-    document.getElementById('event_name').value = document.getElementById('display-event-name').textContent.trim();
-
   }
 </script>

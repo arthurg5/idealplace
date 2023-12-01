@@ -1,0 +1,9 @@
+// show.js.erb
+<script>
+
+  $("#places-container").html("<%= j render partial: 'shared/filtered_places', locals: { places: @places } %>");
+  const map = document.querySelector("[data-controller='map']").map;
+  map.markers = <%= @markers.to_json %>;
+  map.updateMarkers();
+
+</script>
