@@ -26,7 +26,6 @@ users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy"
 
 
 # Attach images to user's avatars
-# users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
 puts "Creating photos for users"
 
 users.each do |user|
@@ -68,18 +67,40 @@ puts 'Creating manual places'
 
 paris_places = []
 
-pizza_italia = Place.create!(name: "Pizza Italia", address: "12 rue de Charonne 75011 Paris", phone: "01 75 12 34 56", category: "Catering", second_category: "Restaurant", third_category: "Italian", opening_hours: "20h00", rating: 3)
-# ... (create other manual places)
-movie1 = Place.create!(name: "Batman", address: "2 cours Saint-Emilion 75012 Paris", phone: "01 75 33 74 66", category: "Entertainment", second_category: "Cinema", third_category: "Action", opening_hours: "14h00", rating: 4)
-asiatique = Place.create!(name: "my nem is", address: "35 avenue de Choisy 75011 Paris", phone: "01 75 42 54 77", category: "Catering", second_category: "Restaurant", third_category: "Chinese", opening_hours: "19h00", rating: 3)
-musee = Place.create!(name: "Le Louvre", address: "120 rue de Rivoli 75001 Paris", phone: "01 75 32 38 54", category: "Culture", second_category: "Monument", third_category: "Museum", opening_hours: "10h00", rating: 5)
-bar1 = Place.create!(name: "bar parallele", address: "18 boulevard Voltaire 75011 Paris", phone: "01 75 19 44 76", category: "Catering", second_category: "Bar", third_category: "Irish", opening_hours: "19h00", rating: 3)
-movie2 = Place.create!(name: "Thor", address: "45 rue Ginou 75015 Paris", phone: "01 75 39 24 16", category: "Entertainment", second_category: "Cinema", third_category: "Action", opening_hours: "18h00", rating: 4)
-turc = Place.create!(name: "Ca bosse fort", address: "66 boulevard Saint-Germain 75007 Paris", phone: "01 75 72 59 17", category: "Catering", second_category: "Restaurant", third_category: "Greek", opening_hours: "19h00", rating: 3)
-musee = Place.create!(name: "Orsay", address: "Esplanade Valéry Giscard d'Estaing 75007 Paris", phone: "01 75 42 68 34", category: "Culture", second_category: "Monument", third_category: "Museum", opening_hours: "10h00", rating: 5)
-cafe = Place.create!(name: "couleur cafe", address: "28 Rue Charlot 75003 Paris", phone: "01 75 72 84 36", category: "Catering", second_category: "Restaurant", third_category: "Italian", opening_hours: "20h00", rating: 3)
-movie3 = Place.create!(name: "Superman", address: "45 rue de belleville 75020 Paris", phone: "01 75 83 79 26", category: "Entertainment", second_category: "Cinema", third_category: "Comedy", opening_hours: "14h00", rating: 3)
+paris_places <<pizza_italia=  Place.new(name: "Pizza Italia", address: "12 rue de Charonne 75011 Paris", phone: "01 75 12 34 56", category: "Catering", second_category: "Restaurant", third_category: "Italian", opening_hours: "20h00", rating: 3)
+# ... (new other manual places)
+movie1 = Place.new(name: "Batman", address: "2 cours Saint-Emilion 75012 Paris", phone: "01 75 33 74 66", category: "Entertainment", second_category: "Cinema", third_category: "Action", opening_hours: "14h00", rating: 4)
+paris_places << movie1
 
+asiatique = Place.new(name: "my nem is", address: "35 avenue de Choisy 75011 Paris", phone: "01 75 42 54 77", category: "Catering", second_category: "Restaurant", third_category: "Chinese", opening_hours: "19h00", rating: 3)
+paris_places << asiatique
+
+musee1 = Place.new(name: "Le Louvre", address: "120 rue de Rivoli 75001 Paris", phone: "01 75 32 38 54", category: "Culture", second_category: "Monument", third_category: "Museum", opening_hours: "10h00", rating: 5)
+paris_places << musee1
+
+bar1 = Place.new(name: "bar parallele", address: "18 boulevard Voltaire 75011 Paris", phone: "01 75 19 44 76", category: "Catering", second_category: "Bar", third_category: "Irish", opening_hours: "19h00", rating: 3)
+paris_places << bar1
+
+movie2 = Place.new(name: "Thor", address: "45 rue Ginou 75015 Paris", phone: "01 75 39 24 16", category: "Entertainment", second_category: "Cinema", third_category: "Action", opening_hours: "18h00", rating: 4)
+paris_places << movie2
+
+turc = Place.new(name: "Ca bosse fort", address: "66 boulevard Saint-Germain 75007 Paris", phone: "01 75 72 59 17", category: "Catering", second_category: "Restaurant", third_category: "Greek", opening_hours: "19h00", rating: 3)
+paris_places << turc
+
+musee2 = Place.new(name: "Orsay", address: "Esplanade Valéry Giscard d'Estaing 75007 Paris", phone: "01 75 42 68 34", category: "Culture", second_category: "Monument", third_category: "Museum", opening_hours: "10h00", rating: 5)
+paris_places << musee2
+
+cafe = Place.new(name: "wouleur cafe", address: "28 Rue Charlot 75003 Paris", phone: "01 75 72 84 36", category: "Catering", second_category: "Restaurant", third_category: "Italian", opening_hours: "20h00", rating: 3)
+paris_places << cafe
+
+movie3 = Place.new(name: "Superman", address: "45 rue de belleville 75020 Paris", phone: "01 75 83 79 26", category: "Entertainment", second_category: "Cinema", third_category: "Comedy", opening_hours: "14h00", rating: 3)
+paris_places << movie3
+
+paris_places.each do |paris_place|
+  paris_places_pic = URI.open("https://source.unsplash.com/random/250x250/?restaurant,paris")
+  paris_place.photo.attach(io: paris_places_pic, filename: "#{paris_place.name}_image.png", content_type: "image/png")
+  paris_place.save!
+end
 
 puts 'Creating fake events'
 
@@ -96,7 +117,7 @@ events = []
   )
 
   # Assign 3 random places to each event
-  places_for_event = [pizza_italia, movie1, asiatique, musee, bar1, movie2, turc, musee, cafe, movie3].sample(3)
+  places_for_event = [pizza_italia, movie1, asiatique, musee1, bar1, movie2, turc, musee2, cafe, movie3].sample(3)
   places_for_event.each do |place|
     EventPlace.create!(
       duration: Faker::Number.number(digits: 2),
@@ -107,7 +128,6 @@ events = []
       event: event
     )
   end
-
   events << event
 end
 
