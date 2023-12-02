@@ -41,8 +41,30 @@
 }
 
 .card {
-  border: 1px solid black; /* Change the border width and color as you like */
   border-radius: 5px; /* Change the border radius as you like */
-  background-color: #f5d1c6;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.nav-link {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  /* You can adjust other text properties here */
+}
+.text-black {
+  color: black !important; /* Ensure the text color is black */
+}
+.nav-tabs .nav-link {
+background-color: #f0f0f0;
+border: 1px solid #cccccc;
+font-size: 18px;
+padding: 10px 15px;
+transition: all 0.3s ease;
+}
+.nav-tabs .nav-link.active {
+background-color: #ffffff;
+border-bottom: none;
+}
+.nav-tabs .nav-link:hover {
+background-color: #9FB1D3;
+color: #ffffff;
 }
