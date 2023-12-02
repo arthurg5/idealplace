@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :events do
-    resources :event_places, only: [:index, :new, :create]
+    resources :event_places, only: [:index, :create]
   end
 
   resources :event_places, only: [:index, :show] do

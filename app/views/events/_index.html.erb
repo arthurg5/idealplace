@@ -31,10 +31,12 @@
             <p class="card-text">Date: <%= event.date %></p>
             <p class="card-text">Start Time: <%= event.start_time.strftime("%H:%M %p") %></p>
             <p class="card-text">Status: <%= event.status %></p>
-            <%= link_to 'See event', event_path(event), class: "btn btn-primary" %>
+            <%= link_to 'See event places', event_event_places_path(event), class: "btn custom-btn" %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+

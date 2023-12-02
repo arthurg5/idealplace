@@ -1,4 +1,5 @@
 require 'faker'
+require "open-uri"
 
 # Clear existing data
 EventPlace.destroy_all
@@ -10,15 +11,40 @@ Group.destroy_all
 
 puts 'Creating fake users'
 
-lucile = User.create(first_name: "Lucile", last_name: "Smith", nickname: "Lucile", email: "lucile@idealplace.com", password: "123456", address: "15, rue Oberkampf 75010 Paris")
-arthur = User.create(first_name: "Arthur", last_name: "Johnson", nickname:"Arthur", email: "arthur@idealplace.com", password: "123456", address:"16, rue Oberkampf 75010 Paris")
-abdelsam = User.create(first_name: "Abdelsam", last_name: "Palmas", nickname:"Abdelsam", email: "abdelsam@idealplace.com", password: "123456", address: "18, avenue de Paris 93123 Montreuil")
-laure = User.create(first_name: "Laure", last_name: "Vega", nickname:"Laure", email: "laure@idealplace.com", password: "123456", address: "17, rue Cart 94160 Saint-Mandé")
-timothee = User.create(first_name: "Timothée", last_name:"Dupont", nickname:"Timothée", email: "timothee@idealplace.com", password: "123456", address: "15, Cours de Vincennes 94300 Vincennes")
-lucas = User.create(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", email: "lucas@idealplace.com", password: "123456", address: "18, avenue Parmentier 75003 Paris")
-kim = User.create(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "20, avenue des pastéques 94300 Vincennes")
-edward = User.create(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "21, rue des melons 94300 Vincennes")
+users = []
+
+users << User.new(first_name: "Lucile", last_name: "Smith", nickname: "Lucile", email: "lucile@idealplace.com", password: "123456", address: "15, rue Oberkampf 75010 Paris")
+users << User.new(first_name: "Arthur", last_name: "Johnson", nickname:"Arthur", email: "arthur@idealplace.com", password: "123456", address:"16, rue Oberkampf 75010 Paris")
+users << User.new(first_name: "Abdelsam", last_name: "Palmas", nickname:"Abdelsam", email: "abdelsam@idealplace.com", password: "123456", address: "18, avenue de Paris 93123 Montreuil")
+users << User.new(first_name: "Laure", last_name: "Vega", nickname:"Laure", email: "laure@idealplace.com", password: "123456", address: "17, rue Cart 94160 Saint-Mandé")
+users << User.new(first_name: "Timothée", last_name:"Dupont", nickname:"Timothée", email: "timothee@idealplace.com", password: "123456", address: "15, Cours de Vincennes 94300 Vincennes")
+users << User.new(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", email: "lucas@idealplace.com", password: "123456", address: "18, avenue Parmentier 75003 Paris")
+users << User.new(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "20, avenue des pastéques 94300 Vincennes")
+users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "21, rue des melons 94300 Vincennes")
 # ... (create other users)
+# users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
+
+
+# Attach images to user's avatars
+# users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
+puts "Creating photos for users"
+
+users.each do |user|
+  file = URI.open("https://source.unsplash.com/random/70x70/?face")
+  user.photo.attach(io: file, filename: "#{user.nickname}_avatar.png", content_type: "image/png")
+  user.save!
+end
+
+arthur = User.where(nickname: "Arthur").first
+lucile = User.where(nickname: "Lucile").first
+laure = User.where(nickname: "Laure").first
+abdelsam = User.where(nickname: "Abdelsam").first
+timothee = User.where(nickname: "Timothée").first
+lucas = User.where(nickname: "Lucas").first
+kim = User.where(nickname: "Kim").first
+edward = User.where(nickname: "Edward").first
+
+puts "#{users.count} users created"
 
 puts 'Creating fake groups'
 
@@ -26,15 +52,15 @@ group1 = Group.create(name: "groupe1", user: arthur)
 GroupUser.create(user: arthur, group: group1)
 GroupUser.create(user: laure, group: group1)
 # ... (create other groups)
-group2 = Group.create(name: "groupe2", user: lucile)
+group2 = Group.create(name: "groupe2", user: arthur)
 GroupUser.create(user: lucile, group: group2)
 GroupUser.create(user: abdelsam, group: group2)
 
-group3 = Group.create(name: "groupe3", user: timothee)
+group3 = Group.create(name: "groupe3", user: arthur)
 GroupUser.create(user: timothee, group: group3)
 GroupUser.create(user: kim, group: group3)
 
-group4 = Group.create(name: "groupe4", user: lucas)
+group4 = Group.create(name: "groupe4", user: arthur)
 GroupUser.create(user: lucas, group: group4)
 GroupUser.create(user: edward, group: group4)
 
@@ -59,9 +85,9 @@ puts 'Creating fake events'
 
 # Seed data for Events
 events = []
-5.times do
+7.times do
   event = Event.create!(
-    user: arthur,
+    user: users.sample,
     name: Faker::Lorem.word,
     date: Faker::Date.forward(days: 23),
     start_time: Faker::Time.forward(days: 23),
