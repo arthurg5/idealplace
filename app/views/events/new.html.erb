@@ -9,8 +9,12 @@
         <%= simple_form_for @event, url: events_path do |f| %>
           <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
           <%= f.input :selected_group_name, as: :hidden, input_html: { id: 'selected_group_name' } %>
-          <%= f.input :date %>
-          <%= f.input :start_time %>
+          <div data-controller="datepicker">
+            <%= f.input :date, as: :string, input_html: { id: "event_date", class: "form-control white-input form-control-input", placeholder: "DD-MM-YYYY" } %>
+          </div>
+          <div data-controller="timepicker">
+            <%= f.input :start_time, as: :string, input_html: { id: "event_start_time", class: "form-control white-input form-control-input", placeholder: "HH:MM AM/PM" } %>
+          </div>
 
           <br>
 
