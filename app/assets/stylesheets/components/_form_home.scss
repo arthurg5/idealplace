@@ -13,11 +13,16 @@
   top: 7px
 }
 
-.sun{
-  position: absolute;
-  top: 200px;
-  right: 580px;
+.home-title {
+  position: relative;
+  .sun{
+    position: absolute;
+    top: -35px;
+    right: -120px;
+  }
 }
+
+
 
 .space-between-logo-accroche{
   margin-top: 100px;
