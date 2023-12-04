@@ -231,7 +231,8 @@ events = []
     date: Faker::Date.forward(days: 23),
     start_time: Faker::Time.forward(days: 23),
     status: Event::STATUS.sample,
-    selected_group_name: "No group"
+    selected_group_name: group1.name,
+    group_id: group1.id
   )
 
   # Assign 3 random places to each event

@@ -38,7 +38,25 @@ class EventsController < ApplicationController
       }
     end
 
-    @markers = @markers.concat(@markers_group_users)
+    # On aun array de hash avec plein de clés dont lat: lng:
+    # on va mapper sur l'array, on va être sur chaque hash
+    # on va return à chaque fois un array avec la clé correspondante
+
+    @barycenter = @markers_group_users
+    @barycenter = @barycenter.map do |marker|
+      [marker[:lat], marker[:lng]]
+    end
+
+    @barycenter = Geocoder::Calculations.geographic_center(@barycenter)
+    @barycenter_marker = {
+      lat: @barycenter[0],
+      lng: @barycenter[1],
+      info_window_html: "barycenter",
+      marker_html: render_to_string(partial: "marker2")
+    }
+
+
+    @markers = @markers.concat(@markers_group_users).push(@barycenter_marker)
 
     respond_to do |format|
       format.html
