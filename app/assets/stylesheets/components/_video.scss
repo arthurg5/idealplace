@@ -9,7 +9,6 @@
 
 #video-container {
   position: relative;
-  /*overflow: hidden;*/
   padding-bottom: 0px;  /*56.25% 16:9 aspect ratio for responsive video */
   height: 80vh;
 }
@@ -96,20 +95,4 @@ video{
 
 .form-control:hover{
   outline: $dark-orange 1px solid;
-}
-
-.space-between-logo-accroche{
-  margin-bottom: 25px;
-}
-
-.space-between-accroche-input{
-  margin-bottom: 45px;
-}
-
-.underline-input{
-  font-family: $body-font;
-  color: $white;
-  opacity: 0.9;
-  font-size: 18px;
-  border-bottom: 1px solid $white;
 }
