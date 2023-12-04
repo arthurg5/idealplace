@@ -17,18 +17,6 @@ class Event < ApplicationRecord
     !Favorite.where(favoritable_id: event_places.pluck(:id), favoritor_id: user.id).empty?
   end
 
-  def voted_by_all_user
-    if event.group_users.count == voted_by_user(group_users).count
-      event.event_places.each do |event_place|
-        if event_place.favoritors.max
-          event_place.status = "Selected"
-        end
-      end
-    else
-      puts "waiting for vote"
-    end
-  end
-
   private
 
   def set_default_status
