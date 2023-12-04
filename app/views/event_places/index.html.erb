@@ -1,5 +1,5 @@
 <h1 style="margin: 20px;">Event Places</h1>
-<div class="container">
+<div class="container" style="display: flex; flex-direction: column;">
   <div class="row">
     <% @event_places.each do |event_place| %>
       <div class="col-md-4">
@@ -32,8 +32,8 @@
       </div>
     <% end %>
   </div>
-  <div class="col-md-6" >
-    <div style="width: 800px; height: 600px;"
+  <div class="row" >
+    <div style="width: 800px; height: 600px; margin: auto; align-self: center;"
       data-controller="map"
       data-map-markers-value="<%= @geomarkers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
