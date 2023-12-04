@@ -51,18 +51,23 @@ puts 'Creating fake groups'
 group1 = Group.create(name: "Work Friends", user: arthur)
 GroupUser.create(user: arthur, group: group1)
 GroupUser.create(user: laure, group: group1)
+
 # ... (create other groups)
 group2 = Group.create(name: "High School Friends", user: arthur)
 GroupUser.create(user: lucile, group: group2)
 GroupUser.create(user: abdelsam, group: group2)
+GroupUser.create(user: arthur, group: group2)
 
-group3 = Group.create(name: "Family", user: arthur)
+group3 = Group.create(name: "Family", user: laure)
 GroupUser.create(user: timothee, group: group3)
 GroupUser.create(user: kim, group: group3)
+GroupUser.create(user: laure, group: group3)
 
-group4 = Group.create(name: "New Friends", user: arthur)
+group4 = Group.create(name: "New Friends", user: laure)
 GroupUser.create(user: lucas, group: group4)
 GroupUser.create(user: edward, group: group4)
+GroupUser.create(user: laure, group: group4)
+GroupUser.create(user: kim, group: group4)
 
 puts 'Creating manual places'
 
@@ -231,7 +236,8 @@ events = []
     date: Faker::Date.forward(days: 23),
     start_time: Faker::Time.forward(days: 23),
     status: Event::STATUS.sample,
-    selected_group_name: "No group"
+    selected_group_name: group1.name,
+    group_id: group1.id
   )
 
   # Assign 3 random places to each event

@@ -15,7 +15,7 @@
 
 /* Define your custom button style */
 .custom-btn {
-  background-color: #d4613e; /* Choose your preferred color */
+  background-color: #0C7E65; /* Choose your preferred color */
   color: white;
   border: none;
   border-radius: 25px;
@@ -26,7 +26,8 @@
 
 /* Hover effect */
 .custom-btn:hover {
-  background-color: #df795a; /* Change color on hover */
+  background-color: rgb(124, 192, 177);
+  color: rgb(50, 49, 49) // * Change color on hover */
 }
 
 #video-container {

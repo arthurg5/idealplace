@@ -7,15 +7,27 @@
 .card-index:hover {
   border: 2px solid #0C7E65;
   background-color: #0C7E65;
+  margin-left: 3px;
 }
 
 .card-body {
-  background-color: #102733;
+  background-color: #102732;
   color: white;
+  height: 180px;
 }
 
 .list-group-item {
-  background-color: #102733;
+  background-color: #102732;
   color: white;
   border: none;
+}
+
+.card-event {
+  background-color: #102732;
+  color: white;
+  height: 250px;
+}
+
+.card-text {
+  font-weight: $body-font;
 }

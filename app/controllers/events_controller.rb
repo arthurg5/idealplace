@@ -2,10 +2,6 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
     @events = Event.all
-
-    # if params[:query]
-    #   @events = Event.search_events(params[:query])
-    # end
   end
 
   def show
