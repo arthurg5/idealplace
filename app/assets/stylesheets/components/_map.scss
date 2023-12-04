@@ -1,5 +1,5 @@
 .map-display {
-  height: 80vh;
+  height: 100vh;
   top: 0;
   position: sticky;
 }
@@ -7,5 +7,5 @@
 .event-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2rem;
+
 }
