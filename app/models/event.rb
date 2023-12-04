@@ -1,5 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
+  belongs_to :group
+
   has_many :event_users, dependent: :destroy
   has_many :event_places, dependent: :destroy
   has_many :places, through: :event_places

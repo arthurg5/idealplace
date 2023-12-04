@@ -8,9 +8,6 @@
             <h5 class="card-title"><%= event_place.place.name %></h5>
             <p class="card-text"><%= event_place.place.address %></p>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Duration: <%= event_place.duration %> minutes</li>
-              <li class="list-group-item">Distance: <%= event_place.distance %> km</li>
-              <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
               <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
               <% if event_place.favoritors %>
                 <li class="list-group-item">Members who voted:
