@@ -27,17 +27,16 @@
                       <div class="card-body">
                         <h5 class="card-title"><%= group.name %></h5>
                         <p class="card-text">Created by: <%= group.user.first_name %> <%= group.user.last_name %></p>
-                        <ul class="list-unstyled">
-                          <li><strong>Group Members:</strong></li>
+                        <div style="position: absolute; bottom: 20px;">
+                          <strong>Group Members:</strong>
                           <% group.group_users.each do |group_user| %>
-                            <li>
-                              <p><%= group_user.user.first_name %> <%= group_user.user.last_name %></p>
                               <% if group_user.user.photo.attached? %>
                                 <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
+                                <%# <figcaption> <%= group_user.user.first_name %>
+                                <%# </figcaption> #%>
                               <% end %>
-                            </li>
                           <% end %>
-                        </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -45,7 +44,7 @@
               <% end %>
             </div>
           </div>
-          <%= link_to "Add Group", new_group_path, class: "btn custom-btn" %>
+          <%= link_to "Add Group", new_group_path, class: "btn custom-btn mb-2"%>
         </div>
 
         <div class="tab-pane fade" id="myeventsSection">

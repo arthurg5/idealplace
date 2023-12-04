@@ -8,7 +8,11 @@ class EventPlacesController < ApplicationController
 
   def create
     @place = Place.find(params[:place_id])
-    @event_place = EventPlace.new(event: @event, place: @place)
+    if @event.event_places.count < 3
+      @event_place = EventPlace.new(event: @event, place: @place)
+    else
+      redirect_to event_event_places_path(@event_place)
+    end
     if @event_place.save
       if @event_place.event.event_places.count >= 3
         redirect_to event_event_places_path(@event_place.event)
@@ -51,23 +55,12 @@ class EventPlacesController < ApplicationController
     end
     @event.event_places.each do |event_place|
       @vote_count = event_place.favoritors.count
-      if @vote_count == @event.group.group_users.count
+      if @vote_count == @event.group.users.count
         event_place.selected = true
+        @event.status = "Voted"
+        @event.save
       end
     end
-    # @event.group.group_users.each do |group_user|
-    #   @event.voted_by_user(group_user)
-    #   @vote_count += 1
-    # end
-    # if @event.group.group_users.count == @vote_count
-    #   event_places.each do |event_place|
-    #     if event_place.favoritors.max
-    #       event_place.selected = true
-    #     end
-    #   end
-    # else
-    #   puts "waiting for vote"
-    # end
   end
 
   private

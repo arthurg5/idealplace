@@ -3,30 +3,24 @@
     <% @event_places.each do |event_place| %>
       <div class="col-md-4">
         <div class="card mb-4">
-          <div class="card-body <%= true ? "" : "" %>">
+          <div class="card-body <%= event_place.selected ? "selected" : "unselected" %>">
             <h5 class="card-title"><%= event_place.place.name %></h5>
             <p class="card-text"><%= event_place.place.address %></p>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
               <% if event_place.favoritors %>
-                <li class="list-group-item">Members who voted:
-                <% event_place.favoritors.each do |favorite| %>
-                  <%= favorite.first_name %>
-                </li>
-                <% end %>
-                <li class="list-group-item">Votes:
+                <div class="" style="position: absolute; bottom: 15px; left: 10px;">Votes:
                     <%= event_place.favoritors.count %> / <%= @event.group.group_users.count %>
-                    <% @event.group.group_users.each do |user| %>
-
+                    <% @event.group.group_users.each do |group_user| %>
+                      <% if event_place.favoritors.include?(group_user.user) %>
+                        <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
+                      <% end %>
                     <% end %>
-                </li>
+                </div>
               <% end %>
-            </ul>
             <div class="form-check" style="position: absolute; bottom: 10px; right: 10px; color: #0C7E65;">
               <% if @event.voted_by_user(current_user) %>
                 <%= current_user.favorited?(event_place) ? "✓ Voted" : "" %>
               <% else %>
-                <%= link_to "Vote", vote_event_place_path(event_place), class:"custom-btn" %>
+                <%= link_to "Vote", vote_event_place_path(event_place), class:"btn custom-btn" %>
               <% end %>
             </div>
           </div>
