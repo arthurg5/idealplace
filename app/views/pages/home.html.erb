@@ -1,21 +1,28 @@
 <div class="container-home">
-  <div id="video-container">
-    <%#= video_tag "diner-between-friends.mp4", :size => "640x360", :controls => false, :loop => true, :autoplay => true %>
-      <div id="text-overlay">
-        <h2 class="h2-video" style="color: white">Let's create your event!</h2>
-
+    <div id="text-overlay">
         <div class="row">
-          <div class="col-sm-12">
-             <%= form_with url: new_event_path, method: :get, html: {class: "mb-4", data: {search_movies_target: "form"}} do |f| %>
-              <%= f.label :name, "Enter its name below", class:"p-video", style: "color: white" %>
+          <div class="col-12">
+            <%= image_tag "ideal-place.png", alt:"Ideal Place - Where your events begin -logo texte", class:"space-between-logo-accroche" %><br>
+            <%= image_tag "where-your-events-begin.png", alt:"Ideal Place - Where your events begin - accroche", class:"space-between-accroche-input" %><br>
+
+            <%= form_with url: new_event_path, method: :get, html: {class: "mb-4", data: {search_movies_target: "form"}} do |f| %>
               <%= f.text_field :name,
-                              class: "form-control",
-                              value: params[:name]
+                              class: "underline-input",
+                              value: params[:name],
+                              placeholder: "Enter your event name here"
               %>
-              <%= f.submit "Launch my event", class:"pressable-button mt-4 custom-btn" %>
+
+            <%= f.submit "➜", class:"form-arrow" %>
             <% end %>
+            <!-- placage des 5 images à intégrer pour la déco à mettre en position absolute ! -->
+            <%= image_tag "dawn.png", alt:"designed sun", class:"sun" %>
+            <%= image_tag "green-vertical-lines.png", alt:"Green vertical lines", class:"green-vertical-lines" %>
+            <%= image_tag "green-horizontal-lines.png", alt:"Green horizontal lines", class:"green-horizontal-lines" %>
+            <%= image_tag "demi-sphere-orange-verte.png", alt:"Demi-sphere-orange-verte", class:"demi-sphere-orange-verte" %>
+            <%= image_tag "demi-sphere-orange-jaune.png", alt:"Demi-sphere-orange-jaune", class:"demi-sphere-orange-jaune" %>
           </div>
         </div>
+        </div>
       </div>
-  </div>
+
 </div>

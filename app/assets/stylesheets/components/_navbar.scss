@@ -12,10 +12,6 @@
   margin-left: 0;
 }
 
-// .navbar-lewagon .navbar-brand img {
-//   width: 40px;
-// }
-
 .navbar-app-title {
   font-size: 36px;
   margin: 0;
@@ -27,8 +23,7 @@
   font-size: 26px;
   font-family: $headers-font;
   font-weight: 300;
-  /* font-style: italic; */
-  text-shadow: 2px 2px 4px #888888;
+  text-shadow: 2px 2px 4px $white;
   margin: 0;
 }
 
@@ -39,7 +34,7 @@ body {
 }
 
 .navbar {
-  background-color: #9fb1d3;
+  background-color: $dark-petrol;
 }
 
 .navbar a {
@@ -51,7 +46,7 @@ body {
 }
 
 .logo{
-  width: 90px;
+  width: 60px;
   height: auto;
 }
 

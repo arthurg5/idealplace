@@ -1,0 +1,68 @@
+#name{
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $white;
+}
+
+.form-arrow{
+  color: $white;
+  font-size: 2rem;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  top: 7px
+}
+
+.sun{
+  position: absolute;
+  top: 200px;
+  right: 580px;
+}
+
+.space-between-logo-accroche{
+  margin-top: 100px;
+}
+
+.green-vertical-lines{
+  position: absolute;
+  bottom: 0;
+  left: 130px;
+  z-index: 0;
+}
+
+.demi-sphere-orange-jaune{
+  position: absolute;
+  bottom: 0;
+  left: 200px;
+  z-index: 1
+}
+
+
+.space-between-logo-accroche{
+  margin-bottom: 25px;
+}
+
+.space-between-accroche-input{
+  margin-bottom: 45px;
+}
+
+.underline-input{
+  font-family: $body-font;
+  color: $white;
+  opacity: 0.9;
+  font-size: 18px;
+  border-bottom: 1px solid $white;
+}
+.demi-sphere-orange-verte{
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  bottom: 25px;
+}
+
+
+.green-horizontal-lines{
+  position: absolute;
+  right: 0px;
+  bottom: 260px;
+}

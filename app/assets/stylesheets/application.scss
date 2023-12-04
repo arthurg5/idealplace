@@ -29,21 +29,16 @@
   background-color: #df795a; /* Change color on hover */
 }
 
-
-.selected {
-  border: 2px solid black;
-  font-weight: bold;
-}
-
 #video-container {
-  background-image: url(https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800/);
   background-size: cover;
   background-position: center;
 }
 
 .nav-link {
-  font-family: 'Roboto', sans-serif;
-  font-weight: bold;
+  font-family: $body-font;
+  font-weight: semi-bold;
+  color: $white;
+  font-size: 18px;
   /* You can adjust other text properties here */
 }
 .text-black {
@@ -56,11 +51,16 @@ font-size: 18px;
 padding: 10px 15px;
 transition: all 0.3s ease;
 }
+
+.selected {
+  border: 2px solid $dark-orange;
+  opacity: 0.9;
+}
 .nav-tabs .nav-link.active {
 background-color: #ffffff;
 border-bottom: none;
 }
-.nav-tabs .nav-link:hover {
-background-color: #9FB1D3;
-color: #ffffff;
+.nav-link:hover {
+color: $white;;
+opacity: 0.9;
 }
