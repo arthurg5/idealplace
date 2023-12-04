@@ -9,6 +9,7 @@
 
 // Your CSS partials
 @import "components/index";
+@import "components/card";
 @import "pages/index";
 
 
@@ -38,11 +39,6 @@
   background-image: url(https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800/);
   background-size: cover;
   background-position: center;
-}
-
-.card {
-  border-radius: 5px; /* Change the border radius as you like */
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .nav-link {
