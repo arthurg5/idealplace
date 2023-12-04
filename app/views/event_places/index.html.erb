@@ -1,4 +1,3 @@
-<h1 style="margin: 20px;">Event Places</h1>
 <div class="container" style="display: flex; flex-direction: column;">
   <div class="row">
     <% @event_places.each do |event_place| %>
@@ -8,9 +7,6 @@
             <h5 class="card-title"><%= event_place.place.name %></h5>
             <p class="card-text"><%= event_place.place.address %></p>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Duration: <%= event_place.duration %> minutes</li>
-              <li class="list-group-item">Distance: <%= event_place.distance %> km</li>
-              <li class="list-group-item">Transport mode: <%= event_place.transport_mode %></li>
               <li class="list-group-item">Selected: <%= event_place.selected ? "Yes" : "No" %></li>
               <% if event_place.favoritors %>
                 <li class="list-group-item">Members who voted:
@@ -20,9 +16,9 @@
                 <% end %>
               <% end %>
             </ul>
-            <div class="form-check" style="position: absolute; bottom: 10px; right: 10px;">
+            <div class="form-check" style="position: absolute; bottom: 10px; right: 10px; color: green;">
               <% if @event.voted_by_user(current_user) %>
-                <%= current_user.favorited?(event_place) ? "voted!" : "Already voted!" %>
+                <%= current_user.favorited?(event_place) ? "✓ Voted!" : "" %>
               <% else %>
                 <%= link_to "Vote", vote_event_place_path(event_place), class:"custom-btn" %>
               <% end %>
@@ -31,6 +27,9 @@
         </div>
       </div>
     <% end %>
+  </div>
+  <div style="text-align: right;">
+    <%= link_to "See event", dashboard_path, class:"custom-btn" %>
   </div>
   <div class="row" >
     <div style="width: 800px; height: 600px; margin: auto; align-self: center;"

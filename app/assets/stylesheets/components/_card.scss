@@ -1,0 +1,21 @@
+.card {
+  border-radius: 5px; /* Change the border radius as you like */
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  color: white
+}
+
+.card:hover {
+  border: 2px solid #0C7E65;
+  background-color: #0C7E65;
+}
+
+.card-body {
+  background-color: #102733;
+  color: white;
+}
+
+.list-group-item {
+  background-color: #102733;
+  color: white;
+  border: none;
+}
