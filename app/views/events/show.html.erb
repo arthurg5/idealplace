@@ -16,7 +16,6 @@
   <p>The event called "<%= @event_name %>" will take place on <%= @event.date %> at <%= @event.start_time %></p>
   <p>You invited your friends from group "<%= @selected_group_name %> "</p>
 
-
   <div class="d-flex bottom-top-margin">
     <!-- the persue choice/button should remove the buttons : delete and update  -->
 
@@ -27,12 +26,9 @@
     <%= link_to "Places choosen", event_event_places_path(@event), class: "btn btn-success custom-margin" %>
   </div>
 
-
   <p class="custom-margin"> Please select a category of event </p>
 
   <!-- events/show.html.erb -->
-
-
     <div>
       <%= link_to "Catering", event_path(@event, category: 'Catering'), class: 'btn btn-light custom-margin' %>
       <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: 'btn btn-light custom-margin' %>
