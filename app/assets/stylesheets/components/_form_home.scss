@@ -1,0 +1,19 @@
+#name{
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $white;
+}
+
+.form-arrow{
+  color: $white;
+  font-size: 2rem;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  top: 7px
+}
+
+.sun{
+  position: absolute;
+  top: -10px;
+}
