@@ -51,10 +51,9 @@ class EventsController < ApplicationController
     @barycenter_marker = {
       lat: @barycenter[0],
       lng: @barycenter[1],
-      info_window_html: "barycenter",
-      marker_html: render_to_string(partial: "marker2")
+      info_window_html: "Barycenter",
+      marker_html: render_to_string(partial: "marker3", locals: { barycenter: @barycenter })
     }
-
 
     @markers = @markers.concat(@markers_group_users).push(@barycenter_marker)
 
