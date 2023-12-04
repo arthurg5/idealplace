@@ -32,7 +32,7 @@ class EventPlacesController < ApplicationController
         lng: place.longitude
       }
     end
-
+    voted_by_all_users
   end
 
   def show
@@ -41,6 +41,33 @@ class EventPlacesController < ApplicationController
   def vote
     current_user.favorite(@event_place) unless @event_place.event.voted_by_user(current_user)
     redirect_to event_event_places_path(@event_place.event)
+  end
+
+  def voted_by_all_users
+    @vote_count = 0
+    @vote_count_event_place = 0
+    @event.event_places.each do |event_place|
+      @vote_count_event_place = event_place.favoritors.count
+    end
+    @event.event_places.each do |event_place|
+      @vote_count = event_place.favoritors.count
+      if @vote_count == @event.group.group_users.count
+        event_place.selected = true
+      end
+    end
+    # @event.group.group_users.each do |group_user|
+    #   @event.voted_by_user(group_user)
+    #   @vote_count += 1
+    # end
+    # if @event.group.group_users.count == @vote_count
+    #   event_places.each do |event_place|
+    #     if event_place.favoritors.max
+    #       event_place.selected = true
+    #     end
+    #   end
+    # else
+    #   puts "waiting for vote"
+    # end
   end
 
   private
