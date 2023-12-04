@@ -46,9 +46,6 @@ class EventsController < ApplicationController
     end
   end
 
-
-
-
   def new
     @event = Event.new
     @event.name = params[:name] # Set the name attribute from the form parameters
