@@ -15,6 +15,7 @@ class EventsController < ApplicationController
     @event_name = @event.name
     @event_places = @event.event_places
     @places = Place.all
+    @group_users = @event.group.users
 
     # Check for category filtering
     @places = Place.where(category: params[:category]) if params[:category].present?
@@ -23,16 +24,29 @@ class EventsController < ApplicationController
       {
         lat: place.latitude,
         lng: place.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { place: place }),
-        marker_html: render_to_string(partial: "marker", locals: { place: place })
+        info_window_html: render_to_string(partial: "info_window1", locals: { place: place }),
+        marker_html: render_to_string(partial: "marker1", locals: { place: place })
       }
     end
+
+    @markers_group_users = @group_users.geocoded.map do |group_user|
+      {
+        lat: group_user.latitude, # default latitude
+        lng: group_user.longitude, # default longitude
+        info_window_html: render_to_string(partial: "info_window2", locals: { group_user: group_user }),
+        marker_html: render_to_string(partial: "marker2", locals: { group_user: group_user })
+      }
+    end
+
+    @markers = @markers.concat(@markers_group_users)
 
     respond_to do |format|
       format.html
       format.js
     end
   end
+
+
 
 
   def new
