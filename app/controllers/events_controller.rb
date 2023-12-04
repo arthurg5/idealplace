@@ -2,16 +2,16 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
     @events = Event.all
+
     # if params[:query]
     #   @events = Event.search_events(params[:query])
     # end
   end
 
-
-
   def show
     @event = Event.find(params[:id])
     @selected_group_name = @event.selected_group_name || "No group"
+
     @event_name = @event.name
     @event_places = @event.event_places
     @places = Place.all
@@ -44,7 +44,17 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    @event.selected_group_name = params[:event][:selected_group_name]
+    selected_group_name = params[:event][:selected_group_name]
+    group = Group.find_by(name: selected_group_name)
+
+    if group
+
+      @event.group = group
+      @event.group_id = group.id # Assign the group_id explicitly
+    else
+      # Handle the scenario where the group does not exist
+      # You can add code here to create a new group or handle the error as required
+    end
 
     if @event.save
       redirect_to event_path(@event)

@@ -28,15 +28,26 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><%= event.name %></h5>
-            <p class="card-text">Date: <%= event.date %></p>
+            <% if event.group %>
+              <p class="card-text">Group: <%= event.group.name %></p>
+              <ul>
+                <li><strong>Group Members:</strong></li>
+                <% event.group.group_users.each do |group_user| %>
+                  <li><%= group_user.user.first_name %> <%= group_user.user.last_name %></li>
+                <% end %>
+              </ul>
+            <% else %>
+              <p class="card-text">Group: No group</p>
+            <% end %>
+            <p class="card-text">Date: <%= event.date.strftime("%d-%m-%Y") %></p>
             <p class="card-text">Start Time: <%= event.start_time.strftime("%H:%M %p") %></p>
             <p class="card-text">Status: <%= event.status %></p>
             <%= link_to 'See event places', event_event_places_path(event), class: "btn custom-btn" %>
           </div>
+
+
         </div>
       </div>
     <% end %>
   </div>
 </div>
-
-
