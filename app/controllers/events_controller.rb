@@ -13,7 +13,6 @@ class EventsController < ApplicationController
     @places = Place.all
     @group_users = @event.group.users
 
-
     # Check for category filtering
     @places = Place.where(category: params[:category]) if params[:category].present?
 
@@ -73,7 +72,6 @@ class EventsController < ApplicationController
     group = Group.find_by(name: selected_group_name)
 
     if group
-
       @event.group = group
       @event.group_id = group.id # Assign the group_id explicitly
     else

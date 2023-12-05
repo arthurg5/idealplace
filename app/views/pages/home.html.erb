@@ -3,15 +3,15 @@
         <div class="row">
           <div class="col-12">
             <div class="home-title">
-              <%= image_tag "ideal-place.png", alt:"Ideal Place - Where your events begin -logo texte", class:"space-between-logo-accroche" %><br>
-              <%= image_tag "dawn.png", alt:"designed sun", class:"sun" %>
+              <%= image_tag "ideal-place.png", alt:"Ideal Place - Where your events begin -logo texte", class:"space-between-logo-accroche", style:"height: 75px;" %><br>
+              <%= image_tag "dawn.png", alt:"designed sun", class:"sun", style:"height: 140px;" %>
             </div>
-            <%= image_tag "where-your-events-begin.png", alt:"Ideal Place - Where your events begin - accroche", class:"space-between-accroche-input" %><br>
+            <%= image_tag "where-your-events-begin.png", alt:"Ideal Place - Where your events begin - accroche", class:"space-between-accroche-input", style:"height: 50px;" %><br>
             <%= form_with url: new_event_path, method: :get, html: {class: "mb-4", data: {search_movies_target: "form"}} do |f| %>
               <%= f.text_field :name,
                               class: "underline-input",
                               value: params[:name],
-                              placeholder: "Enter your event name here"
+                              placeholder: "Your event name!"
               %>
 
             <%= f.submit "➜", class:"form-arrow" %>

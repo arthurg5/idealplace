@@ -81,16 +81,14 @@ paris_places = []
 
 # Catering
 creperie = Place.create!(name: "La Crêperie Bretonne", address: "56 rue du Montparnasse 75014 Paris", phone: "01 75 43 21 65", category: "Catering", second_category: "Restaurant", third_category: "French", opening_hours: "12h00", rating: 4)
-boulangerie = Place.create!(name: "Le Pain Quotidien", address: "18 place du Marché Saint-Honoré 75001 Paris", phone: "01 75 45 67 89", category: "Catering", second_category: "Bakery", third_category: "French", opening_hours: "08h00", rating: 3)
 sushi = Place.create!(name: "Sushi Shop", address: "15 rue de la Pompe 75016 Paris", phone: "01 75 46 78 90", category: "Catering", second_category: "Restaurant", third_category: "Japanese", opening_hours: "18h00", rating: 4)
 
 # Culture
 opera = Place.create!(name: "Opéra Garnier", address: "8 rue Scribe 75009 Paris", phone: "01 75 47 81 23", category: "Culture", second_category: "Monument", third_category: "Opera", opening_hours: "10h00", rating: 5)
-cathedral = Place.create!(name: "Notre-Dame de Paris", address: "6 parvis Notre-Dame - Place Jean-Paul II 75004 Paris", phone: "01 75 48 82 34", category: "Culture", second_category: "Monument", third_category: "Cathedral", opening_hours: "08h00", rating: 5)
+cathedral = Place.create!(name: "Notre-Dame de Paris", address: "6 parvis Notre-Dame 75004 Paris", phone: "01 75 48 82 34", category: "Culture", second_category: "Monument", third_category: "Cathedral", opening_hours: "08h00", rating: 5)
 museum = Place.create!(name: "Musée d'Orsay", address: "1 rue de la Légion d'Honneur 75007 Paris", phone: "01 75 49 83 45", category: "Culture", second_category: "Museum", third_category: "Art", opening_hours: "09h30", rating: 5)
 
 # Entertainment
-theatre = Place.create!(name: "Théâtre du Châtelet", address: "1 place du Châtelet 75001 Paris", phone: "01 75 50 84 56", category: "Entertainment", second_category: "Theatre", third_category: "Comedy", opening_hours: "20h00", rating: 4)
 park = Place.create!(name: "Parc Astérix", address: "60128 Plailly", phone: "01 75 51 95 67", category: "Entertainment", second_category: "Theme Park", third_category: "Adventure", opening_hours: "10h00", rating: 4)
 zoo = Place.create!(name: "Parc Zoologique de Paris", address: "Avenue Daumesnil 75012 Paris", phone: "01 75 52 76 78", category: "Entertainment", second_category: "Zoo", third_category: "Animals", opening_hours: "09h30", rating: 4)
 
@@ -211,13 +209,13 @@ street_food = Place.create!(
 
 paris_places = [
   # Catering
-  creperie, boulangerie, sushi, burger, salad, kebab,
+  creperie, sushi, burger, salad, kebab,
 
   # Culture
   opera, cathedral, museum, castle, church, gallery,
 
   # Entertainment
-  theatre, park, zoo, concert, bowling, escape,
+  park, zoo, concert, bowling, escape,
 
   # Previously listed places
   pizza_italia, movie_theater, boulangerie, pub, movie_cinema, french_restaurant, history_museum, theatre, street_food
