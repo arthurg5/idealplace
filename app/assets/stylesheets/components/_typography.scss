@@ -3,14 +3,21 @@
 
 h1, h2, h3, h4, h5 {
   font-family: $headers-font;
+  color: white;
 }
 
-p, a, li, ul, ol {
+p, a, li, ul, ol, label {
   font-family: $body-font;
+  color: white;
 }
 
 
 h1 {
   font-weight: 400;
   font-size: 3em;
+  color: white;
+}
+
+body {
+  background-color: $dark-petrol;
 }
