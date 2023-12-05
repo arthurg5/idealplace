@@ -1,4 +1,4 @@
-<div class="container" data-controller="event">
+<div class="container">
   <div class="row">
     <div class="col-sm-12">
      <!-- <div class="flash flash-success alert alert-dismissible fade show" role="alert">
@@ -35,7 +35,7 @@
       <%= link_to "Culture", event_path(@event, category: 'Culture'), class: 'btn btn-light custom-margin' %>
     </div>
 
-    <div class="event-container">
+    <div class="event-container" data-controller="places">
       <div>
         <%= render partial: 'shared/filtered_places', locals: { places: @places } %>
       </div>
