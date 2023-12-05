@@ -12,9 +12,9 @@
     </div>
   </div>
 
-  <div class="rented-cars-card card-category col-md-6 p-3" style="color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); background-color: #1D475E" >
+  <div class="card-category col-md-6 p-3" style="color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); background-color: #1D475E" >
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <h3><%= @event_name %> </h3>
       </div>
       <div class="col-md-5">
@@ -47,9 +47,9 @@
       </div>
 
     <div class="event-container" data-controller="places">
-      <div>
-        <%= render partial: 'shared/filtered_places', locals: { places: @places } %>
-      </div>
+
+      <%= render 'shared/filtered_places', places: @places, event: @event %>
+
       <div class="map-display"
           data-target="filter.map"
           data-controller="map"
