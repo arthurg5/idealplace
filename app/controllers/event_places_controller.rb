@@ -10,17 +10,17 @@ class EventPlacesController < ApplicationController
     @place = Place.find(params[:place_id])
     if @event.event_places.count < 3
       @event_place = EventPlace.new(event: @event, place: @place)
-    else
-      redirect_to event_event_places_path(@event_place)
-    end
-    if @event_place.save
-      if @event_place.event.event_places.count >= 3
-        redirect_to event_event_places_path(@event_place.event)
+      if @event_place.save
+        if @event_place.event.event_places.count >= 3
+          redirect_to event_event_places_path(@event_place.event)
+        else
+          redirect_to event_path(@event_place.event)
+        end
       else
-        redirect_to event_path(@event_place.event)
+        render :create, status: :unprocessable_entity
       end
     else
-      render :new, status: :unprocessable_entity
+      redirect_to event_event_places_path(@event)
     end
   end
 
@@ -33,7 +33,9 @@ class EventPlacesController < ApplicationController
     @geomarkers = @places.map do |place|
       {
         lat: place.latitude,
-        lng: place.longitude
+        lng: place.longitude,
+        info_window_html: render_to_string(partial: "info_window4", locals: { place: place }),
+        marker_html: render_to_string(partial: "marker4", locals: { place: place })
       }
     end
     voted_by_all_users
@@ -61,6 +63,10 @@ class EventPlacesController < ApplicationController
         @event.save
       end
     end
+  end
+
+  def destroy
+    @event_places.delete(event_place)
   end
 
   private

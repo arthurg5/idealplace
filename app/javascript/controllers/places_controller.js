@@ -6,8 +6,8 @@ export default class extends Controller {
   }
 
   selectCards() {
+    
 
-  
   }
 
 }

@@ -4,7 +4,10 @@
       <div class="col-md-4">
         <div class="card mb-4">
           <div class="card-body <%= event_place.selected ? "selected" : "unselected" %>">
-            <h5 class="card-title"><%= event_place.place.name %></h5>
+            <div class="d-flex justify-content-between ">
+              <h5 class="card-title"><%= event_place.place.name %></h5>
+              <%= link_to "X", event_place_path(event_place), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style:"opacity: 1;" %>
+            </div>
             <p class="card-text"><i class="fas fa-map-marker-alt"></i>  <%= event_place.place.address %></p>
               <% if event_place.favoritors %>
                 <div class="" style="position: absolute; bottom: 15px; left: 10px;">Votes:
@@ -29,7 +32,7 @@
     <% end %>
   </div>
   <div style="text-align: right;">
-    <%= link_to "See event", dashboard_path, class:"custom-btn" %>
+    <%= link_to "Back to event", dashboard_path, class:"custom-btn" %>
   </div>
   <div class="row" >
     <div style="width: 800px; height: 600px; margin: auto; align-self: center;"
