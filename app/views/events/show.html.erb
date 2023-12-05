@@ -12,40 +12,49 @@
     </div>
   </div>
 
-  <h3>Event recapitulative</h3>
-  <p>The event called "<%= @event_name %>" will take place on <%= @event.date %> at <%= @event.start_time %></p>
-  <p>You invited your friends from group "<%= @selected_group_name %> "</p>
+  <div class="rented-cars-card card-category col-md-6 p-3" style="color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); background-color: #1D475E" >
+    <div class="row">
+      <div class="col-md-4">
+        <h3><%= @event_name %> </h3>
+      </div>
+      <div class="col-md-5">
+        <% @event.group.group_users.each do |group_user| %>
+          <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <p><i class="far fa-calendar"></i>  <%= @event.date.strftime("%d/%m/%Y") %> - <%= @event.start_time.strftime("%H:%M %p") %></p>
+  </div>
+
 
   <div class="d-flex bottom-top-margin">
     <!-- the persue choice/button should remove the buttons : delete and update  -->
 
     <!-- update should direct to the edit event page -->
-    <button class="btn btn-warning custom-margin"> Edit event </button>
+    <button class="btn btn-warning custom-margin d-none"> Edit event </button>
 
     <!-- delete should destroy the event and bring back to the index page ? -->
-    <%= link_to "Places choosen", event_event_places_path(@event), class: "btn btn-success custom-margin" %>
+    <%= link_to "Places choosen", event_event_places_path(@event), class: "btn btn-success custom-margin d-none" %>
   </div>
 
-  <p class="custom-margin"> Please select a category of event </p>
-
   <!-- events/show.html.erb -->
-    <div>
-      <%= link_to "Catering", event_path(@event, category: 'Catering'), class: 'btn btn-light custom-margin' %>
-      <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: 'btn btn-light custom-margin' %>
-      <%= link_to "Culture", event_path(@event, category: 'Culture'), class: 'btn btn-light custom-margin' %>
-    </div>
+      <div data-controller="filter">
+        <%= link_to "All", event_path(@event), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
+        <%= link_to "Catering", event_path(@event, category: 'Catering'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
+        <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
+        <%= link_to "Culture", event_path(@event, category: 'Culture'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
+      </div>
 
     <div class="event-container" data-controller="places">
       <div>
         <%= render partial: 'shared/filtered_places', locals: { places: @places } %>
       </div>
       <div class="map-display"
+          data-target="filter.map"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-
-
-
   </div>

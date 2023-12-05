@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     @event_places = @event.event_places
     @places = Place.all
     @group_users = @event.group.users
-    
+
 
     # Check for category filtering
     @places = Place.where(category: params[:category]) if params[:category].present?
