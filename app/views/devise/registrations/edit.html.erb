@@ -11,45 +11,53 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
     <%= f.input :first_name,
-                hint: "leave it blank if you don't want to change it",
+                hint: "Leave it blank if you don't want to change it" ,
                 required: false,
-                input_html: { autocomplete: "new-first-name" }%>
+                input_html: { autocomplete: "new-first-name", class: "form-hint"}%>
     <%= f.input :last_name,
-                hint: "leave it blank if you don't want to change it",
+                hint: "Leave it blank if you don't want to change it",
                 required: false,
                 input_html: { autocomplete: "new-last-name" }%>
     <%= f.input :nickname,
-                hint: "leave it blank if you don't want to change it",
+                hint: "Leave it blank if you don't want to change it",
                 required: false,
                 input_html: { autocomplete: "new-nickname" }%>
     <%= f.input :address,
-                hint: "leave it blank if you don't want to change it",
+                hint: "Leave it blank if you don't want to change it",
                 required: false,
                 input_html: { autocomplete: "new-address" }%>
     <!--# added code by Laure -->
     <%= f.input :photo, as: :file,
-                hint: "add a photo or a picture",
+                hint: "Add a photo or a picture",
                 required: true %>
     <!--# end of Laure's added code -->
     <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+                hint: "Leave it blank if you don't want to change it",
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                hint: "We need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update", class:"btn btn-primary" %>
+  <div class="form-actions unhappy-box">
+    <%= f.button :submit, "Update", class:"custom-ideal-place-btn" %>
   </div>
 <% end %>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
-<%= link_to "Back", :back %>
+<div class="d-flex margin-unhappy-box align-items-center">
+  <p class="margin-p" style="margin-x:0";> Unhappy? </p>
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"btn custom-ideal-place-btn mb-6" %>
+</div>
+
+<!-- original version -->
+<%# <%= link_to "Back", :back %>
+
+<!-- tested one -->
+<%= link_to "⬅", :back, class:"form-arrow-edit-profile" %> 
 </div>
