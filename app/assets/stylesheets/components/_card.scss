@@ -16,6 +16,15 @@
   border-left: 1.5rem solid $green;
 }
 
+.all-selection {
+  .card-index:not(.card-index-selected) {
+    opacity: 0.2;
+    &:hover {
+      border: none !important;
+    }
+  }
+}
+
 .card-body {
   background-color: $dark-green;
   color: white;

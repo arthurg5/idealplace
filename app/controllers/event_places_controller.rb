@@ -8,19 +8,14 @@ class EventPlacesController < ApplicationController
 
   def create
     @place = Place.find(params[:place_id])
-    if @event.event_places.count < 3
-      @event_place = EventPlace.new(event: @event, place: @place)
-      if @event_place.save
-        if @event_place.event.event_places.count >= 3
-          redirect_to event_event_places_path(@event_place.event)
-        else
-          redirect_to event_path(@event_place.event)
-        end
-      else
-        render :create, status: :unprocessable_entity
+    @event_place = EventPlace.new(event: @event, place: @place)
+    if @event_place.save
+      respond_to do |format|
+        format.html { redirect_to event_path(@event) }
+        format.text { render partial: "shared/filtered_places", formats: :html, locals: { event: @event, places: Place.all } }
       end
     else
-      redirect_to event_event_places_path(@event)
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -34,8 +29,8 @@ class EventPlacesController < ApplicationController
       {
         lat: place.latitude,
         lng: place.longitude,
-        info_window_html: render_to_string(partial: "info_window4", locals: { place: place }),
-        marker_html: render_to_string(partial: "marker4", locals: { place: place })
+        info_window_html: render_to_string(partial: "event_places/info_window4", locals: { place: place }, formats: :html),
+        marker_html: render_to_string(partial: "event_places/marker4", locals: { place: place }, formats: :html)
       }
     end
     voted_by_all_users

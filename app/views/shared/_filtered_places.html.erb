@@ -1,27 +1,27 @@
-<div class="places-container" data-controller="event">
-  <% @places.each do |place| %>
-    <%= link_to event_event_places_path(event_id: @event.id, place_id: place.id), data: { turbo_method: :post } do %>
-      <!-- Add an extra level of indentation for the nested div -->
-      <div class="card card-index mb-4 <%= @event.places.include?(place) ? "card-index-selected" : "" %>">
-        <div class="row">
-          <!-- image place -->
-          <div class="col-sm-2">
-            <% if place.photo.attached? %>
-              <%= cl_image_tag place.photo.key, class: "place-picture", style:"height: 100%;" %>
-            <% end %>
-          </div>
-          <!-- descriptif texte -->
-          <div class="col-sm-10">
-            <div class="card-body">
-              <h5 class="card-title"><%= place.name %> - <%= place.category %></h5>
-              <br>
-              <p class="card-text"><i class="fas fa-map-marker-alt"></i>  <%= place.address %></p>
-              <p class="list-group-item"><i class="far fa-clock"></i>  Opening Hours: <%= place.opening_hours.strftime("%H:%M %p") %> </p>
-              <p class="list-group-item"><i class="fas fa-info-circle"></i>  Rating: <%= place.rating %>/5</p>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="places-container <%= "all-selection" unless event.places.count < 3 %>" data-places-target="list">
+
+  <% places.each do |place| %>
+    <% if event.places.count < 3 %>
+      <% if event.places.exclude?(place) %>
+        <%= link_to event_event_places_path(event_id: event.id, place_id: place.id), data: { turbo_method: :post, action: "click->places#selectCard" } do %>
+          <!-- Add an extra level of indentation for the nested div -->
+          <%= render "events/place_card", place: place, event: event %>
+        <% end %>
+      <% else %>
+        <%= render "events/place_card", place: place, event: event %>
+      <% end %>
+    <% else %>
+      <%= render "events/place_card", place: place, event: event %>
     <% end %>
+
+  <% end %>
+
+  <% if event.places.count >= 1 %>
+    <div class="list-cta d-flex">
+       <h4 style="margin: 12px; padding: 7px;"><%= event.places.count %> events selected</h4>
+       <% if event.places.count == 3 %>
+          <%= link_to "Vote", event_event_places_path(event), class:"btn custom-btn", style:"margin: 12px;" %>
+       <% end %>
+    </div>
   <% end %>
 </div>

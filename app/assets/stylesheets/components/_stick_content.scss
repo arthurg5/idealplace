@@ -1,0 +1,9 @@
+@import "../config/colors";
+
+.list-cta {
+  border: 2px white;
+  background-color: $dark-green;
+  bottom: 0;
+  position: sticky;
+  justify-content: space-around;
+}
