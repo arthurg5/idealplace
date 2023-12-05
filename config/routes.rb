@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   end
 
   resources :groups, only: [:index, :new, :create]
+
+  get 'notifications', to: 'notifications#index'
 end

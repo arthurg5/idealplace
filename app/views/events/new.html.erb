@@ -1,10 +1,10 @@
 <div class="container">
-  <h2>Where your event begins...!</h2>
+  <h2>Where your event begins!</h2>
   <div class="row">
     <div class="col-sm-12">
       <div class="h-100">
         <h4><%= params[:name] %></h4>
-        <p>Choose a date and a group for your new event</p>
+        <p>Choose a date, start time and group for your new event!</p>
         <%= simple_form_for @event, url: events_path do |f| %>
           <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
           <%= f.input :selected_group_name, as: :hidden, input_html: { id: 'selected_group_name' } %>

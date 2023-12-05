@@ -43,15 +43,16 @@
   font-size: 18px;
   /* You can adjust other text properties here */
 }
-.text-black {
-  color: black !important; /* Ensure the text color is black */
+.text-white {
+  color: white !important; /* Ensure the text color is black */
 }
 .nav-tabs .nav-link {
-background-color: #f0f0f0;
+background-color: #1D475E;
 border: 1px solid #cccccc;
 font-size: 18px;
 padding: 10px 15px;
 transition: all 0.3s ease;
+
 }
 
 .selected {
@@ -60,10 +61,15 @@ transition: all 0.3s ease;
   opacity: 0.9;
 }
 .nav-tabs .nav-link.active {
-background-color: #ffffff;
+background-color: #0C7E65;
 border-bottom: none;
+
 }
 .nav-link:hover {
-color: $white;;
+color: $white;
 opacity: 0.9;
+}
+
+.white-input {
+  background-color: lightgrey; /* change this to your desired color */
 }
