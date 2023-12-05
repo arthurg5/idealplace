@@ -33,7 +33,9 @@ class EventPlacesController < ApplicationController
     @geomarkers = @places.map do |place|
       {
         lat: place.latitude,
-        lng: place.longitude
+        lng: place.longitude,
+        info_window_html: render_to_string(partial: "info_window4", locals: { place: place }),
+        marker_html: render_to_string(partial: "marker4", locals: { place: place })
       }
     end
     voted_by_all_users
