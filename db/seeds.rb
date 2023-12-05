@@ -48,26 +48,32 @@ puts "#{users.count} users created"
 
 puts 'Creating fake groups'
 
-group1 = Group.create(name: "Work Friends", user: arthur)
-GroupUser.create(user: arthur, group: group1)
+current_user = arthur
+group1 = Group.create(name: "Work Friends", user: current_user)
+GroupUser.create(user: current_user, group: group1)
 GroupUser.create(user: laure, group: group1)
 
 # ... (create other groups)
-group2 = Group.create(name: "High School Friends", user: arthur)
+group2 = Group.create(name: "High School Friends", user: current_user)
 GroupUser.create(user: lucile, group: group2)
 GroupUser.create(user: abdelsam, group: group2)
-GroupUser.create(user: arthur, group: group2)
+GroupUser.create(user: current_user, group: group2)
 
-group3 = Group.create(name: "Family", user: laure)
+group3 = Group.create(name: "Family", user: current_user)
 GroupUser.create(user: timothee, group: group3)
 GroupUser.create(user: kim, group: group3)
 GroupUser.create(user: laure, group: group3)
+GroupUser.create(user: current_user, group: group3)
 
-group4 = Group.create(name: "New Friends", user: laure)
+group4 = Group.create(name: "New Friends", user: current_user)
 GroupUser.create(user: lucas, group: group4)
 GroupUser.create(user: edward, group: group4)
 GroupUser.create(user: laure, group: group4)
 GroupUser.create(user: kim, group: group4)
+GroupUser.create(user: current_user, group: group4)
+
+
+groups = [group1, group2, group3, group4]
 
 puts 'Creating manual places'
 
@@ -227,6 +233,9 @@ puts 'Creating fake events'
 
 events_name = ["Birthday Party", "Back Home", "Start of Holidays!", "New Year’s Eve", "Halloween Night", "Book Club Meeting", "Family Reunion", "Summer Camp"]
 
+selected_group_name = groups.sample.name
+group_id = Group.find_by(name: selected_group_name).id
+
 # Seed data for Events
 events = []
 7.times do
@@ -236,8 +245,8 @@ events = []
     date: Faker::Date.forward(days: 23),
     start_time: Faker::Time.forward(days: 23),
     status: Event::STATUS.sample,
-    selected_group_name: group1.name,
-    group_id: group1.id
+    selected_group_name: selected_group_name,
+    group_id: group_id
   )
 
   # Assign 3 random places to each event

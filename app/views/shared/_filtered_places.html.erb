@@ -13,11 +13,11 @@
         <div class="col-sm-10">
           <div class="card-body">
             <h5 class="card-title"><%= place.name %> - <%= place.category %></h5>
-            <p class="card-text"><%= place.address %></p>
-            <ul class="list-group">
-              <li class="list-group-item">Opening Hours: <%= place.opening_hours %> </li>
-              <li class="list-group-item">Distance: <%= place.rating %> km</li>
-            </ul>
+            <br>
+            <p class="card-text"><i class="fas fa-map-marker-alt"></i>  <%= place.address %></p>
+            <p class="list-group-item"><i class="far fa-clock"></i>  Opening Hours: <%= place.opening_hours.strftime("%H:%M %p") %> </p>
+            <p class="list-group-item"><i class="fas fa-info-circle"></i>  Rating: <%= place.rating %>/5</p>
+
           </div>
           <div style="position: absolute; bottom: 10px; right: 10px;">
           </div>
