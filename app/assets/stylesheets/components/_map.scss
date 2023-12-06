@@ -2,6 +2,7 @@
   height: 100vh;
   top: 0;
   position: sticky;
+  
 }
 
 .event-container {
@@ -47,4 +48,9 @@
 
 .map-place-marker.active {
   filter: hue-rotate(241deg);
+}
+
+mapboxgl-canvas {
+  width: 960px;
+  height: 550px;
 }

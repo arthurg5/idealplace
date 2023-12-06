@@ -32,6 +32,8 @@ export default class extends Controller {
       popup.on('open', () => {
         this.map.flyTo({
           center: [marker.lng, marker.lat],
+          zoom: 15,
+          duration: 3000,
           essential: true // this animation is considered essential with respect to prefers-reduced-motion
         });
       })
