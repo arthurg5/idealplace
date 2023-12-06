@@ -1,11 +1,12 @@
 <div class="container">
-  <h2 class="mb-3">Where your event begins!</h2>
-  <div class="row margin-bottom">
+  <h2 class="h2-new">Where your event begins!</h2>
+  <div class="row">
+
     <div class="col-md-8">
          <!-- partie gauche -->
-         <h4 class="my-9 mb-3"><%= params[:name] %></h4>
+         <h4 class="my-9 mb-3 h4-new">Your event name is "<%= params[:name] %>"</h4>
         <%= simple_form_for @event, url: events_path do |f| %>
-        <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
+         <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
         <%= f.input :selected_group_name, as: :hidden, input_html: { id: 'selected_group_name' } %>
          <div class="groups">
             <div class="row">
@@ -39,16 +40,15 @@
     </div>
           <!-- partie droite -->
     <div class="col-md-4">
-          <p>Choose the right moment for your event!</p>
           <div data-controller="datepicker">
-            <%= f.input :date, as: :string, input_html: { id: "event_date", class: "form-control white-input form-control-input", placeholder: "DD-MM-YYYY", style: "visibility: hidden;" } %>
-          </div>
+<%= f.input :date, as: :string, input_html: { id: "event_date", placeholder: "DD-MM-YYYY", style: "visibility: hidden", class: "datepicker" }, label: false %>          </div>
+<%= f.submit "Create Event", class: "btn custom-btn custom-btn-small-new mb-4" %>
+<% end %>
     </div>
 
             <br>
 
-          <%= f.submit "Create Event", class: "btn custom-btn mb-4" %>
-        <% end %>
+
 
  <!-- Add this closing tag for the form -->
       </div>
