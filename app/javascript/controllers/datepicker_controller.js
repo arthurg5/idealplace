@@ -9,6 +9,11 @@ export default class extends Controller {
       dateFormat: 'd-m-Y',
       minDate: 'today',
       theme: 'light',
+      inline: true,
+      enableTime: true,
+      time_24hr: true,
+      defaultHour: 18,
+      minuteIncrement: 15,
       onClose: function(selectedDates) {
         // Additional logic if needed
       }

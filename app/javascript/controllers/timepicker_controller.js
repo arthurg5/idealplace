@@ -8,7 +8,8 @@ export default class extends Controller {
     flatpickr(timeInput, {
       enableTime: true,
       noCalendar: true,
-      dateFormat: 'h:i K',
+      dateFormat: "H:i",
+      time_24hr: true
       // Other configuration options if needed
     });
   }
