@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
-  static targets = ["list"]
+  static targets = ["list", "map", "marker"]
 
   connect() {
   }
@@ -10,6 +10,7 @@ export default class extends Controller {
   selectCard(event) {
     event.preventDefault();
     const url = event.currentTarget.href;
+    const id = Number.parseInt(event.currentTarget.id);
     fetch(url, {
       method: "POST",
       headers: {
@@ -19,6 +20,9 @@ export default class extends Controller {
     }).then(response => response.text())
     .then((data) => {
       this.listTarget.outerHTML = data;
+      const placeMarker = Array.from(this.markerTargets).find((marker) => marker.dataset.id == id);
+      placeMarker.classList.add("active");
+      placeMarker.click();
     })
   }
 }
