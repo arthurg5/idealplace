@@ -7,12 +7,19 @@ class EventPlacesController < ApplicationController
   end
 
   def create
+    places_ids = params[:ids_array].map(&:to_i)
+    category = params[:category]
     @place = Place.find(params[:place_id])
     @event_place = EventPlace.new(event: @event, place: @place)
+    selected_places = Place.where(id: places_ids)
+    p selected_places
+    unless category == "none"
+      selected_places = selected_places.where(category: category)
+    end
     if @event_place.save
       respond_to do |format|
         format.html { redirect_to event_path(@event) }
-        format.text { render partial: "shared/filtered_places", formats: :html, locals: { event: @event, places: Place.all } }
+        format.text { render partial: "shared/filtered_places", formats: :html, locals: { event: @event, places: selected_places } }
       end
     else
       render :new, status: :unprocessable_entity
@@ -64,19 +71,19 @@ class EventPlacesController < ApplicationController
 
   def send_notif
     # check if the current user has voted on an event place of an event he created
-    if current_user.all_favorites && current_user == @event.user
-      # get all the users of the group of that event
-      group_users = @event.group.users
-      # loop through each user and create a notification for them
-      group_users.each do |user|
-        # skip the current user
-        next if user == current_user
-        # create a notification with a message and a link to the event
-        notification = Notification.new(user: user, message: "#{current_user.name} has voted on an event place for #{event.name}. Check it out here:", link: event_event_places_path(@event))
-        # save the notification
-        notification.save
-      end
-    end
+    # if current_user.all_favorites && current_user == @event.user
+    #   # get all the users of the group of that event
+    #   group_users = @event.group.users
+    #   # loop through each user and create a notification for them
+    #   group_users.each do |user|
+    #     # skip the current user
+    #     next if user == current_user
+    #     # create a notification with a message and a link to the event
+    #     notification = Notification.new(user: user, message: "#{current_user.first_name} has voted on an event place for #{@event.name}. Check it out here:", link: event_event_places_path(@event))
+    #     # save the notification
+    #     notification.save
+    #   end
+    # end
   end
 
 

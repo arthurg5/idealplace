@@ -1,4 +1,4 @@
-<div class="card card-index mb-4 <%= event.places.include?(place) ? "card-index-selected" : "" %>">
+<div class="card card-index mb-4 <%= event.places.include?(place) ? "card-index-selected" : "" %>" data-id="<%= place.id %>" data-places-target="card">
   <div class="row">
     <!-- image place -->
     <div class="col-sm-2">
