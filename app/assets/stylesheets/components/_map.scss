@@ -2,6 +2,7 @@
   height: 100vh;
   top: 0;
   position: sticky;
+  
 }
 
 .event-container {
@@ -20,10 +21,36 @@
   position: relative;
   opacity: 0,9;
   text-align: center;
-  border-color: #ffffff;
+  border: 1px solid #ffffff
 }
 
 .mapboxgl-popup-content p {
-  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.mapboxgl-popup-content h2 {
+  font-size: 24px;
+}
+
+.mapboxgl-popup-close-button {
+  background-color: transparent;
+  color: #ffffff;
+  size: 10px;
+  border: 0;
+  border-radius: 0 3px 0 0;
+  cursor: pointer;
   font-size: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.map-place-marker.active {
+  filter: hue-rotate(241deg);
+}
+
+mapboxgl-canvas {
+  width: 960px;
+  height: 550px;
 }

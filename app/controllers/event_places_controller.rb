@@ -60,8 +60,6 @@ class EventPlacesController < ApplicationController
     end
   end
 
-
-
   def destroy
     @event_places.delete(event_place)
   end

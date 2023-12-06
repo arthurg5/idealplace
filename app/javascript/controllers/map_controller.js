@@ -27,7 +27,16 @@ export default class extends Controller {
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
+      const popup = new mapboxgl.Popup();
+      popup.setHTML(marker.info_window_html);
+      popup.on('open', () => {
+        this.map.flyTo({
+          center: [marker.lng, marker.lat],
+          zoom: 15,
+          duration: 3000,
+          essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+      })
       // Create a HTML element for your custom marker
       const customMarker = document.createElement("div")
       customMarker.innerHTML = marker.marker_html
