@@ -7,12 +7,19 @@ class EventPlacesController < ApplicationController
   end
 
   def create
+    places_ids = params[:ids_array].map(&:to_i)
+    category = params[:category]
     @place = Place.find(params[:place_id])
     @event_place = EventPlace.new(event: @event, place: @place)
+    selected_places = Place.where(id: places_ids)
+    p selected_places
+    unless category == "none"
+      selected_places = selected_places.where(category: category)
+    end
     if @event_place.save
       respond_to do |format|
         format.html { redirect_to event_path(@event) }
-        format.text { render partial: "shared/filtered_places", formats: :html, locals: { event: @event, places: Place.all } }
+        format.text { render partial: "shared/filtered_places", formats: :html, locals: { event: @event, places: selected_places } }
       end
     else
       render :new, status: :unprocessable_entity
@@ -34,6 +41,7 @@ class EventPlacesController < ApplicationController
       }
     end
     voted_by_all_users
+    
   end
 
   def show
@@ -59,8 +67,6 @@ class EventPlacesController < ApplicationController
       end
     end
   end
-
-
 
   def destroy
     @event_places.delete(event_place)

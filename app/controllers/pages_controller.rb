@@ -10,14 +10,9 @@ class PagesController < ApplicationController
     @group = Group.new
     @events = Event.all
 
-    @my_created_events = Event.where(status: 'Created', user_id: current_user.id)
-    @my_voted_events = Event.where(status: 'Voted', user_id: current_user.id)
-    @my_passed_events = Event.where(status: 'Passed', user_id: current_user.id)
-
-    @other_events = Event.where.not(user_id: current_user.id)
-    @created_events = @other_events.where(status: 'Created')
-    @voted_events = @other_events.where(status: 'Voted')
-    @passed_events = @other_events.where(status: 'Passed')
+    @created_events = Event.where(status: 'Created')
+    @voted_events = Event.where(status: 'Voted')
+    @passed_events = Event.where(status: 'Passed')
 
   end
 end
