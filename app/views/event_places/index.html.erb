@@ -76,13 +76,14 @@
     <% end %>
   </div>
 
+
   <% unless @event.status == "Voted" || @event.status == "Passed"  %>
-    <div class="row" class="mapboxgl-popup-content">
-      <div style="width: 800px; height: 600px; margin: auto; align-self: center;"
-        data-controller="map"
-        data-map-markers-value="<%= @geomarkers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
+  <div class="row" class="mapboxgl-popup-content mapboxgl-popup-close-button">
+    <div style="width: 98%; height: 600px; margin: auto; align-self: center;"
+      data-controller="map"
+      data-map-markers-value="<%= @geomarkers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+
     </div>
   <% end %>
 </div>
