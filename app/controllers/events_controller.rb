@@ -82,11 +82,12 @@ class EventsController < ApplicationController
   end
 
   def create
+
     @event = Event.new(event_params)
+    @event.start_time = params['event']['date'].to_time.strftime('%H:%M')
     @event.user = current_user
     selected_group_name = params[:event][:selected_group_name]
     group = Group.find_by(name: selected_group_name)
-
     if group
       @event.group = group
       @event.group_id = group.id # Assign the group_id explicitly
