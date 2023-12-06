@@ -1,15 +1,14 @@
 <ul class="nav nav-tabs mb-4">
   <li class="nav-item">
-    <a class="nav-link active text-white" data-bs-toggle="tab" href="#mygroupsSection">MY GROUPS</a>
+    <a class="nav-link active text-white" data-bs-toggle="tab" href="#myeventsSection">MY EVENTS</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-white" data-bs-toggle="tab" href="#myeventsSection">MY EVENTS</a>
+    <a class="nav-link text-white" data-bs-toggle="tab" href="#othereventsSection">PASSED EVENTS</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-white" data-bs-toggle="tab" href="#othereventsSection">OTHER EVENTS</a>
+    <a class="nav-link text-white" data-bs-toggle="tab" href="#mygroupsSection">MY GROUPS</a>
   </li>
 </ul>
-
 
 
 <div class="container">
@@ -17,7 +16,7 @@
     <div class="col-lg-12">
       <div class="tab-content">
 
-        <div class="tab-pane fade show active" id="mygroupsSection">
+        <div class="tab-pane fade" id="mygroupsSection">
           <div class="groups">
             <div class="row">
               <% current_user.groups.each do |group| %>
@@ -51,7 +50,7 @@
           <%= link_to "Add Group", new_group_path, class: "btn custom-btn mb-2"%>
         </div>
 
-        <div class="tab-pane fade" id="myeventsSection">
+        <div class="tab-pane fade show active" id="myeventsSection">
           <ul class="nav nav-tabs" id="myEventsTabs" role="tablist">
             <!-- Add your sub-tab buttons here -->
             <li class="nav-item" role="presentation">
@@ -60,49 +59,21 @@
             <li class="nav-item" role="presentation">
               <button class="nav-link text-white" id="voted-tab" data-bs-toggle="tab" data-bs-target="#votedSection" type="button" role="tab" aria-controls="votedSection" aria-selected="false">Voted</button>
             </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link text-white" id="passed-tab" data-bs-toggle="tab" data-bs-target="#passedSection" type="button" role="tab" aria-controls="passedSection" aria-selected="false">Passed</button>
-            </li>
           </ul>
+
           <div class="tab-content mt-3" id="myEventsTabsContent">
             <!-- Add the corresponding events tables here -->
             <div class="tab-pane fade show active" id="createdSection" role="tabpanel" aria-labelledby="created-tab">
-              <%= render 'events/index', events: @my_created_events %>
+              <%= render 'events/index', events: @created_events %>
             </div>
             <div class="tab-pane fade" id="votedSection" role="tabpanel" aria-labelledby="voted-tab">
-              <%= render 'events/index', events: @my_voted_events %>
-            </div>
-            <div class="tab-pane fade" id="passedSection" role="tabpanel" aria-labelledby="passed-tab">
-              <%= render 'events/index', events: @my_passed_events %>
+              <%= render 'events/index', events: @voted_events %>
             </div>
           </div>
         </div>
 
         <div class="tab-pane fade" id="othereventsSection">
-          <ul class="nav nav-tabs" id="otherEventsTabs" role="tablist">
-            <!-- Add your sub-tab buttons here -->
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active text-white" id="otherCreated-tab" data-bs-toggle="tab" data-bs-target="#otherCreatedSection" type="button" role="tab" aria-controls="otherCreatedSection" aria-selected="true">Created</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link text-white" id="otherVoted-tab" data-bs-toggle="tab" data-bs-target="#otherVotedSection" type="button" role="tab" aria-controls="otherVotedSection" aria-selected="false">Voted</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link text-white" id="otherPassed-tab" data-bs-toggle="tab" data-bs-target="#otherPassedSection" type="button" role="tab" aria-controls="otherPassedSection" aria-selected="false">Passed</button>
-            </li>
-          </ul>
-          <div class="tab-content mt-3" id="otherEventsTabsContent">
-            <!-- Add the corresponding events tables here -->
-            <div class="tab-pane fade show active" id="otherCreatedSection" role="tabpanel" aria-labelledby="otherCreated-tab">
-              <%= render 'events/index', events: @created_events %>
-            </div>
-            <div class="tab-pane fade" id="otherVotedSection" role="tabpanel" aria-labelledby="otherVoted-tab">
-              <%= render 'events/index', events: @voted_events %>
-            </div>
-            <div class="tab-pane fade" id="otherPassedSection" role="tabpanel" aria-labelledby="otherPassed-tab">
-              <%= render 'events/index', events: @passed_events %>
-            </div>
-          </div>
+          <%= render 'events/index', events: @passed_events %>
         </div>
 
       </div>
