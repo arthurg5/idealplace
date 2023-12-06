@@ -34,8 +34,9 @@
 }
 
 .flatpickr-day.selected,
-.flatpickr-day.hover
-.flatpickr-day.active
-.flatpickr-day.blur{
+.flatpickr-day.hover,
+.flatpickr-day.active,
+.flatpickr-day.blur,
+.span.flatpickr-day.selected{
   background-color: $dark-orange;
 }
