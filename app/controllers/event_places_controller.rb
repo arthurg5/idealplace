@@ -34,7 +34,6 @@ class EventPlacesController < ApplicationController
       }
     end
     voted_by_all_users
-    send_notif
   end
 
   def show
@@ -60,25 +59,6 @@ class EventPlacesController < ApplicationController
       end
     end
   end
-
-
-  def send_notif
-    # check if the current user has voted on an event place of an event he created
-    if current_user.all_favorites && current_user == @event.user
-      # get all the users of the group of that event
-      group_users = @event.group.users
-      # loop through each user and create a notification for them
-      group_users.each do |user|
-        # skip the current user
-        next if user == current_user
-        # create a notification with a message and a link to the event
-        notification = Notification.new(user: user, message: "#{current_user.name} has voted on an event place for #{event.name}. Check it out here:", link: event_event_places_path(@event))
-        # save the notification
-        notification.save
-      end
-    end
-  end
-
 
 
 
