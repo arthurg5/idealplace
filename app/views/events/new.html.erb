@@ -1,23 +1,14 @@
 <div class="container">
-  <h2>Where your event begins!</h2>
+  <h2 class="h2-new">Where your event begins!</h2>
   <div class="row">
-    <div class="col-sm-12">
-      <div class="h-100">
-        <h4><%= params[:name] %></h4>
-        <p>Choose a date, start time and group for your new event!</p>
+
+    <div class="col-md-8">
+         <!-- partie gauche -->
+         <h4 class="my-9 mb-3 h4-new">Your event name is "<%= params[:name] %>"</h4>
         <%= simple_form_for @event, url: events_path do |f| %>
-          <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
-          <%= f.input :selected_group_name, as: :hidden, input_html: { id: 'selected_group_name' } %>
-          <div data-controller="datepicker">
-            <%= f.input :date, as: :string, input_html: { id: "event_date", class: "form-control white-input form-control-input", placeholder: "DD-MM-YYYY" } %>
-          </div>
-          <div data-controller="timepicker">
-            <%= f.input :start_time, as: :string, input_html: { id: "event_start_time", class: "form-control white-input form-control-input", placeholder: "HH:MM AM/PM" } %>
-          </div>
-
-          <br>
-
-          <div class="groups">
+         <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
+        <%= f.input :selected_group_name, as: :hidden, input_html: { id: 'selected_group_name' } %>
+         <div class="groups">
             <div class="row">
               <% current_user.groups.each do |group| %>
                 <div class="col-md-4 mb-3">
@@ -30,6 +21,7 @@
                         <strong><i class="fas fa-user"></i>  Members</strong>
                         <!-- Add some margin and padding to the member avatars -->
                         <div style="margin-top: 10px; padding: 5px;">
+                        <p>Choose a group for your new event!</p>
                           <% group.group_users.each do |group_user| %>
                             <% if group_user.user.photo.attached? %>
                               <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
@@ -45,12 +37,18 @@
               <% end %>
             </div>
           </div>
+    </div>
+          <!-- partie droite -->
+    <div class="col-md-4">
+          <div data-controller="datepicker">
+<%= f.input :date, as: :string, input_html: { id: "event_date", placeholder: "DD-MM-YYYY", style: "visibility: hidden", class: "datepicker" }, label: false %>          </div>
+<%= f.submit "Create Event", class: "btn custom-btn custom-btn-small-new mb-4" %>
+<% end %>
+    </div>
+
+            <br>
 
 
-          <br>
-
-          <%= f.submit "Create Event", class: "btn custom-btn mb-4" %>
-        <% end %>
 
  <!-- Add this closing tag for the form -->
       </div>
