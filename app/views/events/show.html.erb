@@ -40,11 +40,12 @@
 
   <!-- events/show.html.erb -->
       <div data-controller="filter">
-        <%= link_to "All", event_path(@event), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
-        <%= link_to "Catering", event_path(@event, category: 'Catering'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
-        <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
-        <%= link_to "Culture", event_path(@event, category: 'Culture'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
+        <%= link_to "All", event_path(@event), class: "btn custom-margin #{active_filter_class(nil)}", data: { action: "filter#filter" } %>
+        <%= link_to "Catering", event_path(@event, category: 'Catering'), class: "btn custom-margin #{active_filter_class('Catering')}", data: { action: "filter#filter" } %>
+        <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: "btn custom-margin #{active_filter_class('Entertainment')}", data: { action: "filter#filter" } %>
+        <%= link_to "Culture", event_path(@event, category: 'Culture'), class: "btn custom-margin #{active_filter_class('Culture')}", data: { action: "filter#filter" } %>
       </div>
+
 
     <div class="event-container" data-controller="places">
 

@@ -3,28 +3,39 @@
     <% @event_places.each do |event_place| %>
       <div class="col-md-4">
         <div class="card mb-4">
-          <div class="card-body <%= event_place.selected ? "selected" : "unselected" %>">
-            <div class="d-flex justify-content-between ">
-              <h5 class="card-title"><%= event_place.place.name %></h5>
-              <%= link_to "X", event_place_path(event_place), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style:"opacity: 1;" %>
+          <div class="row">
+            <!-- Image of the place -->
+            <div class="col-sm-4">
+              <% if event_place.place.photo.attached? %>
+                <%= cl_image_tag event_place.place.photo.key, class: "place-picture", style: "height: 100%;" %>
+              <% end %>
             </div>
-            <p class="card-text"><i class="fas fa-map-marker-alt"></i>  <%= event_place.place.address %></p>
-              <% if event_place.favoritors %>
-                <div class="" style="position: absolute; bottom: 15px; left: 10px;">Votes:
-                    <%= event_place.favoritors.count %> / <%= @event.group.group_users.count %>
+            <!-- Card body -->
+            <div class="col-sm-8">
+              <div class="card-body <%= event_place.selected ? "selected" : "unselected" %>">
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-title"><%= event_place.place.name %></h5>
+                  <%= link_to "X", event_place_path(event_place), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "opacity: 1;" %>
+                </div>
+                <p class="card-text"><i class="fas fa-map-marker-alt"></i> <%= event_place.place.address %></p>
+                <div>
+                  <% if event_place.favoritors %>
+                    Votes: <%= event_place.favoritors.count %> / <%= @event.group.group_users.count %>
                     <% @event.group.group_users.each do |group_user| %>
                       <% if event_place.favoritors.include?(group_user.user) %>
                         <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
                       <% end %>
                     <% end %>
+                  <% end %>
                 </div>
-              <% end %>
-            <div class="form-check" style="position: absolute; bottom: 10px; right: 10px; color: #0C7E65;">
-              <% if @event.voted_by_user(current_user) %>
-                <%= current_user.favorited?(event_place) ? "✓ Voted" : "" %>
-              <% else %>
-                <%= link_to "Vote", vote_event_place_path(event_place), class:"btn custom-btn" %>
-              <% end %>
+                <div class="form-check" style="position: absolute; bottom: 10px; right: 10px; color: #0C7E65;">
+                  <% if @event.voted_by_user(current_user) %>
+                    <%= current_user.favorited?(event_place) ? "✓ Voted" : "" %>
+                  <% else %>
+                    <%= link_to "Vote", vote_event_place_path(event_place), class: "btn custom-btn" %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         </div>

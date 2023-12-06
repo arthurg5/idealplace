@@ -18,7 +18,7 @@
 
   <% if event.places.count >= 1 %>
     <div class="list-cta d-flex">
-       <h4 style="margin: 12px; padding: 7px;"><%= event.places.count %> events selected</h4>
+       <h4 style="margin: 12px; padding: 7px;"><%= event.places.count %> places selected</h4>
        <% if event.places.count == 3 %>
           <%= link_to "Vote", event_event_places_path(event), class:"btn custom-btn", style:"margin: 12px;" %>
        <% end %>
