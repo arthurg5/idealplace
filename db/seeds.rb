@@ -14,14 +14,15 @@ puts 'Creating fake users'
 
 users = []
 
-users << User.new(first_name: "Lucile", last_name: "Smith", nickname: "Lucile", email: "lucile@idealplace.com", password: "123456", address: "15, rue Oberkampf 75010 Paris")
-users << User.new(first_name: "Arthur", last_name: "Johnson", nickname:"Arthur", email: "arthur@idealplace.com", password: "123456", address:"16, rue Oberkampf 75010 Paris")
-users << User.new(first_name: "Abdelsam", last_name: "Palmas", nickname:"Abdelsam", email: "abdelsam@idealplace.com", password: "123456", address: "18, avenue de Paris 93123 Montreuil")
-users << User.new(first_name: "Laure", last_name: "Vega", nickname:"Laure", email: "laure@idealplace.com", password: "123456", address: "17, rue Cart 94160 Saint-Mandé")
-users << User.new(first_name: "Timothée", last_name:"Dupont", nickname:"Timothée", email: "timothee@idealplace.com", password: "123456", address: "15, Cours de Vincennes 94300 Vincennes")
-users << User.new(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", email: "lucas@idealplace.com", password: "123456", address: "18, avenue Parmentier 75003 Paris")
-users << User.new(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "20, avenue des pastéques 94300 Vincennes")
-users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "21, rue des melons 94300 Vincennes")
+users << User.new(first_name: "Lucile", last_name: "Smith", nickname: "Lucile", email: "lucile@idealplace.com", password: "123456", address: "75, Av. des Champs-Élysées, 75008 Paris") # This is the address of Ladurée, a famous tea room[^1^][1]
+users << User.new(first_name: "Arthur", last_name: "Johnson", nickname:"Arthur", email: "arthur@idealplace.com", password: "123456", address:"6, rue de Furstenberg, 75006 Paris") # This is the address of the Musée national Eugène Delacroix[^2^][2]
+users << User.new(first_name: "Abdelsam", last_name: "Palmas", nickname:"Abdelsam", email: "abdelsam@idealplace.com", password: "123456", address: "2, rue de l'Abreuvoir, 75018 Paris") # This is the address of the Maison Rose, a charming pink house and restaurant[^3^][3]
+users << User.new(first_name: "Laure", last_name: "Vega", nickname:"Laure", email: "laure@idealplace.com", password: "123456", address: "172, boulevard Saint-Germain, 75006 Paris") # This is the address of the Café de Flore, a legendary literary café[^3^][3]
+users << User.new(first_name: "Timothée", last_name:"Dupont", nickname:"Timothée", email: "timothee@idealplace.com", password: "123456", address: "8, rue de Montpensier, 75001 Paris") # This is the address of the gardens of the Palais-Royal, a beautiful and peaceful spot[^3^][3]
+users << User.new(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", email: "lucas@idealplace.com", password: "123456", address: "10, rue du Faubourg Saint-Honoré, 75008 Paris") # This is the address of the Élysée Palace, the official residence of the French president
+users << User.new(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "1, rue de la Légion d'Honneur, 75007 Paris") # This is the address of the Musée d'Orsay, a former railway station turned into an art museum
+users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "35, rue du Chevalier de la Barre, 75018 Paris") # This is the address of the Basilica of the Sacré-Cœur, a famous landmark on the Montmartre hill
+
 # ... (create other users)
 # users = [lucile, arthur, abdelsam, laure, timothee, lucas, kim, edward]
 
@@ -89,7 +90,6 @@ cathedral = Place.create!(name: "Notre-Dame de Paris", address: "6 parvis Notre-
 museum = Place.create!(name: "Musée d'Orsay", address: "1 rue de la Légion d'Honneur 75007 Paris", phone: "01 75 49 83 45", category: "Culture", second_category: "Museum", third_category: "Art", opening_hours: "09h30", rating: 5)
 
 # Entertainment
-park = Place.create!(name: "Parc Astérix", address: "60128 Plailly", phone: "01 75 51 95 67", category: "Entertainment", second_category: "Theme Park", third_category: "Adventure", opening_hours: "10h00", rating: 4)
 zoo = Place.create!(name: "Parc Zoologique de Paris", address: "Avenue Daumesnil 75012 Paris", phone: "01 75 52 76 78", category: "Entertainment", second_category: "Zoo", third_category: "Animals", opening_hours: "09h30", rating: 4)
 
 # Catering
@@ -98,7 +98,9 @@ salad = Place.create!(name: "Cojean", address: "8 rue de Sèze 75009 Paris", pho
 kebab = Place.create!(name: "Urfa Dürüm", address: "58 rue du Faubourg Saint-Denis 75010 Paris", phone: "01 75 55 86 93", category: "Catering", second_category: "Fast Food", third_category: "Turkish", opening_hours: "12h00", rating: 4)
 
 # Culture
-castle = Place.create!(name: "Château de Fontainebleau", address: "77300 Fontainebleau", phone: "01 75 56 97 94", category: "Culture", second_category: "Monument", third_category: "Castle", opening_hours: "09h30", rating: 5)
+castle1 = Place.create!(name: "Château de Vincennes", address: "1 Avenue de Paris, 94300 Vincennes", phone: "01 48 08 31 20", category: "Culture", second_category: "Monument", third_category: "Castle", opening_hours: "10h00", rating: 4) # This is a medieval fortress that was once the residence of the French kings[^1^][1]
+castle2 = Place.create!(name: "Château de Bagatelle", address: "42 Route de Sèvres à Neuilly, 75016 Paris", phone: "01 53 01 92 40", category: "Culture", second_category: "Monument", third_category: "Castle", opening_hours: "09h30", rating: 4.5) # This is a small neoclassical chateau that was built in 64 days as a result of a bet between Queen Marie-Antoinette and her brother-in-law[^2^][2]
+castle3 = Place.create!(name: "Château de la Reine Blanche", address: "55 Rue du Moulin de la Pointe, 75013 Paris", phone: "01 45 80 66 00", category: "Culture", second_category: "Monument", third_category: "Castle", opening_hours: "08h30", rating: 3.5) # This is a mysterious Gothic-style building that is said to be haunted by the ghost of Queen Blanche of Castile, the mother of King Saint Louis[^3^][3]
 church = Place.create!(name: "Basilique du Sacré-Cœur", address: "35 rue du Chevalier-de-la-Barre 75018 Paris", phone: "01 75 57 98 95", category: "Culture", second_category: "Monument", third_category: "Church", opening_hours: "06h00", rating: 5)
 gallery = Place.create!(name: "Centre Pompidou", address: "Place Georges-Pompidou 75004 Paris", phone: "01 75 58 99 96", category: "Culture", second_category: "Museum", third_category: "Modern Art", opening_hours: "11h00", rating: 5)
 
@@ -212,10 +214,10 @@ paris_places = [
   creperie, sushi, burger, salad, kebab,
 
   # Culture
-  opera, cathedral, museum, castle, church, gallery,
+  opera, cathedral, museum, castle1, castle2, castle3, church, gallery,
 
   # Entertainment
-  park, zoo, concert, bowling, escape,
+  zoo, concert, bowling, escape,
 
   # Previously listed places
   pizza_italia, movie_theater, boulangerie, pub, movie_cinema, french_restaurant, history_museum, theatre, street_food
