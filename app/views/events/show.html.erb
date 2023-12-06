@@ -44,6 +44,7 @@
         <%= link_to "Catering", event_path(@event, category: 'Catering'), class: "btn custom-margin #{active_filter_class('Catering')}", data: { action: "filter#filter" } %>
         <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: "btn custom-margin #{active_filter_class('Entertainment')}", data: { action: "filter#filter" } %>
         <%= link_to "Culture", event_path(@event, category: 'Culture'), class: "btn custom-margin #{active_filter_class('Culture')}", data: { action: "filter#filter" } %>
+        We found <%= @places.count %> results
       </div>
 
 

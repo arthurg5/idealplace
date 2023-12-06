@@ -7,10 +7,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @selected_group_name = @event.selected_group_name || "No group"
-
+    @places = Place.all
     @event_name = @event.name
     @event_places = @event.event_places
-    @places = Place.all
+
     @group_users = @event.group.users
 
     # Check for category filtering
@@ -34,7 +34,7 @@ class EventsController < ApplicationController
       }
     end
 
-    # On aun array de hash avec plein de clés dont lat: lng:
+    # On a un array de hash avec plein de clés dont lat: lng:
     # on va mapper sur l'array, on va être sur chaque hash
     # on va return à chaque fois un array avec la clé correspondante
 
@@ -44,12 +44,28 @@ class EventsController < ApplicationController
     end
 
     @barycenter = Geocoder::Calculations.geographic_center(@barycenter)
+
     @barycenter_marker = {
       lat: @barycenter[0],
       lng: @barycenter[1],
       info_window_html: "Barycenter",
       marker_html: render_to_string(partial: "marker3", locals: { barycenter: @barycenter })
     }
+
+    @places = @places.select { |place| place.distance_from(@barycenter) < 1.5 }
+    places_ids = @places.pluck(:id)
+    @places = Place.where(id: places_ids)
+
+    @markers = @places.geocoded.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longitude,
+        info_window_html: render_to_string(partial: "info_window1", locals: { place: place }),
+        marker_html: render_to_string(partial: "marker1", locals: { place: place })
+      }
+    end
+
+    # @places = Place.where(Place.distance_from(@barycenter_marker))
 
     @markers = @markers.concat(@markers_group_users).push(@barycenter_marker)
 
