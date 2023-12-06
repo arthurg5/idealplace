@@ -34,6 +34,7 @@ class EventPlacesController < ApplicationController
       }
     end
     voted_by_all_users
+    
   end
 
   def show
