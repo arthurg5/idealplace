@@ -1,0 +1,11 @@
+    # config/meta.yml
+
+    meta_product_name: "Ideal Place"
+
+    meta_title: "Ideal Place - Where your event begins"
+
+    meta_description: "Organize your outings with your friends taking into account all participants distances with the chosen place"
+
+    meta_image: "ideal-place-630-630-og.jpg" # should exist in `app/assets/images/`
+
+    twitter_account: "@product_twitter_account" # required for Twitter Cards

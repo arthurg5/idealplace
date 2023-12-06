@@ -2,8 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
-  static targets = ["list", "card"]
-
+  static targets = ["list", "card", "map", "marker"]
 
   connect() {
     this.ids_array = this.cardTargets.map((card)=> {
@@ -19,6 +18,7 @@ export default class extends Controller {
       category: new URLSearchParams(window.location.search).get("category") || "none"
     }
     console.log(body)
+    const id = Number.parseInt(event.currentTarget.id);
     fetch(url, {
       method: "POST",
       body: JSON.stringify(body),
@@ -30,6 +30,9 @@ export default class extends Controller {
     }).then(response => response.text())
     .then((data) => {
       this.listTarget.outerHTML = data;
+      const placeMarker = Array.from(this.markerTargets).find((marker) => marker.dataset.id == id);
+      placeMarker.classList.add("active");
+      placeMarker.click();
     })
   }
 }

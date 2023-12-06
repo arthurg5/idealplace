@@ -40,12 +40,13 @@
 
   <!-- events/show.html.erb -->
       <div data-controller="filter">
-        <%= link_to "All", event_path(@event), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
-        <%= link_to "Catering", event_path(@event, category: 'Catering'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
-        <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
-        <%= link_to "Culture", event_path(@event, category: 'Culture'), class: 'btn btn-light custom-margin', data: { action: "filter#filter" } %>
+        <%= link_to "All", event_path(@event), class: "btn custom-margin #{active_filter_class(nil)}", data: { action: "filter#filter" } %>
+        <%= link_to "Catering", event_path(@event, category: 'Catering'), class: "btn custom-margin #{active_filter_class('Catering')}", data: { action: "filter#filter" } %>
+        <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: "btn custom-margin #{active_filter_class('Entertainment')}", data: { action: "filter#filter" } %>
+        <%= link_to "Culture", event_path(@event, category: 'Culture'), class: "btn custom-margin #{active_filter_class('Culture')}", data: { action: "filter#filter" } %>
         We found <%= @places.count %> results
       </div>
+
 
     <div class="event-container" data-controller="places">
 
@@ -53,6 +54,7 @@
 
       <div class="map-display"
           data-target="filter.map"
+          data-places-target="map"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
