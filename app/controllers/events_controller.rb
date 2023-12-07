@@ -48,7 +48,7 @@ class EventsController < ApplicationController
     @barycenter_marker = {
       lat: @barycenter[0],
       lng: @barycenter[1],
-      info_window_html: "Barycenter",
+      info_window_html: "<div class='barycenter'>Barycenter</div>",
       marker_html: render_to_string(partial: "marker3", locals: { barycenter: @barycenter })
     }
 

@@ -12,6 +12,5 @@ class PagesController < ApplicationController
 
     @events = Event.where.not(status: 'Passed')
     @passed_events = Event.where(status: 'Passed')
-
   end
 end
