@@ -3,7 +3,6 @@
     <% sorted_events = events.order(date: :asc) %>
     <% sorted_events.each do |event| %>
       <%= link_to event_event_places_path(event), class:"col-md-4 p-1" do %> <!-- Added 'mb-3' class for margin bottom -->
-
         <div class="card">
           <div class="card-body" style="height: 260px">
             <h5 class="card-title mb-2"><strong><%= event.name %></strong> with <%= event.group.name %></h5>
@@ -18,11 +17,9 @@
                 <% end %>
               <% end %>
             </div>
-
             <p class="card-text"><i class="far fa-calendar"></i>  <%= event.date.strftime("%d/%m/%Y") %></p>
             <p class="card-text"><i class="far fa-clock"></i>  Start Time: <%= event.start_time.strftime("%H:%M %p") %></p>
             <p class="card-text"><i class="far fa-clock"></i>  Vote: <%= event.total_vote %> / <%= event.group.users.count %></p>
-
             <% if event.status == "Voted" || event.status == "Passed" %>
               <div style="position: absolute; bottom: 15px; right: 10px;">
                 <% event.event_places.each do |event_place| %>
@@ -33,43 +30,13 @@
                 <% end %>
               </div>
             <% elsif event.voted_by_user(current_user) == false %>
-
               <div style="position: absolute; bottom: 2px; right: 10px; margin-bottom: -3px">
                 <div class="btn custom-btn">Go vote</div>
               </div>
-
             <% end %>
-
           </div>
         </div>
-
       <% end %>
     <% end %>
   </div>
 </div>
-
-
-
-
-
-    <%# <div class="navbar" id="myNavbar"> %>
-        <%# <a href="#home">Home</a> %>
-        <%# <a href="#profile">Profile</a> %>
-        <%# <a href="#dashboard">Dashboard</a> %>
-        <%# <a href="#contact">Contact</a> %>
-        <%# <a href="javascript:void(0);" class="icon" onclick="typeOfMenu()"> %>
-            <%# &#9776; %>
-        <%# </a> %>
-    <%# </div> %>
-
-    <!-- Créer cela en stimulus dès que temps dispo -->
-  <%# <script>
-    function typeOfMenu() {
-      let x = document.getElementById("myNavbar");
-        if (x.className === "navbar") {
-          x.className += " responsive";
-        } else {
-          x.className = "navbar";
-        }
-      }
-  </script> %>

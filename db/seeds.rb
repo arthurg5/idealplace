@@ -19,13 +19,13 @@ users << User.new(first_name: "Laure", last_name: "Vega", nickname:"Laure", emai
 users << User.new(first_name: "Timothée", last_name:"Dupont", nickname:"Timothée", email: "timothee@idealplace.com", password: "123456", address: "8 rue de Montpensier, 75001 Paris") # This is the address of the gardens of the Palais-Royal, a beautiful and peaceful spot[^3^][3]
 users << User.new(first_name: "Lucas", last_name:"Durand", nickname:"Lucas", email: "lucas@idealplace.com", password: "123456", address: "108 avenue de Flandre, 75019 Paris") # This is the address of the Élysée Palace, the official residence of the French president
 users << User.new(first_name: "Kim", last_name: "Jérémy", nickname: "Kim", email: "kim@idealplace.com", password: "123456", address: "1 rue de la Légion d'Honneur, 75007 Paris") # This is the address of the Musée d'Orsay, a former railway station turned into an art museum
-users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Niceguy", email: "edward@idealplace.com", password: "123456", address: "58 boulevard de Picpus, 75012 Paris") # This is the address of the Basilica of the Sacré-Cœur, a famous landmark on the Montmartre hill
+users << User.new(first_name: "Edward", last_name: "Niceguy", nickname:"Edward", email: "edward@idealplace.com", password: "123456", address: "58 boulevard de Picpus, 75012 Paris") # This is the address of the Basilica of the Sacré-Cœur, a famous landmark on the Montmartre hill
 users << User.new(first_name: "Alix", last_name: "Martin", nickname: "Alix", email: "alix@idealplace.com", password: "123456", address: "33 rue Vivienne, 75002 Paris") # This is the address of the Louvre Museum, the world’s largest art museum
 users << User.new(first_name: "Pierre", last_name: "Leroy", nickname: "Pierre", email: "pierre@idealplace.com", password: "123456", address: "35 rue du Chevaleret, 75013 Paris") # This is the address of the Bibliothèque nationale de France, the national library of France
 users << User.new(first_name: "Romain", last_name: "Dubois", nickname: "Romain", email: "romain@idealplace.com", password: "123456", address: "12 rue de Rivoli, 75004 Paris") # This is the address of the Hôtel de Ville, the city hall of Paris
 users << User.new(first_name: "Stella", last_name: "Moreau", nickname: "Stella", email: "stella@idealplace.com", password: "123456", address: "14 rue du Perche, 75003 Paris") # This is the address of the Luxembourg Gardens, a beautiful public park
 users << User.new(first_name: "Louis", last_name: "Bernard", nickname: "Louis", email: "louis@idealplace.com", password: "123456", address: "52 rue Mouffetard, 75005 Paris") # This is the address of the Arc de Triomphe, a monumental arch honoring those who fought for France
-users << User.new(first_name: "Rita", last_name: "Garcia", nickname: "Rita", email: "rita@idealplace.com", password: "123456", address: "6, place du Trocadéro et du 11 Novembre, 75016 Paris") # This is the address of the Palais de Chaillot, a cultural complex with museums and a theater
+users << User.new(first_name: "Rhita", last_name: "Garcia", nickname: "Rhita", email: "rhita@idealplace.com", password: "123456", address: "6, place du Trocadéro et du 11 Novembre, 75016 Paris") # This is the address of the Palais de Chaillot, a cultural complex with museums and a theater
 users << User.new(first_name: "Noémie", last_name: "Lopez", nickname: "Noémie", email: "noemie@idealplace.com", password: "123456", address: "42 rue des Vinaigriers, 75010 Paris") # This is the address of the Ministry of Foreign Affairs, the government department responsible for France’s foreign relations
 users << User.new(first_name: "Lara", last_name: "Meyer", nickname: "Lara", email: "lara@idealplace.com", password: "123456", address: "120 boulevard Voltaire, 75011 Paris") # This is the address of the Place de la Concorde, the largest public square in Paris
 users << User.new(first_name: "Joana", last_name: "Silva", nickname: "Joana", email: "joana@idealplace.com", password: "123456", address: "1, avenue du Colonel Henri Rol-Tanguy, 75014 Paris") # This is the address of the Catacombs of Paris, an underground ossuary holding the remains of millions of people
@@ -34,7 +34,7 @@ users << User.new(first_name: "Joana", last_name: "Silva", nickname: "Joana", em
 puts "Creating photos for users"
 
 users.each do |user|
-  file = URI.open("https://source.unsplash.com/random/70x70/?face")
+  file = File.open(Rails.root.join('app', 'assets', 'images', "#{user.nickname}.jpg"))
   user.photo.attach(io: file, filename: "#{user.nickname}_avatar.png", content_type: "image/png")
   user.save!
 end
@@ -52,7 +52,7 @@ pierre = User.where(nickname: "Pierre").first
 romain = User.where(nickname: "Romain").first
 stella = User.where(nickname: "Stella").first
 louis = User.where(nickname: "Louis").first
-rita = User.where(nickname: "Rita").first
+rhita = User.where(nickname: "Rhita").first
 noemie = User.where(nickname: "Noémie").first
 lara = User.where(nickname: "Lara").first
 joana = User.where(nickname: "Joana").first
@@ -71,7 +71,7 @@ GroupUser.create(user: timothee, group: group1)
 group2 = Group.create(name: "Family", user: current_user)
 GroupUser.create(user: lara, group: group2)
 GroupUser.create(user: kim, group: group2)
-GroupUser.create(user: rita, group: group2)
+GroupUser.create(user: rhita, group: group2)
 GroupUser.create(user: current_user, group: group2)
 GroupUser.create(user: joana, group: group2)
 GroupUser.create(user: louis, group: group2)
@@ -231,21 +231,75 @@ end
 
 puts 'Creating fake events'
 
-selected_group_name = groups.sample.name
-group_id = Group.find_by(name: selected_group_name).id
-
 # Seed data for Events
-events = []
-events_name = ["Birthday Party", "Back Home", "Start of Holidays!", "New Year’s Eve", "Halloween Night", "Book Club Meeting", "Family Reunion", "Summer Camp"]
+# Define events and event names
+# Define events and event names
+events_name1 = ["Birthday Party", "Back Home", "Start of Holidays!", "New Year’s Eve"]
+events_name2 = ["Halloween Night", "Book Club Meeting", "Family Reunion", "Summer Camp"]
 
-events = [
-  Event.create!(user: lucile, name: "Halloween Night", date: "2023-10-31", start_time: "18:00", status: "Passed", selected_group_name: "Best Friends", group_id: group_id),
-  Event.create!(user: lucile, name: "New Year’s Eve", date: "2022-12-31", start_time: "20:00", status: "Passed", selected_group_name: "Family", group_id: group_id),
-  Event.create!(user: lucile, name: "Book Club Meeting", date: "2023-02-10", start_time: "15:00", status: "Passed", selected_group_name: "Team Wagon", group_id: group_id),
-  Event.create!(user: lucile, name: "Birthday Party", date: "2023-04-12", start_time: "19:00", status: "Passed", selected_group_name: "Best Friends", group_id: group_id),
-  Event.create!(user: arthur, name: "Summer Camp", date: "2023-07-20", start_time: "10:00", status: "Passed", selected_group_name: "Team Wagon", group_id: group_id),
-  Event.create!(user: pierre, name: "Family Reunion", date: "2023-09-25", start_time: "12:00", status: "Passed", selected_group_name: "Family", group_id: group_id),
-  Event.create!(user: romain, name: "Start of Holidays!", date: "2023-08-01", start_time: "16:00", status: "Passed", selected_group_name: "Best Friends", group_id: group_id)
-]
+# Create events with random event_places and unique selected_group_names
+events = events_name1.map do |event_name|
+  selected_group_name = "Family"
+  group_id = Group.find_by(name: selected_group_name).id
+
+  # Ensure that the selected_group_name is unique
+  event = Event.create!(
+    user: lucile,
+    name: event_name,
+    date: Faker::Date.between(from: '2022-01-01', to: '2023-12-31'),
+    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+    status: "Passed",
+    selected_group_name: selected_group_name,
+    group_id: group_id
+  )
+
+  # Get three random places for each event
+  places_for_event = paris_places.sample(3)
+
+  # Create EventPlaces for each event
+  places_for_event.each do |place|
+    EventPlace.create!(
+      duration: Faker::Number.number(digits: 2),
+      distance: Faker::Number.decimal(l_digits: 2),
+      transport_mode: Faker::Lorem.word,
+      selected: [false].sample,
+      place: place,
+      event: event
+    )
+  end
+  event
+end
+
+events = events_name2.map do |event_name|
+  selected_group_name = "Team Wagon"
+  group_id = Group.find_by(name: selected_group_name).id
+
+  # Ensure that the selected_group_name is unique
+  event = Event.create!(
+    user: lucile,
+    name: event_name,
+    date: Faker::Date.between(from: '2022-01-01', to: '2023-12-31'),
+    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+    status: "Passed",
+    selected_group_name: selected_group_name,
+    group_id: group_id
+  )
+
+  # Get three random places for each event
+  places_for_event = paris_places.sample(3)
+
+  # Create EventPlaces for each event
+  places_for_event.each do |place|
+    EventPlace.create!(
+      duration: Faker::Number.number(digits: 2),
+      distance: Faker::Number.decimal(l_digits: 2),
+      transport_mode: Faker::Lorem.word,
+      selected: [false].sample,
+      place: place,
+      event: event
+    )
+  end
+  event
+end
 
 puts 'Seed creation is over!'

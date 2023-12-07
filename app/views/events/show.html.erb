@@ -20,7 +20,7 @@
       </div>
       <div>
         <% @event.group.group_users.each do |group_user| %>
-          <%= cl_image_tag group_user.user.photo.key, class: "avatar", style: "width: 60px;" %>
+          <%= cl_image_tag group_user.user.photo.key, class: "avatar", title: group_user.user.nickname, style: "width: 60px;" %>
         <% end %>
       </div>
     </div>

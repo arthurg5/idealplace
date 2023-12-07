@@ -77,7 +77,6 @@ opacity: 0.9;
   background-color: lightgrey; /* change this to your desired color */
 }
 
-
 main {
   min-height: calc(100vh - 96px);
 }
@@ -103,4 +102,7 @@ main {
 }
 
 /* Ensure the active class is applied to the currently active link */
-
+.barycenter {
+  color: white;
+  font-weight: bold
+}
