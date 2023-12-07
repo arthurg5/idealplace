@@ -51,25 +51,7 @@
         </div>
 
         <div class="tab-pane fade show active" id="myeventsSection">
-          <ul class="nav nav-tabs" id="myEventsTabs" role="tablist">
-            <!-- Add your sub-tab buttons here -->
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active text-white" id="created-tab" data-bs-toggle="tab" data-bs-target="#createdSection" type="button" role="tab" aria-controls="createdSection" aria-selected="true">Created</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link text-white" id="voted-tab" data-bs-toggle="tab" data-bs-target="#votedSection" type="button" role="tab" aria-controls="votedSection" aria-selected="false">Voted</button>
-            </li>
-          </ul>
-
-          <div class="tab-content mt-3" id="myEventsTabsContent">
-            <!-- Add the corresponding events tables here -->
-            <div class="tab-pane fade show active" id="createdSection" role="tabpanel" aria-labelledby="created-tab">
-              <%= render 'events/index', events: @created_events %>
-            </div>
-            <div class="tab-pane fade" id="votedSection" role="tabpanel" aria-labelledby="voted-tab">
-              <%= render 'events/index', events: @voted_events %>
-            </div>
-          </div>
+          <%= render 'events/index', events: @events %>
         </div>
 
         <div class="tab-pane fade" id="othereventsSection">
