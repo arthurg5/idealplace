@@ -30,12 +30,61 @@
 }
 
 .flatpickr-time{
-  background-color: $white;
+  background-color: $dark-green;
 }
 
+.flatpickr-day.selected:hover,
 .flatpickr-day.selected,
-.flatpickr-day.hover
-.flatpickr-day.active
-.flatpickr-day.blur{
+.flatpickr-day:hover,
+.flatpickr-day:active,
+span.flatpickr-day.selected{
   background-color: $dark-orange;
+}
+
+.flatpickr-time input.flatpickr-hour,
+.flatpickr-time input.flatpickr-minute{
+  color: white;
+  font-weight: bold;
+  background-color: $dark-green;
+}
+
+.numInput .cur-year,
+.flatpickr-current-month input.cur-year{
+  color: white;
+}
+
+span.flatpickr-weekday,
+.flatpickr-current-month{
+  color: white;
+}
+
+.flatpickr-months .flatpickr-prev-month svg, .flatpickr-months .flatpickr-next-month svg{
+  color: white;
+  fill: white;
+}
+
+.dayContainer{
+  gap: 0.4rem;
+  padding: 1rem;
+}
+
+.flatpickr-day.today{
+  background-color: $green;
+  color: $white;
+}
+
+/* ne fonctionne pas tout ci-dessous reste toujours à cibler les flèches haut bas près de l'année dans le formulaire */
+
+.arrowDown{
+  background-color: white;
+  color: white;
+}
+
+.arrowUp{
+  background-color: white;
+  color: white;
+}
+
+input.cur-year{
+  color: white;
 }
