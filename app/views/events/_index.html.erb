@@ -3,17 +3,17 @@
     <% events.each do |event| %>
       <div class="col-md-4 mb-3 p-1"> <!-- Added 'mb-3' class for margin bottom -->
         <div class="card">
-          <div class="card-body" style="height: 300px">
-            <h5 class="card-title"><strong><%= event.name %></strong> with
+          <div class="card-body" style="height: 260px">
+            <h5 class="card-title mb-4"><strong><%= event.name %></strong> with
               <% if event.group %>
                 <%= event.group.name %>
               <% end %>
             </h5>
             <% if event.group %>
-              <div class="mb-2"><i class="fas fa-user"></i>
+              <div class="mb-4">
                 <% event.group.group_users.each do |group_user| %>
                   <% if group_user.user.photo.attached? %>
-                    <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
+                    <%= cl_image_tag group_user.user.photo.key, class: "avatar", style:"width: 60px;" %>
                     <% end %>
                 <% end %>
               </div>
@@ -28,7 +28,7 @@
               <p class="card-text">Creator: <strong><%= event.user.nickname %></strong></p>
             <% end %>
             <% if event.status == "Voted" || event.status == "Passed" %>
-              <div style="position: absolute; bottom: 10px; right: 10px;">
+              <div style="position: absolute; bottom: 5px; right: 10px;">
                 <%= link_to 'See event place', event_event_places_path(event), class: "btn custom-btn" %>
               </div>
             <% else %>
