@@ -4,7 +4,7 @@
 
     <div class="col-md-8">
          <!-- partie gauche -->
-         <h4 class="my-9 mb-3 h4-new">Your event name is "<%= params[:name] %>"</h4>
+        <h4 class="my-9 mb-3 h4-new">Your event name is "<%= params[:name] %>"</h4>
         <%= simple_form_for @event, url: events_path do |f| %>
          <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
         <%= f.input :selected_group_name, as: :hidden, input_html: { id: 'selected_group_name' } %>
@@ -23,7 +23,7 @@
                         <div style="margin-top: 10px; padding: 5px;">
                           <% group.group_users.each do |group_user| %>
                             <% if group_user.user.photo.attached? %>
-                              <%= cl_image_tag group_user.user.photo.key, class: "avatar", title: group_user.user.nickname %>
+                              <%= cl_image_tag group_user.user.photo.key, class: "avatar avatar-gap", title: group_user.user.nickname %>
                               <!-- Uncomment the following line to show the member names -->
                               <%# <span> <%= group_user.user.first_name %>
                             <% end %>
@@ -33,9 +33,10 @@
                     </div>
                   </div>
                 </div>
-              <% end %>
+              </div>
             </div>
-          </div>
+          <% end %>
+        </div>
     </div>
           <!-- partie droite -->
     <div class="col-md-4">
