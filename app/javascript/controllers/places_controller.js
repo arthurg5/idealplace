@@ -18,7 +18,7 @@ export default class extends Controller {
       category: new URLSearchParams(window.location.search).get("category") || "none"
     }
     console.log(body)
-    const id = Number.parseInt(event.currentTarget.id);
+    const id = Number.parseInt(event.currentTarget.dataset.id);
     fetch(url, {
       method: "POST",
       body: JSON.stringify(body),
