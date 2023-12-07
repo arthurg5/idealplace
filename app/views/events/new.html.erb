@@ -4,38 +4,34 @@
 
     <div class="col-md-8">
          <!-- partie gauche -->
-         <h4 class="my-9 mb-3 h4-new">Your event name is "<%= params[:name] %>"</h4>
+        <h4 class="my-9 mb-3 h4-new">Your event name is "<%= params[:name] %>"</h4>
         <%= simple_form_for @event, url: events_path do |f| %>
          <%= f.input :name, as: :hidden, input_html: { id: 'event_name', value: params[:name] } %>
         <%= f.input :selected_group_name, as: :hidden, input_html: { id: 'selected_group_name' } %>
-         <div class="groups">
-            <div class="row">
-              <% current_user.groups.each do |group| %>
-                <div class="col-md-4 mb-3">
-                  <div class="card" onclick="selectCard(this)">
-                    <!-- Your existing card content -->
-                    <div class="card-body">
-                      <!-- Add some margin and padding to the card title -->
-                      <h5 class="card-title" style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;"><%= group.name %></h5>
-                      <div>
-                        <strong><i class="fas fa-user"></i>  Members</strong>
-                        <!-- Add some margin and padding to the member avatars -->
-                        <div style="margin-top: 10px; padding: 5px;">
-                          <% group.group_users.each do |group_user| %>
-                            <% if group_user.user.photo.attached? %>
-                              <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
-                              <!-- Uncomment the following line to show the member names -->
-                              <%# <span> <%= group_user.user.first_name %>
-                            <% end %>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
+        <div class="groups">
+          <% current_user.groups.each do |group| %>
+            <div class="card" onclick="selectCard(this)">
+              <!-- Your existing card content -->
+              <div class="card-body">
+                <!-- Add some margin and padding to the card title -->
+                <h5 class="card-title" style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;"><%= group.name %></h5>
+                <div>
+                  <strong><i class="fas fa-user"></i>  Members</strong>
+                  <!-- Add some margin and padding to the member avatars -->
+                  <div style="margin-top: 10px; padding: 5px;">
+                    <% group.group_users.each do |group_user| %>
+                      <% if group_user.user.photo.attached? %>
+                        <%= cl_image_tag group_user.user.photo.key, class: "avatar avatar-gap" %>
+                        <!-- Uncomment the following line to show the member names -->
+                        <%# <span> <%= group_user.user.first_name %>
+                      <% end %>
+                    <% end %>
                   </div>
                 </div>
-              <% end %>
+              </div>
             </div>
-          </div>
+          <% end %>
+        </div>
     </div>
           <!-- partie droite -->
     <div class="col-md-4">
