@@ -14,13 +14,20 @@
 <div class="d-flex justify-content-between mb-5">
   <div class="card-category col-md-6 p-3" style="color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); background-color: #1D475E; border-radius: 4px" >
     <div class="d-flex justify-content-between">
-      <div>
+
+      <div class="col-md-5">
+      
         <h2><%= @event_name %> </h2>
+
+        <br>
+
         <h5><i class="far fa-calendar"></i>  <%= @event.date.strftime("%d/%m/%Y") %> - <%= @event.start_time.strftime("%H:%M %p") %></h5>
       </div>
-      <div>
+
+      <div style="margin-left: 20px;" class="col-md-7">
+
         <% @event.group.group_users.each do |group_user| %>
-          <%= cl_image_tag group_user.user.photo.key, class: "avatar", title: group_user.user.nickname, style: "width: 60px;" %>
+          <%= cl_image_tag group_user.user.photo.key, class: "avatar avatar-gap", title: group_user.user.nickname, style: "width: 60px;" %>
         <% end %>
       </div>
     </div>

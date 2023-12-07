@@ -32,7 +32,7 @@
                           <div style="margin-top: 10px; padding: 5px;">
                             <% group.group_users.each do |group_user| %>
                               <% if group_user.user.photo.attached? %>
-                                <%= cl_image_tag group_user.user.photo.key, class: "avatar", title: group_user.user.nickname %>
+                                <%= cl_image_tag group_user.user.photo.key, class: "avatar avatar-gap", style:"width: 60px;", title: group_user.user.nickname %>
                                 <!-- Uncomment the following line to show the member names -->
                                 <%# <span> <%= group_user.user.first_name %>
                               <% end %>
