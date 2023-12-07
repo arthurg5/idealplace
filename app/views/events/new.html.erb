@@ -21,7 +21,6 @@
                         <strong><i class="fas fa-user"></i>  Members</strong>
                         <!-- Add some margin and padding to the member avatars -->
                         <div style="margin-top: 10px; padding: 5px;">
-                        <p>Choose a group for your new event!</p>
                           <% group.group_users.each do |group_user| %>
                             <% if group_user.user.photo.attached? %>
                               <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
@@ -44,7 +43,7 @@
       <%= f.input :date, as: :string, input_html: { id: "event_date", placeholder: "DD-MM-YYYY", style: "visibility: hidden", class: "datepicker" }, label: false %>
     </div>
     <%= f.submit "Create Event", class: "btn custom-btn custom-btn-small-new mb-4" %>
-    <% end %>
+    <% end %>'
     </div>
 
             <br>
