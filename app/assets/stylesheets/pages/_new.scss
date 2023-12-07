@@ -74,15 +74,16 @@ span.flatpickr-weekday,
 }
 
 /* ne fonctionne pas tout ci-dessous reste toujours à cibler les flèches haut bas près de l'année dans le formulaire */
-.arrowDown,
+
+.arrowDown{
+  background-color: white;
+  color: white;
+}
+
 .arrowUp{
+  background-color: white;
   color: white;
 }
-
-.numInputWrapper span.arrowDown{
-  color: white;
-}
-
 
 input.cur-year{
   color: white;
