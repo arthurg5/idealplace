@@ -10,9 +10,7 @@ class PagesController < ApplicationController
     @group = Group.new
     @events = Event.all
 
-    @created_events = Event.where(status: 'Created')
-    @voted_events = Event.where(status: 'Voted')
+    @events = Event.where.not(status: 'Passed')
     @passed_events = Event.where(status: 'Passed')
-
   end
 end

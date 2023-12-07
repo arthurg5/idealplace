@@ -2,6 +2,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   color: white;
   border: none;
+  margin: 1rem 2rem;
 }
 
 .card-index {
@@ -26,6 +27,11 @@
   background-color: $dark-green;
   color: white;
   height: 100%;
+}
+
+.avatar-gap {
+  gap: 2rem;
+  margin-bottom: 5px;
 }
 
 .list-group-item {
