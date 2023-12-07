@@ -14,16 +14,16 @@
               <div class="mb-4">
                 <% if event.user.nickname == current_user.nickname %>
                   <% if event.user.photo.attached? %>
-                    <%= cl_image_tag event.user.photo.key, class: "avatar", style: "width: 70px; border-color: #FCA601" %>
+                    <%= cl_image_tag event.user.photo.key, class: "avatar", title: event.user.nickname, style: "width: 70px; border-color: #FCA601" %>
                   <% end %>
                 <% else %>
                   <% if event.user.photo.attached? %>
-                    <%= cl_image_tag event.user.photo.key, class: "avatar", style: "border-color: #FCA601" %>
+                    <%= cl_image_tag event.user.photo.key, class: "avatar", title: event.user.nickname, style: "border-color: #FCA601" %>
                   <% end %>
                 <% end %>
                 <% event.group.group_users.each do |group_user| %>
                   <% if group_user.user.photo.attached? %>
-                    <%= cl_image_tag group_user.user.photo.key, class: "avatar", style:"width: 60px;" %>
+                    <%= cl_image_tag group_user.user.photo.key, class: "avatar", title: group_user.user.nickname, style:"width: 60px;" %>
                     <% end %>
                 <% end %>
               </div>
@@ -34,7 +34,11 @@
             <p class="card-text"><i class="far fa-clock"></i>  Start Time: <%= event.start_time.strftime("%H:%M %p") %></p>
             <% if event.status == "Voted" || event.status == "Passed" %>
               <div style="position: absolute; bottom: 10px; right: 10px;">
-                <strong>Selected Place:</strong> <%= event.event_places.first.place.name %>
+
+                <% if event.event_places %>
+                  <strong>Selected Place:</strong> <%= event.event_places.first.place.name %>
+                <% end %>
+
               </div>
             <% else %>
               <div style="position: absolute; bottom: 10px; right: 10px;">
