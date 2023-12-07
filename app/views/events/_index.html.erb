@@ -4,14 +4,14 @@
     <% sorted_events.each do |event| %>
       <div class="col-md-4 mb-3 p-1"> <!-- Added 'mb-3' class for margin bottom -->
         <div class="card">
-          <div class="card-body" style="height: 300px">
-            <h5 class="card-title"><strong><%= event.name %></strong> with
+          <div class="card-body" style="height: 260px">
+            <h5 class="card-title mb-4"><strong><%= event.name %></strong> with
               <% if event.group %>
                 <%= event.group.name %>
               <% end %>
             </h5>
             <% if event.group %>
-              <div class="mb-2"><i class="fas fa-user"></i>
+              <div class="mb-4">
                 <% if event.user.nickname == current_user.nickname %>
                   <% if event.user.photo.attached? %>
                     <%= cl_image_tag event.user.photo.key, class: "avatar", style: "width: 70px; border-color: #FCA601" %>
@@ -23,7 +23,7 @@
                 <% end %>
                 <% event.group.group_users.each do |group_user| %>
                   <% if group_user.user.photo.attached? %>
-                    <%= cl_image_tag group_user.user.photo.key, class: "avatar" %>
+                    <%= cl_image_tag group_user.user.photo.key, class: "avatar", style:"width: 60px;" %>
                     <% end %>
                 <% end %>
               </div>
