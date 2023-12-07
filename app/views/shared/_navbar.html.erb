@@ -12,8 +12,12 @@
       <ul class="navbar-nav me-auto">
 
         <% if user_signed_in? %>
-          <li class="nav-item d-flex">
-            <a class="nav-link"> <i class='fa-solid fa-bell fa-lg' style='color: #fca601;'></i></a>
+          <li class="nav-item d-flex dropdown">
+          <!-- ajout cloche dropdown -->
+            <a class="nav-link" id="navbarDropdown" data-bs-toggle="dropdown" alt="dropdown menu"> <i class='fa-solid fa-bell fa-lg' style='color: #fca601;'></i></a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Vote for event 1", edit_user_registration_path, class: "dropdown-item" %>
+            </div>
             <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
