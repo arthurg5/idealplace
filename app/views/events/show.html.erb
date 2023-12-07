@@ -48,16 +48,16 @@
       </div>
 
 
-    <div class="event-container" data-controller="places">
+  <div class="event-container" data-controller="places">
 
-      <%= render 'shared/filtered_places', places: @places, event: @event %>
+    <%= render 'shared/filtered_places', places: @places, event: @event %>
 
-      <div class="map-display"
-          data-target="filter.map"
-          data-places-target="map"
-          data-controller="map"
-          data-map-markers-value="<%= @markers.to_json %>"
-          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
+    <div class="map-display"
+        data-target="filter.map"
+        data-places-target="map"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
+</div>

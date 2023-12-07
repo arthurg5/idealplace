@@ -6,7 +6,7 @@ export default class extends Controller {
     const dateInput = this.element.querySelector('#event_date');
 
     flatpickr(dateInput, {
-      dateFormat: 'd-m-Y',
+      dateFormat: 'Y-m-d H:i',
       minDate: 'today',
       theme: 'light',
       inline: true,
