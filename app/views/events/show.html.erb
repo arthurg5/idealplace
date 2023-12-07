@@ -39,11 +39,11 @@
   </div>
 
   <!-- events/show.html.erb -->
-      <div data-controller="filter">
-        <%= link_to "All", event_path(@event), class: "btn custom-margin #{active_filter_class(nil)}", data: { action: "filter#filter" } %>
-        <%= link_to "Catering", event_path(@event, category: 'Catering'), class: "btn custom-margin #{active_filter_class('Catering')}", data: { action: "filter#filter" } %>
-        <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: "btn custom-margin #{active_filter_class('Entertainment')}", data: { action: "filter#filter" } %>
-        <%= link_to "Culture", event_path(@event, category: 'Culture'), class: "btn custom-margin #{active_filter_class('Culture')}", data: { action: "filter#filter" } %>
+      <div class="d-flex bd-highlight w-50" data-controller="filter">
+        <%= link_to "All", event_path(@event), class: "p-2 flex-fill bd-highlight btn custom-margin #{active_filter_class(nil)}", data: { action: "filter#filter" } %>
+        <%= link_to "Catering", event_path(@event, category: 'Catering'), class: "p-2 flex-fill bd-highlight btn custom-margin #{active_filter_class('Catering')}", data: { action: "filter#filter" } %>
+        <%= link_to "Entertainment", event_path(@event, category: 'Entertainment'), class: "p-2 flex-fill bd-highlight btn custom-margin #{active_filter_class('Entertainment')}", data: { action: "filter#filter" } %>
+        <%= link_to "Culture", event_path(@event, category: 'Culture'), class: "p-2 flex-fill bd-highlight btn custom-margin #{active_filter_class('Culture')}", data: { action: "filter#filter" } %>
         We found <%= @places.count %> results
       </div>
 

@@ -40,10 +40,11 @@
     </div>
           <!-- partie droite -->
     <div class="col-md-4">
-          <div data-controller="datepicker">
-<%= f.input :date, as: :string, input_html: { id: "event_date", placeholder: "DD-MM-YYYY", style: "visibility: hidden", class: "datepicker" }, label: false %>          </div>
-<%= f.submit "Create Event", class: "btn custom-btn custom-btn-small-new mb-4" %>
-<% end %>
+      <div data-controller="datepicker">
+      <%= f.input :date, as: :string, input_html: { id: "event_date", placeholder: "DD-MM-YYYY", style: "visibility: hidden", class: "datepicker" }, label: false %>
+    </div>
+    <%= f.submit "Create Event", class: "btn custom-btn custom-btn-small-new mb-4" %>
+    <% end %>
     </div>
 
             <br>
@@ -61,9 +62,9 @@
   function selectCard(element) {
     var cards = document.querySelectorAll('.card');
     cards.forEach(function(card) {
-      card.classList.remove('selected');
+      card.classList.remove('card-index-selected');
     });
-    element.classList.add('selected');
+    element.classList.add('card-index-selected');
 
     var groupName = element.querySelector('.card-title').innerText;
     document.getElementById('selected_group_name').value = groupName;
