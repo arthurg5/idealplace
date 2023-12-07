@@ -7,14 +7,14 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @selected_group_name = @event.selected_group_name || "No group"
-    @places = Place.all
     @event_name = @event.name
     @event_places = @event.event_places
 
     @group_users = @event.group.users
 
     # Check for category filtering
-    @places = Place.where(category: params[:category]) if params[:category].present?
+    @places = params[:category].present? ? Place.where(category: params[:category]) : Place.all
+
 
     @markers = @places.geocoded.map do |place|
       {
@@ -52,7 +52,7 @@ class EventsController < ApplicationController
       marker_html: render_to_string(partial: "marker3", locals: { barycenter: @barycenter })
     }
 
-    @places = @places.select { |place| place.distance_from(@barycenter) < 1.5 }
+    @places = @places.select { |place| place.distance_from(@barycenter) < 4 }
     places_ids = @places.pluck(:id)
     @places = Place.where(id: places_ids)
 
@@ -82,7 +82,6 @@ class EventsController < ApplicationController
   end
 
   def create
-
     @event = Event.new(event_params)
     @event.start_time = params['event']['date'].to_time.strftime('%H:%M')
     @event.user = current_user

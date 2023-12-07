@@ -14,7 +14,7 @@
                               placeholder: "Your event name!"
               %>
 
-            <%= f.submit "➜", class:"form-arrow" %>
+            <%= f.submit "➜", class:"form-arrow", data: { turbo: false } %>
             <% end %>
             <!-- placage des 5 images à intégrer pour la déco à mettre en position absolute ! -->
             <%= image_tag "green-vertical-lines.png", alt:"Green vertical lines", class:"green-vertical-lines" %>
