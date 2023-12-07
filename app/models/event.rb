@@ -18,6 +18,10 @@ class Event < ApplicationRecord
     !Favorite.where(favoritable_id: event_places.pluck(:id), favoritor_id: user.id).empty?
   end
 
+  def total_vote
+    self.event_places.map { |event_place| event_place.favoritors.count }.sum
+  end
+
   private
 
   def set_default_status
@@ -25,5 +29,3 @@ class Event < ApplicationRecord
   end
  #  validates :status, inclusion: { in: STATUS, message: "%{value} is not a valid status type" }
 end
-
-# :barycenter_lng, :barycenter_lat
