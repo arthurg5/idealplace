@@ -54,7 +54,7 @@ class EventsController < ApplicationController
 
     @places = @places.select { |place| place.distance_from(@barycenter) < 4 }
     places_ids = @places.pluck(:id)
-    @places = Place.where(id: places_ids)
+    @places = Place.where(id: places_ids).order(:id)
 
     @markers = @places.geocoded.map do |place|
       {

@@ -3,10 +3,12 @@
   <% places.each do |place| %>
     <% if event.places.count < 3 %>
       <% if event.places.exclude?(place) %>
-        <%= link_to event_event_places_path(event_id: event.id, place_id: place.id), data: { turbo_method: :post, action: "click->places#selectCard" } do %>
+        <%= link_to event_event_places_path(event_id: event.id, place_id: place.id), data: { turbo_method: :post, action: "click->places#selectCard", id: place.id } do %>
           <!-- Add an extra level of indentation for the nested div -->
           <%= render "events/place_card", place: place, event: event %>
         <% end %>
+      <% else %>
+        <%= render "events/place_card", place: place, event: event %>
       <% end %>
     <% else %>
       <%= render "events/place_card", place: place, event: event %>
