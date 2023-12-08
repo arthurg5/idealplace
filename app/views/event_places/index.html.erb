@@ -2,7 +2,7 @@
   <div class="row">
   <% @event_places.each do |event_place| %>
     <div class="col-md-4">
-      <div class="card mb-4">
+      <div class="card mb-4 <%= event_place.selected ? "card-index-selected" : "unselected" %>">
         <div class="row">
           <!-- Image of the place -->
           <div class="col-sm-4">
@@ -12,7 +12,7 @@
           </div>
           <!-- Card body -->
           <div class="col-sm-8">
-            <div class="card-body <%= event_place.selected ? "selected" : "unselected" %>" style="height: 200px; overflow: hidden;">
+            <div class="card-body" style="height: 200px; overflow: hidden;">
               <div class="d-flex justify-content-between">
                 <h5 class="card-title"><%= event_place.place.name %></h5>
                 <%= link_to "X", event_place_path(event_place), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "opacity: 1;" %>

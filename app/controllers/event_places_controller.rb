@@ -61,6 +61,7 @@ class EventPlacesController < ApplicationController
       if @vote_count == @event.group.users.count
         event_place.selected = true
         @event.status = "Voted"
+        event_place.save
         @event.save
       end
     end
