@@ -107,9 +107,12 @@ cineaqua = Place.create!(name: "Aquarium de Paris - CineAqua", address: "5 Avenu
 galerie = Place.create!(name: "GALERIES, JARDINS, ZOO", address: "36 Rue Geoffroy-Saint-Hilaire 75005 Paris", phone: "01 40 79 56 01", category: "Entertainment", second_category: "Zoo", third_category: "Animals", opening_hours: "10h00", rating: 4.5)
 acclimatation = Place.create!(name: "Jardin d'Acclimatation", address: "Bois de Boulogne 75116 Paris", phone: "01 40 67 90 85", category: "Entertainment", second_category: "Zoo", third_category: "Animals", opening_hours: "10h00", rating: 4)
 # Catering
-burger = Place.create!(name: "Big Fernand", address: "55 rue du Faubourg Poissonnière 75009 Paris", phone: "01 75 53 64 91", category: "Catering", second_category: "Restaurant", third_category: "American", opening_hours: "11h30", rating: 4)
-salad = Place.create!(name: "Cojean", address: "8 rue de Sèze 75009 Paris", phone: "01 75 54 75 92", category: "Catering", second_category: "Restaurant", third_category: "Healthy", opening_hours: "09h00", rating: 4)
+burger = Place.create!(name: "Big Fernand", address: "55 rue du Faubourg Poissonnière 75009 Paris", phone: "01 75 53 64 91", category: "Catering", second_category: "Restaurant", third_category: "American", opening_hours: "11h30", rating: 3.8)
+salad = Place.create!(name: "Cojean", address: "8 rue de Sèze 75009 Paris", phone: "01 75 54 75 92", category: "Catering", second_category: "Restaurant", third_category: "Healthy", opening_hours: "09h00", rating: 4.3)
 kebab = Place.create!(name: "Urfa Dürüm", address: "58 rue du Faubourg Saint-Denis 75010 Paris", phone: "01 75 55 86 93", category: "Catering", second_category: "Fast Food", third_category: "Turkish", opening_hours: "12h00", rating: 4)
+esplanade = Place.create!(name: "Café de l'Esplanade", address: "52 rue Fabert 75007 Paris", phone: "01 47 05 38 80", category: "Catering", second_category: "Restaurant", third_category: "Gastro", opening_hours: "12h30", rating: 5)
+bourbon = Place.create!(name: "Brasserie Le Bourbon", address: "1 place du Palais Bourbon, 75007 Paris", phone: "01 45 51 58 27", category: "Catering", second_category: "Restaurant", third_category: "Gastro", opening_hours: "12h00", rating: 4.2)
+
 # Culture
 castle1 = Place.create!(name: "Château de Vincennes", address: "1 Avenue de Paris, 94300 Vincennes", phone: "01 48 08 31 20", category: "Culture", second_category: "Monument", third_category: "Castle", opening_hours: "10h00", rating: 4) # This is a medieval fortress that was once the residence of the French kings[^1^][1]
 castle2 = Place.create!(name: "Château de Bagatelle", address: "42 Route de Sèvres à Neuilly, 75016 Paris", phone: "01 53 01 92 40", category: "Culture", second_category: "Monument", third_category: "Castle", opening_hours: "09h30", rating: 4.5) # This is a small neoclassical chateau that was built in 64 days as a result of a bet between Queen Marie-Antoinette and her brother-in-law[^2^][2]
@@ -214,7 +217,7 @@ street_food = Place.create!(
 
 paris_places = [
   # Catering
-  creperie, sushi, burger, salad, kebab,
+  creperie, sushi, burger, salad, kebab, esplanade, bourbon,
   # Culture
   opera, cathedral, museum, castle1, castle2, castle3, church, gallery,
   # Entertainment

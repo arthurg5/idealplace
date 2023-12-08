@@ -23,12 +23,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def notif
-  #   Group.all.each do |group|
-  #     user_groups = group.users.map { |user| user == self }
-  #     raise
-  #     user_groups.map do |user_group| {
-  #       # user_events = user_group.events
-  #     }
-  #   end
   end
 end
