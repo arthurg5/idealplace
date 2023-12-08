@@ -11,7 +11,7 @@ class EventPlacesController < ApplicationController
     category = params[:category]
     @place = Place.find(params[:place_id])
     @event_place = EventPlace.new(event: @event, place: @place)
-    selected_places = Place.where(id: places_ids)
+    selected_places = Place.where(id: places_ids).order(:id)
     unless category == "none"
       selected_places = selected_places.where(category: category)
     end
@@ -61,6 +61,7 @@ class EventPlacesController < ApplicationController
       if @vote_count == @event.group.users.count
         event_place.selected = true
         @event.status = "Voted"
+        event_place.save
         @event.save
       end
     end
