@@ -12,7 +12,6 @@ class EventPlacesController < ApplicationController
     @place = Place.find(params[:place_id])
     @event_place = EventPlace.new(event: @event, place: @place)
     selected_places = Place.where(id: places_ids)
-    p selected_places
     unless category == "none"
       selected_places = selected_places.where(category: category)
     end
