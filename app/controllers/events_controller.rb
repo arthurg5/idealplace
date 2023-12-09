@@ -52,9 +52,9 @@ class EventsController < ApplicationController
       marker_html: render_to_string(partial: "marker3", locals: { barycenter: @barycenter })
     }
 
-    @places = @places.select { |place| place.distance_from(@barycenter) < 4 }
+    @places = @places.select { |place| place.distance_from(@barycenter) < 2 }
     places_ids = @places.pluck(:id)
-    @places = Place.where(id: places_ids)
+    @places = Place.where(id: places_ids).order(:id)
 
     @markers = @places.geocoded.map do |place|
       {

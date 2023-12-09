@@ -11,7 +11,7 @@ class EventPlacesController < ApplicationController
     category = params[:category]
     @place = Place.find(params[:place_id])
     @event_place = EventPlace.new(event: @event, place: @place)
-    selected_places = Place.where(id: places_ids)
+    selected_places = Place.where(id: places_ids).order(:id)
     unless category == "none"
       selected_places = selected_places.where(category: category)
     end
@@ -51,19 +51,26 @@ class EventPlacesController < ApplicationController
   end
 
   def voted_by_all_users
-    @vote_count = 0
-    @vote_count_event_place = 0
-    @event.event_places.each do |event_place|
-      @vote_count_event_place = event_place.favoritors.count
+    if @event.total_vote == @event.group.users.count
+      favorite_event_place = @event.event_places.max_by { |event_place| event_place.favoritors.count }
+      favorite_event_place.selected = true
+      favorite_event_place.save
+      @event.status = "Voted"
+      @event.save
     end
-    @event.event_places.each do |event_place|
-      @vote_count = event_place.favoritors.count
-      if @vote_count == @event.group.users.count
-        event_place.selected = true
-        @event.status = "Voted"
-        @event.save
-      end
-    end
+
+    # @vote_count = 0
+    # @vote_count_event_place = 0
+
+    # @event.event_places.each do |event_place|
+    #   @place_vote_count = event_place.favoritors.count
+    #   if @place_vote_count == @event.group.users.count
+    #     event_place.selected = true
+    #     @event.status = "Voted"
+    #     event_place.save
+    #     @event.save
+    #   end
+    # end
   end
 
   def destroy
