@@ -34,9 +34,7 @@ users << User.new(first_name: "Joana", last_name: "Silva", nickname: "Joana", em
 puts "Creating photos for users"
 
 users.each do |user|
-  file = File.open(Rails.root.join('app', 'assets', 'images', "#{user.nickname}.jpg"))
-  user.photo.attach(io: file, filename: "#{user.nickname}_avatar.png", content_type: "image/png")
-  user.save!
+g
 end
 
 arthur = User.where(nickname: "Arthur").first
